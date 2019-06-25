@@ -2,15 +2,15 @@
 ## Comandos para la ejecucion
 
 ### Creacion del ROL
-php artisan make:model Role -m
+    php artisan make:model Role -m
 
 ### Migracion de roles usuario
-php artisan make:migration create_role_user_table
+    php artisan make:migration create_role_user_table
 
 ### Agregar seeders para roles
-php artisan make:seeder RoleTableSeeder
+    php artisan make:seeder RoleTableSeeder
 
-> __Disclaimer:__ Los comandos anteriores son parte de la configuración realizada, con el siguiente comando podremos iniciar, se crearan las tablas en la base de datos.
+> __NOTA:__ Los comandos anteriores son parte de la configuración realizada, con el siguiente comando podremos iniciar, se crearan las tablas en la base de datos.
 
 ### Ejecutar comando para migrar seeders
     php artisan migrate:refresh --seed

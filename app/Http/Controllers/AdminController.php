@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// use App\Helpers\Views;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['user', 'admin']);
-        return view('admin.admin');
+        // return view('admin.dashboard.index');
+        return \Views::load('dashboard.index');
     }
 }
