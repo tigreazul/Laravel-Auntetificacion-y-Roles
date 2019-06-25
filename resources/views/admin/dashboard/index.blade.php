@@ -28,7 +28,6 @@
         <div class="main-body">
             <div class="page-wrapper">
                 <div class="page-body">
-
                     <div class="row">
                         <div class="col-md-12 col-xl-8">
                             <div class="card sale-card">
@@ -419,7 +418,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 // use App\Helpers\Views;
 
-class AdminController extends Controller
+class MenuController extends Controller
 {
     /**
      * Create a new controller instance.
