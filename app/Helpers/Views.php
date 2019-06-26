@@ -85,6 +85,18 @@ Class Views{
 
     public static function segment($indicador = 0)
     {
+        switch($indicador){
+            case 3:
+                return Request::segment(3);            
+            break;
+            case 2:
+                return Request::segment(2).'/'.Request::segment(3);
+            break;
+            default:
+                return Request::segment(1).'/'.Request::segment(2);
+            break;
+        }
+
         if($indicador === 1)
         {
             return Request::segment(2);

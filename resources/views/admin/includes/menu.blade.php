@@ -1,11 +1,8 @@
 <div class="pcoded-inner-navbar main-menu">
-
-    @php
-        $principal = Request::segment(1)
-    @endphp
-
-
-    <div class="pcoded-navigation-label">Navigation {{ \Views::segment(1) }} </div>
+    <?php 
+    //print_r( \Views::menu() ); die();
+    ?>
+    <div class="pcoded-navigation-label">Navigation {{ \Views::segment(3) }} </div>
     <ul class="pcoded-item pcoded-left-item">
         @foreach(\Views::menu() as $menu)
             @if(!is_array($menu['interno']) || empty($menu['interno']) )
@@ -27,14 +24,14 @@
                     <ul class="pcoded-submenu">
                         @foreach($menu['interno'] as $interno)
                             @if(!is_array($interno['submenu']) || empty($interno['submenu']) )
-                                <li class="{{ \Views::segment(1) == $interno['ruta'] ? 'active':'' }}">
-                                    <a href="{{ $interno['ruta'] }}" class="waves-effect waves-dark">
+                                <li class="{{ (\Views::segment(3) == $interno['ruta'] || \Views::segment(2) == $interno['ruta']) ? 'active':'' }}">
+                                    <a href="{{ url('admin/'.$interno['ruta']) }}" class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">{{ $interno['cabecera'] }}</span>
                                     </a>
                                 </li>
                             @else
                                 <li class="">
-                                    <a href="{{ $interno['ruta'] }}" class="waves-effect waves-dark">
+                                    <a href="{{ url('admin/'.$interno['ruta']) }}" class="waves-effect waves-dark">
                                         <span class="pcoded-mtext">{{ $interno['cabecera'] }}</span>
                                         <!-- <span class="pcoded-badge label label-info ">NEW</span> -->
                                     </a>

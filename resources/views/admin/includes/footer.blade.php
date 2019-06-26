@@ -44,28 +44,43 @@
 <![endif]-->
 
 <!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>-->
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/jquery.min.js')}}"></script> 
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/jquery-ui.min.js')}}"></script>
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/popper.min.js')}}"></script>
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/bootstrap.min.js')}}"></script>
+<!-- <script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/jquery.min.js')}}"></script>  -->
+<script type="text/javascript" src="{{ asset('theme_admin/js/jquery-ui.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/popper.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/bootstrap.min.js')}}"></script>
 
-<script src="{{ asset('theme_admin/js/waves.min.js')}}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/jquery.slimscroll.js')}}"></script>
+<script src="{{ asset('theme_admin/js/waves.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/jquery.slimscroll.js')}}"></script>
 
-<script src="{{ asset('theme_admin/js/jquery.flot.js')}}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script src="{{ asset('theme_admin/js/jquery.flot.categories.js')}}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script src="{{ asset('theme_admin/js/curvedLines.js')}}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script src="{{ asset('theme_admin/js/jquery.flot.tooltip.min.js')}}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
 
-<script src="{{ asset('theme_admin/js/chartist.js') }}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
 
-<script src="{{ asset('theme_admin/js/amcharts.js') }}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script src="{{ asset('theme_admin/js/serial.js') }}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script src="{{ asset('theme_admin/js/light.js') }}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
+<!-- TABLE -->
+<script src="{{ asset('theme_admin/js/table/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/jszip.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/pdfmake.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/vfs_fonts.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/dataTables.select.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/buttons.print.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/buttons.html5.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/table/responsive.bootstrap4.min.js') }}" type="text/javascript"></script>
 
-<script src="{{ asset('theme_admin/js/pcoded.min.js') }}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script src="{{ asset('theme_admin/js/vertical-layout.min.js') }}" type="8f68cca9f211ae1c772449e8-text/javascript"></script>
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/custom-dashboard.min.js') }} "></script>
-<script type="8f68cca9f211ae1c772449e8-text/javascript" src="{{ asset('theme_admin/js/script.min.js') }}"></script>
+<script src="{{ asset('theme_admin/js/table/select-custom.js')}}" type="text/javascript"></script>
+<!-- END TABLE -->
+
+
+
+
+<script src="{{ asset('theme_admin/js/pcoded.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/vertical-layout.min.js') }}" type="text/javascript"></script>
+
+
+
+<!-- <script type="text/javascript" src="{{ asset('theme_admin/js/script.min.js') }}"></script> -->
+<script type="text/javascript" src="{{ asset('theme_admin/js/script.js') }}"></script>
 
 <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="8f68cca9f211ae1c772449e8-|49" defer=""></script>
+
+

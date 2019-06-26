@@ -1,0 +1,8 @@
+table thead {
+    background: #818588;
+    color: #ffffff;
+}
+
+table tbody td{
+    padding: 1px
+}

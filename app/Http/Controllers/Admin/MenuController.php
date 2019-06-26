@@ -26,7 +26,14 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['user', 'admin']);
+        
+        $_data_page = DB::table('menu')
+        ->where([
+            'ModuloID' => $modulo,
+            'Estado'   => 1
+        ])
+        ->get();
 
-        return \Views::admin('dashboard.index');
+        return \Views::admin('configuracion.menu');
     }
 }

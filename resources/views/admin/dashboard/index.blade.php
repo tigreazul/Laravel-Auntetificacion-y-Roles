@@ -422,4 +422,17 @@
             </div>
         </div>
     </div>
+
+    
+    <script src="{{ asset('theme_admin/js/jquery.flot.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/jquery.flot.categories.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/curvedLines.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/jquery.flot.tooltip.min.js')}}" type="text/javascript"></script>
+
+    <script src="{{ asset('theme_admin/js/chartist.js') }}" type="text/javascript"></script>
+
+    <script src="{{ asset('theme_admin/js/amcharts.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/serial.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/light.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('theme_admin/js/custom-dashboard.min.js') }} "></script>
 @stop
