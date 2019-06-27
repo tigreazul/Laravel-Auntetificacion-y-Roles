@@ -1,4 +1,4 @@
-<title>Admindek | Admin Template</title>
+<title>{{ isset($title) ? $title : 'Panel de administración' }}</title>
 <!--[if lt IE 10]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -23,6 +23,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/feather.css')}}">
 
 <link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/font-awesome-n.min.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/sweetalert.css')}}">
 
 <link rel="stylesheet" href="{{ asset('theme_admin/css/chartist.css')}}" type="text/css" media="all">
 

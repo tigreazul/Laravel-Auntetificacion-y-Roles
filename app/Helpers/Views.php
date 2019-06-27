@@ -27,15 +27,10 @@ Class Views{
             // $_data_menu = $vista;
         // }
 
-        $_data = array  (
-            'title'     => 'Panel de administración',
-        );
-
-        $data   = $_data_menu;
-        $title  = 'Panel de administración';
-        // dd($title);
-
-        return view('admin.'.$vista, compact('data','title') );
+        
+        $data   = isset($_data_menu) ? $_data_menu : array();
+        // dd($data);
+        return view('admin.'.$vista, $data );
     }
 
     public static function menu($vista = null)

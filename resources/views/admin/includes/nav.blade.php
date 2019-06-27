@@ -33,6 +33,7 @@
             </li>
         </ul>
         <ul class="nav-right">
+            <li>Env: {!! env('APP_ENV') !!}</li>
             <li class="header-notification">
                 <div class="dropdown-primary dropdown">
                     <div class="dropdown-toggle" data-toggle="dropdown">

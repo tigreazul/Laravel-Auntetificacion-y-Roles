@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\{
-    Modulo
+    Modulo, Pagina
 };
 
 use App\Http\Controllers\Controller;
@@ -34,22 +34,29 @@ class MenuController extends Controller
     {
         $request->user()->authorizeRoles(['user', 'admin']);
         
-        $_data_page = DB::table('modulo')
+        $modulo = DB::table('modulo')
         ->where([
             'Estado'   => 1
         ])
+        ->orderBy('Orden')
         ->get();
-        // dd($_data_page);
+
+        $pagina =  DB::table('pagina')
+        ->where([
+            'Estado'   => 1
+        ])
+        ->orderBy('Orden')
+        ->get();
+
 
         $a_data_page = array(
             'title' => 'Titli',
-            $_data_page
+            'data'  => $modulo,
+            'pagina'=> $pagina
         );
 
-        return \Views::admin('configuracion.menu',$_data_page);
+        return \Views::admin('configuracion.menu',$a_data_page);
     }
-
-
 
     /**
      * Add modulo
@@ -83,11 +90,14 @@ class MenuController extends Controller
     public function store_modulo(Request $request)
     {
         // dd($request);
+        // $maximo = Modulo::max('Orden');
+        // dd($maximo); die();
+
         $modulo = new Modulo;
         $modulo->Titulo         = $request->titulo;
         $modulo->Descripcion    = $request->descripcion;
         $modulo->Estado         = 1;
-        $modulo->Orden          = 1;
+        $modulo->Orden          = Modulo::max('Orden')+1;
         $modulo->Icono          = $request->icono;
         $modulo->Link           = $request->link;
         $modulo->LinkExterno    = $request->exterior;
@@ -97,24 +107,22 @@ class MenuController extends Controller
     }
 
 
-
     public function edit_modulo($id)
     {
         $modulo = Modulo::find($id);
         // dd($modulo);
         // return \View::make('update',compact('movie'));
 
-        return \Views::admin('configuracion.edit_modulo',$modulo);
+        $data_modulo = array(
+            'title'     => 'Administración de Menu',
+            'data'      => $modulo
+        );
+        return \Views::admin('configuracion.edit_modulo',$data_modulo);
     }
 
-
-    public function update_modulo(Request $request,$id)
+    public function update_modulo(Request $request)
     {
-
-        // $tot = count($modulo);
-        // if($tot != 0){
-            // dd($request);
-
+        try{
             $ddd = Modulo::find($id);
             $ddd->Titulo         = $request->titulo;
             $ddd->Descripcion    = $request->descripcion;
@@ -123,10 +131,11 @@ class MenuController extends Controller
             // $ddd->LinkExterno    = $request->exterior;
             $ddd->Route          = $request->route;
             $ddd->save();
-            dd($ddd);
-        // }
-
-        // return redirect('admin/configuracion/menu');
+        }catch(\Exception $e){
+            var_dump($e);
+            // die();
+        }
+        return redirect('admin/configuracion/menu');
 
 
         // $data = request()->validate([
@@ -143,4 +152,25 @@ class MenuController extends Controller
         // return redirect()->route('users.show', ['user' => $user]);
     }
     
+    public function delete_modulo(Request $request,$id)
+    {
+        try{
+            $data = Modulo::find($id);
+            $data->Estado = 0;
+            $s = $data->save();
+            $return_ms = array(
+                'status' => true,
+                'retorno'=> $s
+            );
+        }catch(\Exception $e){
+            $return_ms = array(
+                'status' => false,
+                'retorno'=> $e
+            );
+        }
+        return response()->json($return_ms);
+    }
+
+
+
 }

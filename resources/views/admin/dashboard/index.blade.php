@@ -7,7 +7,7 @@
                     <i class="feather icon-home bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Dashboard</h5>
-                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                        <span>Panel principal</span>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="index.html"><i class="feather icon-home"></i></a>
+                            <a href="{{ route('admin.home') }}"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item"><a href="#!">Dashboard</a> </li>
                     </ul>
@@ -29,6 +29,44 @@
             <div class="page-wrapper">
                 <div class="page-body">
                     <div class="row">
+
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card sale-card">
+                                <div class="card-header">
+                                    <h5>Environment</h5>
+                                </div>
+                                <div class="card-block">
+                                    <table class="table table-striped">
+                                        @foreach($enviroment as $env)
+                                            <tr>
+                                                <td width="120px" style="font-weight: bold;" >{{ $env['name'] }}</td>
+                                                <td>{{ $env['value'] }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-6">
+                            <div class="card sale-card">
+                                <div class="card-header">
+                                    <h5>Dependencies</h5>
+                                </div>
+                                <div class="card-block dependencies">
+                                    <table class="table table-striped">
+                                        @foreach($dependencies as $dependency => $version)
+                                            <tr>
+                                                <td width="240px">{{ $dependency }}</td>
+                                                <td><span class="label label-primary">{{ $version }}</span></td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-md-12 col-xl-8">
                             <div class="card sale-card">
                                 <div class="card-header">
@@ -435,4 +473,8 @@
     <script src="{{ asset('theme_admin/js/serial.js') }}" type="text/javascript"></script>
     <script src="{{ asset('theme_admin/js/light.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('theme_admin/js/custom-dashboard.min.js') }} "></script>
+
+    <script>
+        $('.dependencies').slimscroll({height:'510px',size:'3px'});
+    </script>
 @stop

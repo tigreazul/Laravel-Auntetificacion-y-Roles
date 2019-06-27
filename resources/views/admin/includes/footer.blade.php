@@ -56,7 +56,8 @@
 <!-- <script type="text/javascript" src="{{ asset('theme_admin/js/modernizr.js') }}"></script>
 <script type="text/javascript" src="{{ asset('theme_admin/js/css-scrollbars.js') }}"></script>
  -->
-
+ <script type="text/javascript" src="{{ asset('theme_admin/js/sweetalert.min.js') }}"></script>
+ <!-- <script type="text/javascript" src="{{ asset('theme_admin/js/modal.js') }}"></script> -->
 
 <!-- TABLE -->
     <script src="{{ asset('theme_admin/js/table/jquery.dataTables.min.js') }}" type="text/javascript"></script>

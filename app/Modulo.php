@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Modulo extends Model
 {
     protected $table = 'modulo';
   	// protected $fillable = ['name', 'description'];
-  	protected $guarded = ['ID'];
+  	// protected $guarded = ['ID'];
+    protected $primaryKey = 'ID';
 
 
   	/**

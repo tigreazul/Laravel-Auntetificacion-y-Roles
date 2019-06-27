@@ -18,3 +18,7 @@ table tbody td{
     background-color: #4099ff;
     color:#ffffff;
 }
+
+tr.table-verify.active, tr.table-verify.active:hover {
+    background: #fffd99;
+}

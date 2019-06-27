@@ -83,7 +83,7 @@
                                         <button type="submit" class="btn btn-sm btn-primary m-b-0">
                                                 <i class="fa fa-save"></i> Registrar
                                         </button>
-                                        <a type="submit" class="btn btn-sm btn-default m-b-0"><i class="fa fa-reply"></i> Volver</a>
+                                        <a href="{{ route('admin.menu') }}" class="btn btn-sm btn-default m-b-0"><i class="fa fa-reply"></i> Volver</a>
                                     </div>
                                 </div>
                             </form>
