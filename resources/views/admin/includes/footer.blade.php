@@ -53,28 +53,42 @@
 <script type="text/javascript" src="{{ asset('theme_admin/js/jquery.slimscroll.js')}}"></script>
 
 
+<!-- <script type="text/javascript" src="{{ asset('theme_admin/js/modernizr.js') }}"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/css-scrollbars.js') }}"></script>
+ -->
+
 
 <!-- TABLE -->
-<script src="{{ asset('theme_admin/js/table/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/dataTables.buttons.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/jszip.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/pdfmake.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/vfs_fonts.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/dataTables.select.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/buttons.print.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/buttons.html5.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/dataTables.responsive.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('theme_admin/js/table/responsive.bootstrap4.min.js') }}" type="text/javascript"></script>
-
-<script src="{{ asset('theme_admin/js/table/select-custom.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/dataTables.buttons.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/jszip.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/pdfmake.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/vfs_fonts.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/dataTables.select.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/buttons.print.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/buttons.html5.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/responsive.bootstrap4.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('theme_admin/js/table/select-custom.js')}}" type="text/javascript"></script>
 <!-- END TABLE -->
+
+<!-- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/validate.js') }}"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/form-validation.js') }}"></script>
+ -->
 
 
 
 
 <script src="{{ asset('theme_admin/js/pcoded.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('theme_admin/js/vertical-layout.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('theme_admin/js/jquery.mCustomScrollbar.concat.min.js') }}" type="text/javascript"></script>
+
+
+
 
 
 
@@ -82,5 +96,6 @@
 <script type="text/javascript" src="{{ asset('theme_admin/js/script.js') }}"></script>
 
 <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="8f68cca9f211ae1c772449e8-|49" defer=""></script>
+
 
 

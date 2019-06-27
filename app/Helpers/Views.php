@@ -7,7 +7,7 @@ Class Views{
         return view($vista);
     }
 
-    public static function admin($vista)
+    public static function admin($vista, $_data_menu = array())
     {
 
         
@@ -24,15 +24,18 @@ Class Views{
             
         // if(count($_data_menu) == 0)
         // {
-            $_data_menu = $vista;
+            // $_data_menu = $vista;
         // }
 
         $_data = array  (
             'title'     => 'Panel de administración',
-            'data_menu' => $_data_menu
         );
 
-        return view('admin.'.$vista,$_data);
+        $data   = $_data_menu;
+        $title  = 'Panel de administración';
+        // dd($title);
+
+        return view('admin.'.$vista, compact('data','title') );
     }
 
     public static function menu($vista = null)

@@ -24,6 +24,11 @@
         </div>
     </div>
 
+    <!-- <pre>
+        <?php // print_r($data); ?>
+    </pre> -->
+
+
     <div class="pcoded-inner-content">
         <div class="main-body">
             <div class="page-wrapper">
@@ -33,7 +38,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col">
-                                    <h5>Lista de modulos</h5>
+                                    <h5>Lista de datos</h5>
                                 </div>
                                 <div class="col-2">
                                     <button class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO</button>
@@ -66,11 +71,7 @@
                                                         Acciones
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-file"></i>
-                                                            Páginas
-                                                        </a>
-                                                        <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$res->ID]) }}">
+                                                        <a class="dropdown-item" href="{{ route('admin.modulo_edit', $res) }}">
                                                             <i class="fa fa-edit"></i>
                                                             Editar
                                                         </a>
