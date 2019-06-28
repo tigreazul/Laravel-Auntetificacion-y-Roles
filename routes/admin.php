@@ -7,6 +7,8 @@ Route::group(['prefix' => 'configuracion'], function() {
     Route::get('menu', 'Admin\MenuController@index')->name('admin.menu');
     
     Route::get('menu/modulo-add', 'Admin\MenuController@modulo_add')->name('admin.modulo_add');
+    Route::get('menu/get-page/{id}', 'Admin\MenuController@get_page')->name('admin.get_page');
+
     Route::post('menu/modulo-add', 'Admin\MenuController@store_modulo')->name('admin.modulo_add_store');
     
     Route::get('menu/{user}/editar', 'Admin\MenuController@edit_modulo')->name('admin.modulo_edit');

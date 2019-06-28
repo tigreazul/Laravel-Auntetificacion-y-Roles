@@ -22,3 +22,10 @@ table tbody td{
 tr.table-verify.active, tr.table-verify.active:hover {
     background: #fffd99;
 }
+
+
+.not-row{
+	text-align: center;
+    font-weight: bold;
+    background: #99c8ff;
+}

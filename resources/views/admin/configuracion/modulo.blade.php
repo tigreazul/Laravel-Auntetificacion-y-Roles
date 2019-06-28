@@ -46,50 +46,48 @@
                             </div>
                         </div>
                         <div class="card-block">
-                            <!-- lista de tablas -->
-                            <table class="table table-hover m-b-0">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Titulo</th>
-                                        <th>Descripción</th>
-                                        <th>Estado</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $i = 1; @endphp
-                                    @foreach($data as $res)
+                                <!-- lista de tablas -->
+                                <table class="table table-hover m-b-0">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $i }}</td>
-                                            <td>{!! $res->Icono !!} {{ $res->Titulo }}</td>
-                                            <td>{{ $res->Descripcion }}</td>
-                                            <td><label class="label label-{{ ($res->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        Acciones
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="{{ route('admin.modulo_edit', $res) }}">
-                                                            <i class="fa fa-edit"></i>
-                                                            Editar
-                                                        </a>
-                                                        <a class="dropdown-item" href="#">
-                                                            <i class="fa fa-trash-alt"></i>
-                                                            Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Titulo</th>
+                                            <th>Descripción</th>
+                                            <th>Estado</th>
+                                            <th>Acción</th>
                                         </tr>
-                                        @php $i++; @endphp
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <!-- lista de tablas -->
-
-
+                                    </thead>
+                                    <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach($data as $res)
+                                            <tr>
+                                                <td>{{ $i }}</td>
+                                                <td>{!! $res->Icono !!} {{ $res->Titulo }}</td>
+                                                <td>{{ $res->Descripcion }}</td>
+                                                <td><label class="label label-{{ ($res->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Acciones
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="{{ route('admin.modulo_edit', $res) }}">
+                                                                <i class="fa fa-edit"></i>
+                                                                Editar
+                                                            </a>
+                                                            <a class="dropdown-item" href="#">
+                                                                <i class="fa fa-trash-alt"></i>
+                                                                Eliminar
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @php $i++; @endphp
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <!-- lista de tablas -->
                             <div class="dt-responsive table-responsive">
                                 <div class="table-responsive">
                                 </div>

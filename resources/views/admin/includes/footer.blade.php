@@ -100,3 +100,6 @@
 
 
 
+<script>
+    $('.enviroment').slimscroll({height:'310px',size:'5px'});
+</script>

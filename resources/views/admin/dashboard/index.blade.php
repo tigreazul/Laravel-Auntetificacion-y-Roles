@@ -36,14 +36,16 @@
                                     <h5>Environment</h5>
                                 </div>
                                 <div class="card-block">
-                                    <table class="table table-striped">
-                                        @foreach($enviroment as $env)
-                                            <tr>
-                                                <td width="120px" style="font-weight: bold;" >{{ $env['name'] }}</td>
-                                                <td>{{ $env['value'] }}</td>
-                                            </tr>
-                                        @endforeach
-                                    </table>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped enviroment">
+                                            @foreach($enviroment as $env)
+                                                <tr>
+                                                    <td width="" style="font-weight: bold;" >{{ $env['name'] }}</td>
+                                                    <td> <code> {{ $env['value'] }} </code> </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -122,7 +124,6 @@
                             </div>
                         </div>
 
-
                         <div class="col-xl-12">
                             <div class="card proj-progress-card">
                                 <div class="card-block">
@@ -159,7 +160,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="col-md-12 col-xl-4">
                             <div class="card card-blue text-white">
@@ -474,7 +474,5 @@
     <script src="{{ asset('theme_admin/js/light.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('theme_admin/js/custom-dashboard.min.js') }} "></script>
 
-    <script>
-        $('.dependencies').slimscroll({height:'510px',size:'3px'});
-    </script>
+    
 @stop

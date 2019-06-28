@@ -171,6 +171,41 @@ class MenuController extends Controller
         return response()->json($return_ms);
     }
 
+    public function get_page(Request $request, $id)
+    {
+
+        // $_data_modulo = DB::table('modulo')->select('*',DB::raw('modulo.Titulo'))
+        // ->leftJoin('pagina', function($join){
+        //     $join->on('modulo.ID', '=', 'pagina.ModuloID');
+        // })
+        // ->where([
+        //     'pagina.Estado'     => 1,
+        //     'modulo.Estado'     => 1,
+        //     'pagina.ModuloID'   => $id
+        // ])
+        // ->orderBy('modulo.ID')
+        // ->get();
+
+
+        $modulo = Modulo::find($id);
+        $pagina =  DB::table('pagina')
+        // ->select('')
+        ->where([
+            'Estado'   => 1,
+            'ModuloID' => $id
+        ])
+        ->get();
+
+        // dd($module);
+        $arrResult = array(
+            'status'    => true,
+            'modulo'    => $modulo->Titulo,
+            'pagina'    => $pagina
+        );
+
+        return response()->json($arrResult);
+
+    }
 
 
 }
