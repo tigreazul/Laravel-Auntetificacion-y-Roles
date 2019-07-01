@@ -82,7 +82,7 @@
  -->
 
 
-
+<!-- @yield('scripts') -->
 
 <script src="{{ asset('theme_admin/js/pcoded.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('theme_admin/js/vertical-layout.min.js') }}" type="text/javascript"></script>
@@ -91,10 +91,11 @@
 
 
 
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.6/dist/loadingoverlay.min.js"></script>
 
 <!-- <script type="text/javascript" src="{{ asset('theme_admin/js/script.min.js') }}"></script> -->
 <script type="text/javascript" src="{{ asset('theme_admin/js/script.js') }}"></script>
+<script type="text/javascript" src="{{ asset('theme_admin/js/custom.js') }}"></script>
 
 <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="8f68cca9f211ae1c772449e8-|49" defer=""></script>
 

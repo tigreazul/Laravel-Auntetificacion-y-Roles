@@ -107,6 +107,7 @@
 
 
                     </div>
+                    <div class="md-overlay"></div>
                     <!-- card -->
                 </div>
             </div>
@@ -166,11 +167,17 @@
             e.preventDefault();
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             // var id = $(this).attr('data-id');
+            $('#id_module').val(id);
             $.ajax({
                 url: local.base+'/admin/configuracion/menu/get-page/'+id,
                 type: 'GET',
                 dataType: 'json',
                 data: {_token: CSRF_TOKEN},
+                beforeSend: function(){
+                    var $this = $(this);
+                    $('.loader-cards').parents('.card').addClass("card-load");
+                    $('.loader-cards').parents('.card').append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></div>');
+                },
                 success: function(data){
                     if(data.status == true){
                         $('.code_page').text(data.modulo);
@@ -215,9 +222,90 @@
                     }else{
                         swal('Ocurrio un error vuelva a intentarlo');
                     }
+                },
+                complete: function(){
+                    $('.loader-cards').parents('.card').children(".card-loader").remove();
+                    $('.loader-cards').parents('.card').removeClass("card-load");
                 }
             });
+        });
 
+
+        $(document).on('submit','#save_page',function(e){
+            e.preventDefault();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            // var id = $(this).attr('data-id');
+            var url     = $(this).attr('action');
+            // var serial  = $(this).serialize();
+
+            let desc = $('#page_descripcion').val();
+            let ruta = $('#page_ruta').val();
+            let slug = $('#page_slug').val();
+            let est  = $('#page_estado').val();
+            let id   = $('#id_module').val();
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                data: {_token: CSRF_TOKEN,descripcion:desc,ruta:ruta,slug:slug,estado:est,id:id},
+                beforeSend: function(){
+                    var $this = $(this);
+                    $('.loader-cards').parents('.card').addClass("card-load");
+                    $('.loader-cards').parents('.card').append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></div>');
+                },
+                success: function(data){
+                    if(data.status == true){
+                        $('.md-close').trigger('click');
+                        $('.code_page').text(data.modulo);
+                        $('#page-body-table').html("");
+                        let vhtml = "";
+                        console.log(data.pagina.length);
+                        if(data.pagina.length != 0){
+                            $.each(data.pagina,function(k,v){
+                                vhtml += '<tr>';
+                                vhtml += '<td>'+(k+1)+'</td>';
+                                vhtml += '<td>'+v.Descripcion+'</td>';
+                                vhtml += '<td><code>'+v.Ruta+'</code></td>';
+                                vhtml += '<td><label class="label label-success">Activo</label></td>';
+                                vhtml += `<td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Acciones
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>`+v.ID+`]) }}">
+                                                        <i class="fa fa-edit"></i>
+                                                        Editar
+                                                    </a>
+                                                    <a class="dropdown-item alert-delete" href="#" data-id="`+v.ID+`" >
+                                                        <i class="fa fa-trash-alt"></i>
+                                                        Eliminar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>`;
+                                vhtml += '</tr>';
+                            });
+                        }else{
+                            vhtml = `
+                            <tr>
+                                <td colspan="5" class="not-row"><strong> No existen datos</strong></td>
+                            </tr>
+                            `
+                        }
+                        $('#page-body-table').html(vhtml);
+
+                    }else{
+                        swal('Ocurrio un error vuelva a intentarlo');
+                    }
+                },
+                complete: function(){
+                    $('#save_page')[0].reset();
+                    $('.loader-cards').parents('.card').children(".card-loader").remove();
+                    $('.loader-cards').parents('.card').removeClass("card-load");
+                }
+            });
         });
 
         

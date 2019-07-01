@@ -31,7 +31,6 @@ class AdminController extends Controller
             'enviroment'  => self::enviroment(),
             'dependencies'    => self::dependencies()
         );
-
         return \Views::admin('dashboard.index',$a_data_page);
     }
 
