@@ -171,6 +171,15 @@
                 type: 'GET',
                 dataType: 'json',
                 data: {_token: CSRF_TOKEN},
+                beforeSend: function(){
+                    // var $this = $(this);
+                    // $this.parents('.card').addClass("card-load");
+                    // $this.parents('.card').append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></div>');
+                    // setTimeout(function() {
+                    //     $this.parents('.card').children(".card-loader").remove();
+                    //     $this.parents('.card').removeClass("card-load");
+                    // }, 3000);
+                },
                 success: function(data){
                     if(data.status == true){
                         $('.code_page').text(data.modulo);
