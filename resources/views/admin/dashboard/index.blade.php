@@ -35,9 +35,9 @@
                                 <div class="card-header">
                                     <h5>Environment</h5>
                                 </div>
-                                <div class="card-block">
+                                <div class="card-block enviroment">
                                     <div class="table-responsive">
-                                        <table class="table table-striped enviroment">
+                                        <table class="table table-striped ">
                                             @foreach($enviroment as $env)
                                                 <tr>
                                                     <td width="" style="font-weight: bold;" >{{ $env['name'] }}</td>

@@ -120,7 +120,7 @@ class MenuController extends Controller
         return \Views::admin('configuracion.edit_modulo',$data_modulo);
     }
 
-    public function update_modulo(Request $request)
+    public function update_modulo(Request $request,$id)
     {
         try{
             $ddd = Modulo::find($id);
@@ -133,7 +133,7 @@ class MenuController extends Controller
             $ddd->save();
         }catch(\Exception $e){
             var_dump($e);
-            // die();
+            die();
         }
         return redirect('admin/configuracion/menu');
 
