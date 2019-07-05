@@ -197,7 +197,7 @@
                                                     Acciones
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#default-Modal" href="{{ route('admin.modulo_edit', ['id'=>`+v.ID+`]) }}">
+                                                    <a class="dropdown-item editar_page" data-toggle="modal" data-target="#default-Modal" href="#" id="`+v.ID+`">
                                                         <i class="fa fa-edit"></i>
                                                         Editar
                                                     </a>
@@ -229,7 +229,6 @@
                 }
             });
         });
-
 
         $(document).on('submit','#save_page',function(e){
             e.preventDefault();
@@ -274,7 +273,7 @@
                                                     Acciones
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>`+v.ID+`]) }}">
+                                                    <a class="dropdown-item editar_page" data-toggle="modal" data-target="#default-Modal" href="#" data-id="`+v.ID+`">
                                                         <i class="fa fa-edit"></i>
                                                         Editar
                                                     </a>
@@ -308,7 +307,71 @@
             });
         });
 
-        
+        $(document).on('click','.editar_page',function(e){
+            e.preventDefault();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            let idpage = $(this).data('id');
+            let url = $('#update_page').attr('action');
+
+            let desc = $('#e_page_descripcion').val();
+            let ruta = $('#e_page_ruta').val();
+            let slug = $('#e_page_slug').val();
+            let est  = $('#e_page_estado').val();
+            let id   = $('#id_module').val();
+            
+            let data = {
+                _token      : CSRF_TOKEN,
+                descripcion : desc,
+                ruta        : ruta,
+                slug        : slug,
+                estado      : est,
+                idmodulo    : id,
+                idpage      : idpage
+            }
+            // console.log(url);
+            // return false;
+            $.ajax({
+                url: local.base+'/admin/configuracion/menu/get-page-id/'+id,
+                type: 'GET',
+                dataType: 'json',
+                data: {},
+                beforeSend: function(){
+                    var $this = $(this);
+                    $('.loader-cards').parents('.card').addClass("card-load");
+                    $('.loader-cards').parents('.card').append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></div>');
+                },
+                success: function(data){
+                    console.log(data); 
+                    // return false;
+                    if(data.status == true){
+                        // $('.md-close').trigger('click');
+                        // $('.code_page').text(data.modulo);
+                        // $('#page-body-table').html("");
+                        let vhtml = "";
+                        // console.log(data.pagina.length);
+                        if(data.pagina.length != 0){
+                            $('#e_page_descripcion').val(data.pagina.Descripcion);
+                            $('#e_page_ruta').val(data.pagina.Ruta);
+                            $('#e_page_slug').val(data.pagina.Slug);
+                            $('#e_page_estado').val(data.pagina.Estado);
+                        }else{
+                            swal('No se encontro datos');    
+                        }
+                        // $('#page-body-table').html(vhtml);
+
+                    }else{
+                        swal('Ocurrio un error vuelva a intentarlo');
+                    }
+                },
+                complete: function(){
+                    // $('#update_page')[0].reset();
+                    // $('.loader-cards').parents('.card').children(".card-loader").remove();
+                    // $('.loader-cards').parents('.card').removeClass("card-load");
+                }
+            });
+
+        });
+
     </script>
 
 
@@ -322,7 +385,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('admin.page_add') }}" id="save_page">
+                    <form method="POST" action="{{ route('admin.page_update') }}" id="update_page">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Descripción</label>
                             <div class="col-sm-9">

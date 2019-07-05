@@ -207,6 +207,28 @@ class MenuController extends Controller
     }
 
 
+    public function get_page_id(Request $request, $id)
+    {
+
+        $pagina = Pagina::find($id);
+        // $pagina =  DB::table('pagina')
+        // ->where([
+        //     'Estado'   => 1,
+        //     'ModuloID' => $id
+        // ])
+        // ->get();
+
+        // dd($module);
+        $arrResult = array(
+            'status'    => true,
+            'pagina'    => $pagina
+        );
+
+        return response()->json($arrResult);
+
+    }
+
+
 
     /**
      * Store pagina
@@ -242,6 +264,50 @@ class MenuController extends Controller
         return response()->json($arrResult);
         //return redirect('admin/configuracion/menu');
     }
+
+    /**
+     * Store pagina
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function update_pagina(Request $request,$id)
+    {
+        // dd($request->descripcion); die();
+        // $pagina = new Pagina;
+        // $pagina->Descripcion = $request->descripcion;
+        // $pagina->Ruta        = $request->ruta;
+        // $pagina->Estado      = $request->estado;
+        // $pagina->ModuloID    = $request->id;
+        // $pagina->Orden       = Pagina::max('Orden')+1;
+        // $id = $pagina->save();
+
+        $pagina = Pagina::find($id);
+        $pagina->Descripcion   = $request->descripcion;
+        $pagina->Ruta          = $request->ruta;
+        $pagina->Estado        = $request->estado;
+        $pagina->Slug          = $request->slug;
+        $pagina->save();
+
+
+
+        $modulo = Modulo::find($pagina->ModuloID);
+        $pagina =  DB::table('pagina')
+        ->where([
+            'Estado'   => 1,
+            'ModuloID' => $pagina->ID
+        ])
+        ->get();
+
+        $arrResult = array(
+            'status'    => true,
+            'modulo'    => $modulo->Titulo,
+            'pagina'    => $pagina
+        );
+
+        return response()->json($arrResult);
+        //return redirect('admin/configuracion/menu');
+    }
+
 
 
 }
