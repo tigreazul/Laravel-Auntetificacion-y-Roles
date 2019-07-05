@@ -50,7 +50,7 @@ class MenuController extends Controller
 
 
         $a_data_page = array(
-            'title' => 'Titli',
+            'title' => 'Titulo',
             'data'  => $modulo,
             'pagina'=> $pagina
         );
@@ -189,7 +189,6 @@ class MenuController extends Controller
 
         $modulo = Modulo::find($id);
         $pagina =  DB::table('pagina')
-        // ->select('')
         ->where([
             'Estado'   => 1,
             'ModuloID' => $id
@@ -205,6 +204,43 @@ class MenuController extends Controller
 
         return response()->json($arrResult);
 
+    }
+
+
+
+    /**
+     * Store pagina
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function store_pagina(Request $request)
+    {
+        // dd($request->descripcion); die();
+        $pagina = new Pagina;
+        $pagina->Descripcion = $request->descripcion;
+        $pagina->Ruta        = $request->ruta;
+        $pagina->Estado      = $request->estado;
+        $pagina->ModuloID    = $request->id;
+        $pagina->Orden       = Pagina::max('Orden')+1;
+        $id = $pagina->save();
+
+
+        $modulo = Modulo::find($request->id);
+        $pagina =  DB::table('pagina')
+        ->where([
+            'Estado'   => 1,
+            'ModuloID' => $request->id
+        ])
+        ->get();
+
+        $arrResult = array(
+            'status'    => true,
+            'modulo'    => $modulo->Titulo,
+            'pagina'    => $pagina
+        );
+
+        return response()->json($arrResult);
+        //return redirect('admin/configuracion/menu');
     }
 
 

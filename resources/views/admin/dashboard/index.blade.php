@@ -461,7 +461,7 @@
         </div>
     </div>
 
-    
+    <!-- @content('scripts') -->
     <script src="{{ asset('theme_admin/js/jquery.flot.js')}}" type="text/javascript"></script>
     <script src="{{ asset('theme_admin/js/jquery.flot.categories.js')}}" type="text/javascript"></script>
     <script src="{{ asset('theme_admin/js/curvedLines.js')}}" type="text/javascript"></script>
@@ -473,6 +473,6 @@
     <script src="{{ asset('theme_admin/js/serial.js') }}" type="text/javascript"></script>
     <script src="{{ asset('theme_admin/js/light.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ asset('theme_admin/js/custom-dashboard.min.js') }} "></script>
-
+    <!-- @endcontent -->
     
 @stop
