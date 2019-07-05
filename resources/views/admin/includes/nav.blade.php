@@ -115,9 +115,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="auth-sign-in-social.html">
-                                <i class="feather icon-log-out"></i> Logout
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="feather icon-log-out"></i> {{ __('Logout') }}
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            <!-- <a href="auth-sign-in-social.html">
+                                <i class="feather icon-log-out"></i> Logout
+                            </a> -->
                         </li>
                     </ul>
                 </div>

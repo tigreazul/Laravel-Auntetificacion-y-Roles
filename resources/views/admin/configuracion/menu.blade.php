@@ -197,7 +197,7 @@
                                                     Acciones
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>`+v.ID+`]) }}">
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#default-Modal" href="{{ route('admin.modulo_edit', ['id'=>`+v.ID+`]) }}">
                                                         <i class="fa fa-edit"></i>
                                                         Editar
                                                     </a>
@@ -310,4 +310,56 @@
 
         
     </script>
+
+
+    <div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editar pagina</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('admin.page_add') }}" id="save_page">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Descripción</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="descripcion" id="e_page_descripcion">
+                                <input type="hidden" name="id_module" id="e_id_module" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Ruta</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="ruta" id="e_page_ruta">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Slug</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="slug" id="e_page_slug">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Estado</label>
+                            <div class="col-sm-9">
+                                <select name="estado" class="form-control" id="e_page_estado">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Desabilitado</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary waves-effect">Guardar</button>
+                    <button type="button" class="btn btn-default waves-effect md-close" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @stop

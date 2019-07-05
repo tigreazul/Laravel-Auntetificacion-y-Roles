@@ -5,13 +5,14 @@
             <div class="card-header-right loader-cards"></div>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-primary btn-sm waves-effect md-trigger" data-modal="modal-12"><i class="fa fa-plus-circle"></i> NUEVA PAGINA</button>
+            <button type="button" class="btn btn-primary btn-sm waves-effect md-trigger" data-modal="modal-12"><i class="fa fa-plus-circle"></i> NUEVA PAGINAs</button>
             <!-- <a href="{{ route('admin.modulo_add') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVA PAGINA</a> -->
         </div>                                
     </div>
 
 </div>
 <div class="card-block">
+
     <table class="table table-hover m-b-0">
         <thead>
             <tr>
@@ -80,6 +81,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 
 <!-- <script src="{{ asset('theme_admin/js/modal.js') }}" type="text/javascript"></script> -->

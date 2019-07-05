@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 <head>
 
     <title>Login</title>
@@ -26,11 +26,14 @@
     <link rel="stylesheet" href="{{ asset('theme_admin/css/waves.min.css')}}" type="text/css" media="all">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/feather.css')}}">
     
+
+    <!-- <link rel="stylesheet" type="text/css" href="../files/assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="../files/assets/icon/icofont/css/icofont.css"> -->
+
     <link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/font-awesome-n.min.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/style.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('theme_admin/css/pages.css')}}">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- <link rel="stylesheet" type="text/css" href="../files/assets/css/pages.css"> -->
 </head>
 <body themebg-pattern="theme1">
 
@@ -87,62 +90,69 @@
         </div>
     </div>
 
-
-     <!--    
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <ul class="navbar-nav ml-auto">
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-    </nav> -->
-
     <section class="login-block">
         <div class="container-fluid">
-            @yield('content')
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="md-float-material form-material">
+                        <div class="text-center">
+                            <img src="../files/assets/images/logo.png" alt="logo.png">
+                        </div>
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row m-b-20">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center txt-primary">Sign In</h3>
+                                    </div>
+                                </div>
+                                <div class="row m-b-20">
+                                    <div class="col-md-6">
+                                        <button class="btn btn-facebook m-b-20 btn-block"><i class="icofont icofont-social-facebook"></i>facebook</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button class="btn btn-twitter m-b-20 btn-block"><i class="icofont icofont-social-twitter"></i>twitter</button>
+                                    </div>
+                                </div>
+                                <p class="text-muted text-center p-b-5">Sign in with your regular account</p>
+                                <div class="form-group form-primary">
+                                    <input type="text" name="user-name" class="form-control" required="">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Username</label>
+                                </div>
+                                <div class="form-group form-primary">
+                                    <input type="password" name="password" class="form-control" required="">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Password</label>
+                                </div>
+                                <div class="row m-t-25 text-left">
+                                    <div class="col-12">
+                                        <div class="checkbox-fade fade-in-primary">
+                                            <label>
+                                                <input type="checkbox" value="">
+                                                <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                                                <span class="text-inverse">Remember me</span>
+                                            </label>
+                                        </div>
+                                        <div class="forgot-phone text-right float-right">
+                                            <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-t-30">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                                    </div>
+                                </div>
+                                <p class="text-inverse text-left">Don't have an account?<a href="auth-sign-up-social.html"> <b>Register here </b></a>for free!</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+        <!-- </div> -->
     </section>
-        
+
 
     <!--[if lt IE 10]>
     <div class="ie-warning">
@@ -197,7 +207,7 @@
 
     <script type="text/javascript" src="{{ asset('theme_admin/js/modernizr.js') }}"></script>
     <script type="text/javascript" src="{{ asset('theme_admin/js/css-scrollbars.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('theme_admin/js/common-pages.js') }}"></script>
+    <script type="14887099c611f5e9388de7e5-text/javascript" src="../files/assets/js/common-pages.js"></script>
 
     <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/a2bd7673/cloudflare-static/rocket-loader.min.js" data-cf-settings="14887099c611f5e9388de7e5-|49" defer=""></script>
 </body>
