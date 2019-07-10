@@ -348,12 +348,12 @@
                         // $('.code_page').text(data.modulo);
                         // $('#page-body-table').html("");
                         let vhtml = "";
-                        // console.log(data.pagina.length);
+                        console.log(data.pagina.length);
                         if(data.pagina.length != 0){
-                            $('#e_page_descripcion').val(data.pagina.Descripcion);
-                            $('#e_page_ruta').val(data.pagina.Ruta);
-                            $('#e_page_slug').val(data.pagina.Slug);
-                            $('#e_page_estado').val(data.pagina.Estado);
+                            $('#e_page_descripcion').val(data.pagina[0].Descripcion);
+                            $('#e_page_ruta').val(data.pagina[0].Ruta);
+                            $('#e_page_slug').val(data.pagina[0].Slug);
+                            $('#e_page_estado').val(data.pagina[0].Estado);
                         }else{
                             swal('No se encontro datos');    
                         }
@@ -365,8 +365,8 @@
                 },
                 complete: function(){
                     // $('#update_page')[0].reset();
-                    // $('.loader-cards').parents('.card').children(".card-loader").remove();
-                    // $('.loader-cards').parents('.card').removeClass("card-load");
+                    $('.loader-cards').parents('.card').children(".card-loader").remove();
+                    $('.loader-cards').parents('.card').removeClass("card-load");
                 }
             });
 

@@ -15,7 +15,9 @@ Route::group(['prefix' => 'configuracion'], function() {
 
     Route::post('menu/page-add', 'Admin\MenuController@store_pagina')->name('admin.page_add');
     Route::post('menu/page-update', 'Admin\MenuController@store_pagina')->name('admin.page_update');
+});
 
+Route::group(['prefix' => 'post'], function() {
     // Pagina
     Route::get('page', 'Admin\PageController@index')->name('admin.front_list');                 // Listado
     Route::get('page/create', 'Admin\PageController@create')->name('admin.front_create');       // Form View Create
@@ -23,9 +25,7 @@ Route::group(['prefix' => 'configuracion'], function() {
     Route::get('page/{id}', 'Admin\PageController@show')->name('admin.front_list_id');          // Mostrar por id
     Route::get('page/{user}/editar', 'Admin\PageController@edit')->name('admin.front_edit');    // Form editar
     Route::patch('page/{id}', 'Admin\PageController@update')->name('admin.front_edit_data');    // Update datos
-
-
-});
+}); 
 
 
 Route::get('volver',function(){

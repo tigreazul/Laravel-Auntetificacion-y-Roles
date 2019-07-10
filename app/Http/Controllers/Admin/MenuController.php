@@ -210,7 +210,15 @@ class MenuController extends Controller
     public function get_page_id(Request $request, $id)
     {
 
-        $pagina = Pagina::find($id);
+        $pagina = DB::table('pagina')
+        ->where([
+            'ModuloID' => $id,
+            'Estado'   => 1
+        ])
+        ->get();
+
+        // $pagina = Pagina::where(['ModuloID'=>$id]);
+        // dd($pagina);
         // $pagina =  DB::table('pagina')
         // ->where([
         //     'Estado'   => 1,

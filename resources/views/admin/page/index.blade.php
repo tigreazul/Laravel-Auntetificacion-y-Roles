@@ -37,7 +37,7 @@
                                         <h5>Lista de paginas</h5>
                                     </div>
                                     <div class="col-42">
-                                        <a href="{{ route('admin.modulo_add') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
+                                        <a href="{{ route('admin.front_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
                                     </div>                                
                                 </div>
                             </div>
