@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\{
+use App\Models\{
     Modulo, Pagina
 };
 

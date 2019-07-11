@@ -37,21 +37,21 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Categoria</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="descripcion" name="descripcion" required>
+                                        <input type="text" class="form-control" id="categoria" name="categoria" required>
                                         <span class="messages"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Tag</label>
                                      <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="icono" name="icono" required>
+                                        <input type="text" class="form-control" id="tag" name="tag" required>
                                         <span class="messages"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">Imagen Principal</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="route" name="route" required>
+                                        <input type="text" class="form-control" id="images" name="images" required>
                                         <span class="messages"></span>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                             <div class="panel-body p20 pb10">
                                                 <div id="contenido-nota" class="active-content">
                                                     <div class="dock-item">
-                                                        <textarea id="contentenido" class="form-control"></textarea>
+                                                        <textarea id="contentenido" name="contentenido" class="form-control"></textarea>
                                                     </div>
                                                 </div>
                                             </div>

@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\{
+    Modulo, Pagina, Front
+};
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
@@ -66,7 +70,17 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $front = new Front;
+        $front->Titulo              = $request->titulo;
+        $front->Categoria           = $request->categoria;
+        $front->Estado              = 1;
+        $front->Tag                 = $request->tag;
+        $front->FechaIngreso        = date('Y-m-d');
+        $front->Imagen_principal    = $request->images;
+        $front->Contenido           = $request->contentenido;
+        $front->save();
+
+        return redirect()->route('admin.front_list');
     }
 
     /**
