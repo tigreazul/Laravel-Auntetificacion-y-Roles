@@ -270,7 +270,7 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function update_pagina(Request $request,$id)
+    public function update_pagina(Request $request)
     {
         // dd($request->descripcion); die();
         // $pagina = new Pagina;
@@ -281,14 +281,12 @@ class MenuController extends Controller
         // $pagina->Orden       = Pagina::max('Orden')+1;
         // $id = $pagina->save();
 
-        $pagina = Pagina::find($id);
+        $pagina = Pagina::find($request->idpage);
         $pagina->Descripcion   = $request->descripcion;
         $pagina->Ruta          = $request->ruta;
         $pagina->Estado        = $request->estado;
-        $pagina->Slug          = $request->slug;
+        // $pagina->Slug          = $request->slug;
         $pagina->save();
-
-
 
         $modulo = Modulo::find($pagina->ModuloID);
         $pagina =  DB::table('pagina')

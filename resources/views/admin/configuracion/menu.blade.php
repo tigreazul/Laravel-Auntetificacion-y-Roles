@@ -197,7 +197,7 @@
                                                     Acciones
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item editar_page" data-toggle="modal" data-target="#default-Modal" href="#" id="`+v.ID+`">
+                                                    <a class="dropdown-item editar_page" data-toggle="modal" data-target="#default-Modal" href="#" data-id="`+v.ID+`">
                                                         <i class="fa fa-edit"></i>
                                                         Editar
                                                     </a>
@@ -311,7 +311,48 @@
             e.preventDefault();
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             let idpage = $(this).data('id');
-            let url = $('#update_page').attr('action');
+            $('#e_id_page').val(idpage);
+            
+            $.ajax({
+                url: local.base+'/admin/configuracion/menu/get-page-id/'+idpage,
+                type: 'GET',
+                dataType: 'json',
+                data: {},
+                beforeSend: function(){
+                    var $this = $(this);
+                    $('.loader-cards').parents('.card').addClass("card-load");
+                    $('.loader-cards').parents('.card').append('<div class="card-loader"><i class="feather icon-radio rotate-refresh"></div>');
+                },
+                success: function(data){
+                    console.log(data); 
+                    // return false;
+                    if(data.status == true){
+                        if(data.pagina.length != 0){
+                            $('#e_page_descripcion').val(data.pagina.Descripcion);
+                            $('#e_page_ruta').val(data.pagina.Ruta);
+                            // $('#e_page_slug').val(data.pagina.Slug);
+                            $('#e_page_estado').val(data.pagina.Estado);
+                        }else{
+                            swal('No se encontro datos');    
+                        }
+                    }else{
+                        swal('Ocurrio un error vuelva a intentarlo');
+                    }
+                },
+                complete: function(){
+                    // $('#update_page')[0].reset();
+                    $('.loader-cards').parents('.card').children(".card-loader").remove();
+                    $('.loader-cards').parents('.card').removeClass("card-load");
+                }
+            });
+        });
+
+
+        $(document).on('submit','#update_page',function(e){
+            e.preventDefault();
+            var CSRF_TOKEN  = $('meta[name="csrf-token"]').attr('content');
+            let idpage      = $('#e_id_page').val();
+            let url         = $(this).attr('action');
 
             let desc = $('#e_page_descripcion').val();
             let ruta = $('#e_page_ruta').val();
@@ -331,10 +372,10 @@
             // console.log(url);
             // return false;
             $.ajax({
-                url: local.base+'/admin/configuracion/menu/get-page-id/'+id,
-                type: 'GET',
+                url: url,
+                type: 'POST',
                 dataType: 'json',
-                data: {},
+                data: data,
                 beforeSend: function(){
                     var $this = $(this);
                     $('.loader-cards').parents('.card').addClass("card-load");
@@ -344,20 +385,14 @@
                     console.log(data); 
                     // return false;
                     if(data.status == true){
-                        // $('.md-close').trigger('click');
-                        // $('.code_page').text(data.modulo);
-                        // $('#page-body-table').html("");
-                        let vhtml = "";
-                        // console.log(data.pagina.length);
                         if(data.pagina.length != 0){
                             $('#e_page_descripcion').val(data.pagina.Descripcion);
                             $('#e_page_ruta').val(data.pagina.Ruta);
-                            $('#e_page_slug').val(data.pagina.Slug);
+                            // $('#e_page_slug').val(data.pagina.Slug);
                             $('#e_page_estado').val(data.pagina.Estado);
                         }else{
                             swal('No se encontro datos');    
                         }
-                        // $('#page-body-table').html(vhtml);
 
                     }else{
                         swal('Ocurrio un error vuelva a intentarlo');
@@ -365,11 +400,11 @@
                 },
                 complete: function(){
                     // $('#update_page')[0].reset();
-                    // $('.loader-cards').parents('.card').children(".card-loader").remove();
-                    // $('.loader-cards').parents('.card').removeClass("card-load");
+                    $('.loader-cards').parents('.card').children(".card-loader").remove();
+                    $('.loader-cards').parents('.card').removeClass("card-load");
                 }
             });
-
+            return false;
         });
 
     </script>
@@ -384,13 +419,13 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form method="POST" action="{{ route('admin.page_update') }}" id="update_page">
+                <form method="POST" action="{{ route('admin.page_update') }}" id="update_page">
+                    <div class="modal-body">
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Descripción</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="descripcion" id="e_page_descripcion">
-                                <input type="hidden" name="id_module" id="e_id_module" value="">
+                                <input type="hidden" name="id_page" id="e_id_page" value="">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -399,12 +434,12 @@
                                 <input type="text" class="form-control" name="ruta" id="e_page_ruta">
                             </div>
                         </div>
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Slug</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" name="slug" id="e_page_slug">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Estado</label>
                             <div class="col-sm-9">
@@ -414,12 +449,12 @@
                                 </select>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary waves-effect">Guardar</button>
-                    <button type="button" class="btn btn-default waves-effect md-close" data-dismiss="modal">Close</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary waves-effect">Guardar</button>
+                        <button type="button" class="btn btn-default waves-effect md-close" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

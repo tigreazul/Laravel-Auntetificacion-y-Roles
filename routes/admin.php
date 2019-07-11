@@ -14,7 +14,7 @@ Route::group(['prefix' => 'configuracion'], function() {
     Route::post('delete/module/{id}', 'Admin\MenuController@delete_modulo')->name('admin.delete_modulo');
 
     Route::post('menu/page-add', 'Admin\MenuController@store_pagina')->name('admin.page_add');
-    Route::post('menu/page-update', 'Admin\MenuController@store_pagina')->name('admin.page_update');
+    Route::post('menu/page-update', 'Admin\MenuController@update_pagina')->name('admin.page_update');
 
     // Pagina
     Route::get('page', 'Admin\PageController@index')->name('admin.front_list');                 // Listado
