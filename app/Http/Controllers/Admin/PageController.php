@@ -51,7 +51,11 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        $a_data_page = array(
+            'title' => 'Registro de paginas',
+        );
+
+        return \Views::admin('page.create',$a_data_page);
     }
 
     /**
