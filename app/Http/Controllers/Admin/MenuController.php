@@ -215,7 +215,7 @@ class MenuController extends Controller
             'ModuloID' => $id,
             'Estado'   => 1
         ])
-        ->get();
+        ->first();
 
         // $pagina = Pagina::where(['ModuloID'=>$id]);
         // dd($pagina);
