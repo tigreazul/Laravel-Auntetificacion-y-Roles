@@ -72,7 +72,6 @@ $(document).on('click','.alert-delete-page',function(e){
     });
 });
 
-
 $(document).on('click','.select-page',function(e){
     e.preventDefault();
     $('.table-verify').removeClass('active');
@@ -268,7 +267,6 @@ $(document).on('click','.editar_page',function(e){
         }
     });
 });
-
 
 $(document).on('submit','#update_page',function(e){
     e.preventDefault();

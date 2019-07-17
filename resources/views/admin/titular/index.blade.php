@@ -7,7 +7,7 @@
                     <i class="feather icon-server bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>titular</h5>
-                        <span>Administración de titular</span>
+                        <span>Administración de Titular</span>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                         <h5>Lista de titular</h5>
                                     </div>
                                     <div class="col-42">
-                                        <a href="{{ route('admin.front_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
+                                        <a href="{{ route('admin.titular_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
                                     </div>                                
                                 </div>
                             </div>

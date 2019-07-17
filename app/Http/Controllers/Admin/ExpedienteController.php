@@ -59,7 +59,7 @@ class ExpedienteController extends Controller
             'title' => 'Registro de paginas',
         );
 
-        return \Views::admin('page.create',$a_data_page);
+        return \Views::admin('expediente.create',$a_data_page);
     }
 
     /**

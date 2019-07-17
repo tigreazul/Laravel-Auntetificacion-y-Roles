@@ -39,7 +39,6 @@ class TitularController extends Controller
         ->orderBy('ID')
         ->get();
 
-
         $a_data_page = array(
             'title' => 'Lista de Titular',
             'pagina'=> $frontend
@@ -56,10 +55,10 @@ class TitularController extends Controller
     public function create()
     {
         $a_data_page = array(
-            'title' => 'Registro de paginas',
+            'title' => 'Registro de Titular',
         );
 
-        return \Views::admin('page.create',$a_data_page);
+        return \Views::admin('titular.create',$a_data_page);
     }
 
     /**

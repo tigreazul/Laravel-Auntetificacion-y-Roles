@@ -59,7 +59,7 @@ class PagosController extends Controller
             'title' => 'Registro de paginas',
         );
 
-        return \Views::admin('page.create',$a_data_page);
+        return \Views::admin('pagos.create',$a_data_page);
     }
 
     /**

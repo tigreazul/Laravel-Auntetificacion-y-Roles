@@ -37,7 +37,7 @@
                                         <h5>Lista de Usuario</h5>
                                     </div>
                                     <div class="col-42">
-                                        <a href="{{ route('admin.front_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
+                                        <a href="{{ route('admin.user_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO USUARIO</a>
                                     </div>                                
                                 </div>
                             </div>
@@ -48,11 +48,10 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Titulo</th>
-                                                <th class="column_description">Slug</th>
-                                                <th>Categoria</th>
-                                                <th>Estado</th>
-                                                <th>Fecha Publicación</th>
+                                                <th>Nombre</th>
+                                                <th class="column_description">Apellido Paterno</th>
+                                                <th>Apellido Materno</th>
+                                                <th>DNI</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
