@@ -35,6 +35,43 @@ $(document).on('click','.alert-delete',function(e){
         }
     });
 });
+$(document).on('click','.alert-delete-page',function(e){
+    e.preventDefault();
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    var id = $(this).attr('data-id');
+    swal({
+        title: "Eliminar?",
+        text: "Esta seguro que desea eliminar el registro?",
+        type: "error",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Eliminar",
+        cancelButtonText: "Cancelar",
+    }, 
+    function(isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url: local.base+'/admin/configuracion/delete/page/'+id,
+                type: 'post',
+                dataType: 'json',
+                data: {_token: CSRF_TOKEN},
+                success: function(data){
+                    if(data.status == true){
+                        swal("Eliminado", "Se ha eliminado correctamente.", "success");
+                        setTimeout(() => {
+                            location.reload();
+                        }, 3000);
+                    }else{
+                        // swal('Ocurrio un error vuelva a intentarlo');
+                        swal("Eliminado", "Ocurrio un error vuelva a intentarlo", "error");
+                    }
+                }
+            });
+        }
+    });
+});
+
 
 $(document).on('click','.select-page',function(e){
     e.preventDefault();
@@ -54,7 +91,7 @@ $(document).on('click','.select-page',function(e){
         url: local.base+'/admin/configuracion/menu/get-page/'+id,
         type: 'GET',
         dataType: 'json',
-        data: {_token: CSRF_TOKEN},
+        data: {},
         beforeSend: function(){
             var $this = $(this);
             $('.loader-cards').parents('.card').addClass("card-load");
@@ -84,7 +121,7 @@ $(document).on('click','.select-page',function(e){
                                                 <i class="fa fa-edit"></i>
                                                 Editar
                                             </a>
-                                            <a class="dropdown-item alert-delete" href="#" data-id="`+v.ID+`" >
+                                            <a class="dropdown-item alert-delete-page" href="#" data-id="`+v.ID+`" >
                                                 <i class="fa fa-trash-alt"></i>
                                                 Eliminar
                                             </a>
@@ -160,7 +197,7 @@ $(document).on('submit','#save_page',function(e){
                                                 <i class="fa fa-edit"></i>
                                                 Editar
                                             </a>
-                                            <a class="dropdown-item alert-delete" href="#" data-id="`+v.ID+`" >
+                                            <a class="dropdown-item alert-delete-page" href="#" data-id="`+v.ID+`" >
                                                 <i class="fa fa-trash-alt"></i>
                                                 Eliminar
                                             </a>
@@ -194,10 +231,12 @@ $(document).on('click','.editar_page',function(e){
     e.preventDefault();
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     let idModulo = $(this).data('mod');
-    $('#e_id_page').val(idModulo);
+    let idPagina = $(this).data('id');
+    console.log(idPagina);
+    $('#e_id_page').val(idPagina);
     
     $.ajax({
-        url: local.base+'/admin/configuracion/menu/get-page-id/'+idModulo,
+        url: local.base+'/admin/configuracion/menu/get-page-id/'+idPagina,
         type: 'GET',
         dataType: 'json',
         data: {},
@@ -273,11 +312,41 @@ $(document).on('submit','#update_page',function(e){
                 // $('#page-body-table').html("");
                 let vhtml = "";
                 console.log(data.pagina.length);
+                // if(data.pagina.length != 0){
+                //     $('#e_page_descripcion').val(data.pagina[0].Descripcion);
+                //     $('#e_page_ruta').val(data.pagina[0].Ruta);
+                //     $('#e_page_slug').val(data.pagina[0].Slug);
+                //     $('#e_page_estado').val(data.pagina[0].Estado);
+                // }else{
+                //     swal('No se encontro datos');    
+                // }
                 if(data.pagina.length != 0){
-                    $('#e_page_descripcion').val(data.pagina[0].Descripcion);
-                    $('#e_page_ruta').val(data.pagina[0].Ruta);
-                    $('#e_page_slug').val(data.pagina[0].Slug);
-                    $('#e_page_estado').val(data.pagina[0].Estado);
+                    $.each(data.pagina,function(k,v){
+                        vhtml += '<tr>';
+                        vhtml += '<td>'+(k+1)+'</td>';
+                        vhtml += '<td>'+v.Descripcion+'</td>';
+                        vhtml += '<td><code>'+v.Ruta+'</code></td>';
+                        vhtml += '<td><label class="label label-success">Activo</label></td>';
+                        vhtml += `<td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Acciones
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item editar_page" data-toggle="modal" data-target="#default-Modal" href="#" data-id="`+v.ID+`" data-mod="`+v.ModuloID+`">
+                                                <i class="fa fa-edit"></i>
+                                                Editar
+                                            </a>
+                                            <a class="dropdown-item alert-delete-page" href="#" data-id="`+v.ID+`" >
+                                                <i class="fa fa-trash-alt"></i>
+                                                Eliminar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>`;
+                        vhtml += '</tr>';
+                    });
+                    $('#page-body-table').html(vhtml);
                 }else{
                     swal('No se encontro datos');    
                 }
@@ -287,6 +356,7 @@ $(document).on('submit','#update_page',function(e){
             }
         },
         complete: function(){
+            $('#modal-12').model('hide');
             // $('#update_page')[0].reset();
             $('.loader-cards').parents('.card').children(".card-loader").remove();
             $('.loader-cards').parents('.card').removeClass("card-load");

@@ -210,9 +210,11 @@ class MenuController extends Controller
     public function get_page_id(Request $request, $id)
     {
 
+        // $pagina = Pagina::find($id);
         $pagina = DB::table('pagina')
         ->where([
-            'ModuloID' => $id,
+            // 'ModuloID' => $id,
+            'ID' => $id,
             'Estado'   => 1
         ])
         ->first();
@@ -280,7 +282,7 @@ class MenuController extends Controller
      */
     public function update_pagina(Request $request)
     {
-        // dd($request->descripcion); die();
+        // dd($request->idpage); die();
         // $pagina = new Pagina;
         // $pagina->Descripcion = $request->descripcion;
         // $pagina->Ruta        = $request->ruta;
@@ -294,13 +296,14 @@ class MenuController extends Controller
         $pagina->Ruta          = $request->ruta;
         $pagina->Estado        = $request->estado;
         // $pagina->Slug          = $request->slug;
+        // dd($pagina); die();
         $pagina->save();
 
         $modulo = Modulo::find($pagina->ModuloID);
         $pagina =  DB::table('pagina')
         ->where([
             'Estado'   => 1,
-            'ModuloID' => $pagina->ID
+            'ModuloID' => $modulo->ID
         ])
         ->get();
 
@@ -313,6 +316,27 @@ class MenuController extends Controller
         return response()->json($arrResult);
         //return redirect('admin/configuracion/menu');
     }
+
+
+    public function delete_page(Request $request,$id)
+    {
+        try{
+            $data = Pagina::find($id);
+            $data->Estado = 0;
+            $s = $data->save();
+            $return_ms = array(
+                'status' => true,
+                'retorno'=> $s
+            );
+        }catch(\Exception $e){
+            $return_ms = array(
+                'status' => false,
+                'retorno'=> $e
+            );
+        }
+        return response()->json($return_ms);
+    }
+
 
 
 
