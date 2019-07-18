@@ -47,8 +47,8 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-1 col-form-label">Nombre</label>
-                                                        <div class="col-sm-11">
+                                                        <label class="col-sm-3 col-form-label">Nombre</label>
+                                                        <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="images" name="images" required>
                                                             <span class="messages"></span>
                                                         </div>
@@ -57,33 +57,32 @@
                                                 <div class="col-sm-6">
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Apellido Paterno</label>
-                                                        <div class="col-sm-9">
+                                                        <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="images" name="images" required>
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Fecha de Nacimiento</label>
-                                                        <div class="col-sm-9">
+                                                        <div class="col-sm-8">
                                                             <input type="date" class="form-control" id="images" name="images" required>
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
-                                                    
                                                 </div>
 
 
                                                 <div class="col-sm-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">Apellido Materno</label>
-                                                        <div class="col-sm-9">
+                                                        <label class="col-sm-4 col-form-label">Apellido Materno</label>
+                                                        <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="images" name="images" required>
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">DNI</label>
-                                                        <div class="col-sm-9">
+                                                        <label class="col-sm-4 col-form-label">DNI</label>
+                                                        <div class="col-sm-8">
                                                             <input type="text" class="form-control" id="images" name="images" required>
                                                             <span class="messages"></span>
                                                         </div>
