@@ -37,7 +37,7 @@
                                         <h5>Lista de titular</h5>
                                     </div>
                                     <div class="col-42">
-                                        <a href="{{ route('admin.titular_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
+                                        <a href="{{ route('admin.titular_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO TITULAR</a>
                                     </div>                                
                                 </div>
                             </div>

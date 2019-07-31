@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests;
 use App\Models\{
-    Modulo, Pagina
+    Modulo, Pagina, Titular, Persona
 };
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+
 use DB;
 
 class TitularController extends Controller
@@ -39,6 +42,7 @@ class TitularController extends Controller
         ->orderBy('ID')
         ->get();
 
+
         $a_data_page = array(
             'title' => 'Lista de Titular',
             'pagina'=> $frontend
@@ -54,8 +58,27 @@ class TitularController extends Controller
      */
     public function create()
     {
+
+        $institucion    =  $this->diccionario('idInstruccion');
+        $ingreso        =  $this->diccionario('idIngreso');
+        $civil          =  $this->diccionario('idCivil');
+        $relacion       =  $this->diccionario('idRelacion');
+
+
+        $departamento =  DB::table('departamento')
+        ->where([
+            'estado'   => 1
+        ])->orderBy('descripcion','DESC')->get();
+
+        // dd($departamento);
+
         $a_data_page = array(
-            'title' => 'Registro de Titular',
+            'title'         => 'Registro de Titular',
+            'institucion'   => $institucion,
+            'ingreso'       => $ingreso,
+            'civil'         => $civil,
+            'relacion'      => $relacion,
+            'departamento'  => $departamento
         );
 
         return \Views::admin('titular.create',$a_data_page);
@@ -69,17 +92,67 @@ class TitularController extends Controller
      */
     public function store(Request $request)
     {
-        $front = new Front;
-        $front->Titulo              = $request->titulo;
-        $front->Categoria           = $request->categoria;
-        $front->Estado              = 1;
-        $front->Tag                 = $request->tag;
-        $front->FechaIngreso        = date('Y-m-d');
-        $front->Imagen_principal    = $request->images;
-        $front->Contenido           = $request->contentenido;
-        $front->save();
+        $file = $request->file('copiaDni');
+        // $nombre = $file->getClientOriginalName();
+        dd($file);
+        die();
+        $validator = Validator::make($request->all(), [
+        // $validator = $request->validate([
+           'nombre'     => "nullable",
+           'apaterno'   => "nullable",
+           'amaterno'   => "nullable",
+            "departamento" => "nullable",
+            "provincia" => "nullable",
+            "distrito"  => "nullable",
+            "grado"     => "nullable",
+            "fingreso"  => "nullable",
+            "nroRecibo" => "nullable",
+            "dni"       => "nullable",
+            "ocupacion" => "nullable",
+            "sexo"      => "nullable",
+            "ecivil"    => "nullable",
+            "esocio"    => "nullable",
+            "ecarnet"    => "nullable",
+            "ctarjeta"    => "nullable",
+        ]);
 
-        return redirect()->route('admin.front_list');
+        if ($validator->fails()) {    
+            return response()->json($validator->messages(), 200);
+        }
+
+        $file = $request->file('imagen');
+        $nombre = $file->getClientOriginalName();
+        
+
+        $persona = new Persona;
+        $persona->nombre            = $request->input('nombre');
+        $persona->apellidoPaterno   = $request->input('apaterno');
+        $persona->apellidoMaterno   = $request->input('amaterno');
+        $persona->fechaNacimiento   = $request->input('nacimiento');
+        $persona->dni               = $request->input('dni');
+        $persona->sexo              = $request->input('sexo');
+        $persona->idInstruccion     = $request->input('grado');
+        $persona->entregoCarnet     = $request->input('ecarnet');
+        $persona->codigoTarjeta     = $request->input('ctarjeta');
+
+        $personaid = $persona->save();
+
+        $titular = new Titular;
+        $titular->idPersona     = $personaid;
+        $titular->idCivil       = $request->input('ecivil');
+        $titular->ocupacion     = $request->input('ocupacion');
+        $titular->aFotografia   = $nombre;
+        $titular->idIngreso     = $request->input('ingreso');
+        $titular->estadoSocio   = $request->input('esocio');
+        $titular->anioGestion   = 2019;
+        $titular->nroRecibo     = $request->input('nroRecibo');
+        $titular->fechaIngreso  = $request->input('fingreso');
+        $titular->aDNI          = $request->input('dni');
+        $titular->save();
+
+
+
+        return redirect()->route('admin.titular_list');
     }
 
     /**
@@ -126,4 +199,18 @@ class TitularController extends Controller
     {
         //
     }
+
+
+    private function diccionario($identificador)
+    {
+        $data =  DB::table('diccionario')
+        ->where([
+            'ubicacion'=> $identificador
+        ])
+        ->orderBy('codigo')
+        ->get();
+
+        return $data;
+    }
 }
+

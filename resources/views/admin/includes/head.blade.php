@@ -47,3 +47,9 @@
 
 
 <link rel="stylesheet" href="{{ asset('theme_admin/css/pages.css')}}" type="text/css" media="all">
+<script type="text/javascript">
+    var app = { 
+    	base : "{{ url('')}}"
+  	}; 
+</script>
+<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>

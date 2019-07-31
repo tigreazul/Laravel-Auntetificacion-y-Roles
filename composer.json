@@ -41,7 +41,8 @@
             "database/factories"
         ],
         "files":[
-            "app/Helpers/Views.php"
+            "app/Helpers/Views.php",
+            "app/Helpers/Json.php"
         ]
     },
     "autoload-dev": {
