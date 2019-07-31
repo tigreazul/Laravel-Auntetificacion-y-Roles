@@ -92,10 +92,10 @@ class TitularController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('copiaDni');
+        // $file = $request->file('copiaDni');
         // $nombre = $file->getClientOriginalName();
-        dd($file);
-        die();
+        // dd($request->all());
+        // die();
         $validator = Validator::make($request->all(), [
         // $validator = $request->validate([
            'nombre'     => "nullable",
@@ -122,23 +122,27 @@ class TitularController extends Controller
 
         $file = $request->file('imagen');
         $nombre = $file->getClientOriginalName();
+
+        $cdni = $request->file('copiaDni');
+        $tcdni = $cdni->getClientOriginalName();
+
+        $fpadron = $request->file('fichaPadron');
+        $tfpadron = $fpadron->getClientOriginalName();
         
 
-        $persona = new Persona;
-        $persona->nombre            = $request->input('nombre');
-        $persona->apellidoPaterno   = $request->input('apaterno');
-        $persona->apellidoMaterno   = $request->input('amaterno');
-        $persona->fechaNacimiento   = $request->input('nacimiento');
-        $persona->dni               = $request->input('dni');
-        $persona->sexo              = $request->input('sexo');
-        $persona->idInstruccion     = $request->input('grado');
-        $persona->entregoCarnet     = $request->input('ecarnet');
-        $persona->codigoTarjeta     = $request->input('ctarjeta');
-
-        $personaid = $persona->save();
+        $perso = new Persona;
+        $perso->nombre            = $request->input('nombre');
+        $perso->apellidoPaterno   = $request->input('apaterno');
+        $perso->apellidoMaterno   = $request->input('amaterno');
+        $perso->fechaNacimiento   = $request->input('nacimiento');
+        $perso->dni               = $request->input('dni');
+        $perso->sexo              = $request->input('sexo');
+        $perso->idInstruccion     = $request->input('grado');
+        $perso->save();
+        $persoId = $perso->idPersona;
 
         $titular = new Titular;
-        $titular->idPersona     = $personaid;
+        $titular->idPersona     = $persoId;
         $titular->idCivil       = $request->input('ecivil');
         $titular->ocupacion     = $request->input('ocupacion');
         $titular->aFotografia   = $nombre;
@@ -147,12 +151,14 @@ class TitularController extends Controller
         $titular->anioGestion   = 2019;
         $titular->nroRecibo     = $request->input('nroRecibo');
         $titular->fechaIngreso  = $request->input('fingreso');
-        $titular->aDNI          = $request->input('dni');
+        $titular->entregoCarnet = $request->input('ecarnet');
+        $titular->codigoTarjeta = $request->input('ctarjeta');
+        $titular->aDNI          = $tcdni;
+        $titular->aExpediente   = $tfpadron;
         $titular->save();
-
-
-
-        return redirect()->route('admin.titular_list');
+        $titularid = $titular->ID;
+        
+        return redirect()->route('admin.titular_edit', $titularid);
     }
 
     /**

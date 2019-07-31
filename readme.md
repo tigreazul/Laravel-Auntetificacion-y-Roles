@@ -15,6 +15,8 @@
 ### Ejecutar comando para migrar seeders
     php artisan migrate:refresh --seed
 
+### Autoload Dump
+    composer dump-autoload
 
 
 # Theme
