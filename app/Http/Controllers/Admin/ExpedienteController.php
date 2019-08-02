@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\{
-    Modulo, Pagina
+    Modulo, Pagina, Expediente
 };
 
 use Illuminate\Http\Request;
@@ -32,17 +32,12 @@ class ExpedienteController extends Controller
     {
         $request->user()->authorizeRoles(['user', 'admin']);
         
-        $frontend =  DB::table('frontend')
-        ->where([
-            'Estado'   => 1
-        ])
-        ->orderBy('ID')
-        ->get();
+        $grupo = \Views::diccionario('idGrupo');
 
 
         $a_data_page = array(
             'title' => 'Lista de Expediente',
-            'pagina'=> $frontend
+            'grupo'=> $grupo
         );
 
         return \Views::admin('expediente.index',$a_data_page);
@@ -55,8 +50,18 @@ class ExpedienteController extends Controller
      */
     public function create()
     {
+        $grupo = \Views::diccionario('idGrupo');
+        $vivienda = \Views::diccionario('idVivencia');
+        $casa = \Views::diccionario('idCasa');
+        $sshh = \Views::diccionario('idSSHH');
+        
+
         $a_data_page = array(
             'title' => 'Registro de paginas',
+            'grupo'=> $grupo,
+            'vivienda' => $vivienda,
+            'sshh' => $sshh,
+            'casa' => $casa
         );
 
         return \Views::admin('expediente.create',$a_data_page);
@@ -70,17 +75,43 @@ class ExpedienteController extends Controller
      */
     public function store(Request $request)
     {
-        $front = new Front;
-        $front->Titulo              = $request->titulo;
-        $front->Categoria           = $request->categoria;
-        $front->Estado              = 1;
-        $front->Tag                 = $request->tag;
-        $front->FechaIngreso        = date('Y-m-d');
-        $front->Imagen_principal    = $request->images;
-        $front->Contenido           = $request->contentenido;
-        $front->save();
-
-        return redirect()->route('admin.front_list');
+        $validator = Validator::make($request->all(), [
+            'nroexpediente' => "nullable",
+            'padron'        => "nullable",
+            'area'          => "nullable",
+            "grupo"         => "nullable",
+            "mz"            => "nullable",
+            "lote"          => "nullable",
+            "sublote"       => "nullable",
+            "tipo"          => "nullable",
+            "direccion"     => "nullable",
+            // "padron"     => "nullable",
+        ]);
+ 
+        if ($validator->fails()) {    
+            return response()->json($validator->messages(), 200);
+        }
+         
+        $exp = new Expediente;
+        $exp->nroExpediente = $request->input('nroexpediente');
+        $exp->nroPadron     = $request->input('padron');
+        $exp->area          = $request->input('area');
+        $exp->grupo          = $request->input('grupo');
+        $exp->estado        = 1;
+        
+        
+        $exp->idManzana     = $request->input('mz');
+        $exp->nrLote        = $request->input('lote');
+        $exp->nroSubLote    = $request->input('sublote');
+        $exp->save();
+        $expId = $exp->idPersona;
+ 
+        $roluser = new Roluser;
+        $roluser->role_id   = 3;
+        $roluser->user_id   = $usuar;
+        $roluser->save();
+         
+        return redirect()->route('admin.titular_list');
     }
 
     /**

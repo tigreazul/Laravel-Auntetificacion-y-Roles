@@ -57,25 +57,24 @@
                                         </thead>
                                         <tbody>
                                             @php $i = 1; @endphp
-                                            @foreach($pagina as $page)
-                                                <tr class="table-verify selector-{{ $page->ID }}">
+                                            @foreach($usuarios as $user)
+                                                <tr class="table-verify selector-{{ $user->idUsuario }}">
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $page->Titulo }}</td>
-                                                    <td class="column_description">{{ $page->Slug }}</td>
-                                                    <td><code>{{ $page->Categoria }}</code></td>
-                                                    <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
-                                                    <td>{{ $page->FechaIngreso }}</td>
+                                                    <td>{{ $user->nombre }}</td>
+                                                    <td class="column_description">{{ $user->apellidoPaterno }}</td>
+                                                    <td> {{ $user->apellidoMaterno }} </td>
+                                                    <td>{{ $user->dni }}</td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Acciones
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$page->ID]) }}">
+                                                                <a class="dropdown-item" href="{{ route('admin.user_edit', ['id'=>$user->idUsuario]) }}">
                                                                     <i class="fa fa-edit"></i>
                                                                     Editar
                                                                 </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $page->ID }}" >
+                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $user->idUsuario }}" >
                                                                     <i class="fa fa-trash-alt"></i>
                                                                     Eliminar
                                                                 </a>
