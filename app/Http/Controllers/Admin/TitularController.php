@@ -202,7 +202,7 @@ class TitularController extends Controller
         // dd($departamento);
 
         $a_data_page = array(
-            'title'         => 'Registro de Titular',
+            'title'         => 'Editar de Titular',
             'institucion'   => $institucion,
             'ingreso'       => $ingreso,
             'civil'         => $civil,
