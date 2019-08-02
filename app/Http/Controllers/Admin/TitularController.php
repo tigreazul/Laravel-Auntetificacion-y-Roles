@@ -180,7 +180,38 @@ class TitularController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $titular = DB::table('titular')
+        ->join('persona', 'titular.idPersona', '=', 'persona.idPersona')
+        // ->select('users.*', 'contacts.phone', 'orders.price')
+        ->where(['idTitular'=>$id])
+        ->get();
+        // dd($titular); die();
+
+        $institucion    =  $this->diccionario('idInstruccion');
+        $ingreso        =  $this->diccionario('idIngreso');
+        $civil          =  $this->diccionario('idCivil');
+        $relacion       =  $this->diccionario('idRelacion');
+
+
+        $departamento =  DB::table('departamento')
+        ->where([
+            'estado'   => 1
+        ])->orderBy('descripcion','DESC')->get();
+
+        // dd($departamento);
+
+        $a_data_page = array(
+            'title'         => 'Editar de Titular',
+            'institucion'   => $institucion,
+            'ingreso'       => $ingreso,
+            'civil'         => $civil,
+            'relacion'      => $relacion,
+            'departamento'  => $departamento,
+            'titular'       => $titular
+        );
+
+        return \Views::admin('titular.edit.edit',$a_data_page);
     }
 
     /**

@@ -103,4 +103,17 @@ Class Views{
         }
     }
 
+
+    public static function diccionario($identificador)
+    {
+        $data =  DB::table('diccionario')
+        ->where([
+            'ubicacion'=> $identificador
+        ])
+        ->orderBy('codigo')
+        ->get();
+
+        return $data;
+    }
+
 }

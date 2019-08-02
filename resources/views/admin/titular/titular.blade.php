@@ -4,7 +4,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Nombre</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="images" name="nombre" onkeypress="return soloLetras(event)" required>
+                <input type="text" class="form-control" id="images" name="nombre" onkeypress="return soloLetras(event)" value="{{$titular->nombre}}" required>
                 <span class="messages"></span>
             </div>
         </div>
