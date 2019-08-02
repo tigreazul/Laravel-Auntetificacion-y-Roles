@@ -18,14 +18,14 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Entrego Carnet</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="carnet" name="ecarnet" required>
+                <input type="text" class="form-control" id="carnet" name="ecarnet" required value="{{ isset($titular->entregoCarnet)?$titular->entregoCarnet:''}}">
                 <span class="messages"></span>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Codigo Tarjeta</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="ctarjeta" name="ctarjeta" required>
+                <input type="text" class="form-control" id="ctarjeta" name="ctarjeta" required value="{{ isset($titular->codigoTarjeta)?$titular->codigoTarjeta:''}}">
                 <span class="messages"></span>
             </div>
         </div>
