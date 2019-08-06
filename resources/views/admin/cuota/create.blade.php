@@ -25,7 +25,7 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                            <form id="main" method="POST" action="{{ route('admin.front_add') }}" novalidate="">
+                            <form id="main" method="POST" action="{{ route('admin.cuota_add') }}" novalidate="">
                                 @csrf
 
                                 <div class="col-lg-12 col-xl-12">
@@ -42,10 +42,13 @@
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-3 col-form-label">Nro</label>
+                                                        <label class="col-sm-3 col-form-label">Tipo Cuota</label>
                                                         <div class="col-sm-9">
-                                                            <select name="" class="form-control" id="">
+                                                            <select name="tipo_cuota" class="form-control" id="tipo_cuota">
                                                                 <option value="">[SELECCIONE]</option>
+                                                                @foreach($tcuota as $cuota)
+                                                                    <option value="{{ $cuota->codigo }}">{{ $cuota->valor }}</option>
+                                                                @endforeach
                                                             </select>
                                                             <span class="messages"></span>
                                                         </div>
@@ -56,8 +59,11 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Año</label>
                                                         <div class="col-sm-9">
-                                                            <select name="" class="form-control" id="">
+                                                            <select name="anio" class="form-control" id="anio">
                                                                 <option value="">[SELECCIONE]</option>
+                                                                <option value="2018">2018</option>
+                                                                <option value="2019">2019</option>
+                                                                <option value="2020">2020</option>
                                                             </select>
                                                             <span class="messages"></span>
                                                         </div>
@@ -75,66 +81,20 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>ENERO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>FEBRERO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>MARZO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>ABRIL</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>MAYO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>JUNIO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>JULIO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>AGOSTO</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>SEPTIEMBRE</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>OCTUBRE</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>NOVIEMBRE</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>DICIEMBRE</td>
-                                                        <td><input type="text"></td>
-                                                    </tr>
+                                                    @foreach($mes as $m)
+                                                        <tr>
+                                                            <td>
+                                                                <label>
+                                                                    <input type="checkbox" value="{{ $m->codigo }}" name="valueChek[]" value="0">
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                {{ $m->valor }}
+                                                                <input type="hidden" name="mes[]" value="{{ $m->codigo }}" >
+                                                            </td>
+                                                            <td><input type="text" name="monto[]"></td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
 

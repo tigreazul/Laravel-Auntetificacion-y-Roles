@@ -48,35 +48,35 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Titulo</th>
-                                                <th class="column_description">Slug</th>
-                                                <th>Categoria</th>
+                                                <th>Número Expediente</th>
+                                                <th>Nùmero de Padrón</th>
+                                                <th>Grupo</th>
                                                 <th>Estado</th>
-                                                <th>Fecha Publicación</th>
+                                                <th>Area</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $i = 1; @endphp
-                                            @foreach($pagina as $page)
-                                                <tr class="table-verify selector-{{ $page->ID }}">
+                                            @foreach($expediente as $exp)
+                                                <tr class="table-verify selector-{{ $exp->idExpediente }}">
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $page->Titulo }}</td>
-                                                    <td class="column_description">{{ $page->Slug }}</td>
-                                                    <td><code>{{ $page->Categoria }}</code></td>
-                                                    <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
-                                                    <td>{{ $page->FechaIngreso }}</td>
+                                                    <td>{{ $exp->nroExpediente }}</td>
+                                                    <td>{{ $exp->nroPadron }}</td>
+                                                    <td>{{ $exp->nomGrupo }}</td>
+                                                    <td><label class="label label-{{ ($exp->estado == 1)? 'success': 'danger' }}">Activo</label></td>
+                                                    <td>{{ $exp->area }}</td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Acciones
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$page->ID]) }}">
+                                                                <a class="dropdown-item" href="{{ route('admin.expe_edit', ['id'=>$exp->idExpediente]) }}">
                                                                     <i class="fa fa-edit"></i>
                                                                     Editar
                                                                 </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $page->ID }}" >
+                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $exp->idExpediente }}" >
                                                                     <i class="fa fa-trash-alt"></i>
                                                                     Eliminar
                                                                 </a>

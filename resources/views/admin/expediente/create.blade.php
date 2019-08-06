@@ -25,7 +25,7 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                            <form id="main" method="POST" action="{{ route('admin.expe_create') }}" novalidate="">
+                            <form id="main" method="POST" action="{{ route('admin.expe_add') }}" novalidate="" enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="col-lg-12 col-xl-12">
@@ -68,7 +68,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Area</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="area" name="area" required>
+                                                            <input type="text" class="form-control" id="area" name="area" required onkeypress="return filterFloat(event,this);">
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
@@ -121,8 +121,9 @@
                                                         <div class="col-sm-5">
                                                             <select name="tipo" class="form-control" id="tipo">
                                                                 <option value="">[SELECCIONE]</option>
-                                                                <option value="JR">JIRON</option>
-                                                                <option value="CALLE">CALLE</option>
+                                                                @foreach($calle as $call)
+                                                                    <option value="{{ $call->codigo }}" data-id="{{ $call->codigo }}" >{{ $call->valor }}</option>
+                                                                @endforeach
                                                             </select>
                                                             <span class="messages"></span>
                                                         </div>
@@ -284,6 +285,14 @@
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-1 col-form-label">Otros</label>
+                                                        <div class="col-sm-11">
+                                                            <input type="text" class="form-control" id="otros" name="otros" required>
+                                                            <span class="messages"></span>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

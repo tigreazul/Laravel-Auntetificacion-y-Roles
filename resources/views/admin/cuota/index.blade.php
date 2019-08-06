@@ -49,7 +49,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Titulo</th>
-                                                <th class="column_description">Slug</th>
+                                                <th>Slug</th>
                                                 <th>Categoria</th>
                                                 <th>Estado</th>
                                                 <th>Fecha Publicación</th>
@@ -58,11 +58,11 @@
                                         </thead>
                                         <tbody>
                                             @php $i = 1; @endphp
-                                            @foreach($pagina as $page)
+                                            @foreach($cuota as $cuot)
                                                 <tr class="table-verify selector-{{ $page->ID }}">
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $page->Titulo }}</td>
-                                                    <td class="column_description">{{ $page->Slug }}</td>
+                                                    <td>{{ $page->Slug }}</td>
                                                     <td><code>{{ $page->Categoria }}</code></td>
                                                     <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
                                                     <td>{{ $page->FechaIngreso }}</td>
