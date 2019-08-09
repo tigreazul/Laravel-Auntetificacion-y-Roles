@@ -25,7 +25,7 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                            <form id="main" method="POST" action="{{ route('admin.user_edit_data',['id' => $usuarios->idUsuario] ) }}" novalidate="">
+                            <form id="main" method="POST" action="{{ route('admin.user_edit_data',['id' => $usuarios->idUsuario] ) }}" >
                                 @csrf
                                 @method('PATCH')
                                 <div class="col-lg-12 col-xl-12">

@@ -6,8 +6,8 @@
                 <div class="page-header-title">
                     <i class="feather icon-server bg-c-blue"></i>
                     <div class="d-inline">
-                        <h5>Cuota</h5>
-                        <span>Administración de Cuota</span>
+                        <h5>Reuniones</h5>
+                        <span>Administración de Reuniones</span>
                     </div>
                 </div>
             </div>
@@ -34,10 +34,10 @@
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col">
-                                        <h5>Lista de Cuota</h5>
+                                        <h5>Lista de Reuniones</h5>
                                     </div>
                                     <div class="col-42">
-                                        <a href="{{ route('admin.cuota_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO CUOTA</a>
+                                        <a href="{{ route('admin.reunion_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO CUOTA</a>
                                     </div>                                
                                 </div>
                             </div>
@@ -49,30 +49,32 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Motivo</th>
+                                                <th>Lugar</th>
                                                 <th>Tipo</th>
-                                                <th>Anio</th>
+                                                <th>Fecha</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $i = 1; @endphp
-                                            @foreach($cuota as $cuot)
-                                                <tr class="table-verify selector-{{ $cuot->idCuota }}">
+                                            @foreach($reunion as $reu)
+                                                <tr class="table-verify selector-{{ $reu->idReunion }}">
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $cuot->motivo }}</td>
-                                                    <td>{{ $cuot->tipo }}</td>
-                                                    <td>{{ $cuot->anio }}</td>
+                                                    <td>{{ $reu->nomReunion }}</td>
+                                                    <td>{{ $reu->lugar }}</td>
+                                                    <td>{{ $reu->tipo }}</td>
+                                                    <td>{{ $reu->fecha }}</td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Acciones
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('admin.cuota_edit', ['id'=>$cuot->idCuota]) }}">
+                                                                <a class="dropdown-item" href="{{ route('admin.cuota_edit', ['id'=>$reu->idReunion]) }}">
                                                                     <i class="fa fa-edit"></i>
                                                                     Editar
                                                                 </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $cuot->idCuota }}" >
+                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $reu->idReunion }}" >
                                                                     <i class="fa fa-trash-alt"></i>
                                                                     Eliminar
                                                                 </a>

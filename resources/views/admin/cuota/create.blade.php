@@ -25,7 +25,7 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                            <form id="main" method="POST" action="{{ route('admin.cuota_add') }}" novalidate="">
+                            <form id="main" method="POST" action="{{ route('admin.cuota_add') }}" >
                                 @csrf
 
                                 <div class="col-lg-12 col-xl-12">
@@ -40,11 +40,21 @@
                                         <div class="tab-pane active" id="home1" role="tabpanel">
 
                                             <div class="row">
+
+                                                <div class="col-sm-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-2 col-form-label">Motivo</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="motivo" class="form-control"  required>
+                                                            <span class="messages"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="col-sm-6">
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Tipo Cuota</label>
                                                         <div class="col-sm-9">
-                                                            <select name="tipo_cuota" class="form-control" id="tipo_cuota">
+                                                            <select name="tipo_cuota" class="form-control" id="tipo_cuota" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($tcuota as $cuota)
                                                                     <option value="{{ $cuota->codigo }}">{{ $cuota->valor }}</option>
@@ -59,7 +69,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-3 col-form-label">Año</label>
                                                         <div class="col-sm-9">
-                                                            <select name="anio" class="form-control" id="anio">
+                                                            <select name="anio" class="form-control" id="anio" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 <option value="2018">2018</option>
                                                                 <option value="2019">2019</option>
@@ -85,14 +95,15 @@
                                                         <tr>
                                                             <td>
                                                                 <label>
-                                                                    <input type="checkbox" value="{{ $m->codigo }}" name="valueChek[]" value="0">
+                                                                    <!-- <input type="checkbox" value="{{ $m->codigo }}" name="valueChek[]" class="chok" data-ch="{{ $m->codigo }}" value="0"> -->
+                                                                    <p class="text-center">{{ $m->codigo }}</p>
                                                                 </label>
                                                             </td>
                                                             <td>
                                                                 {{ $m->valor }}
                                                                 <input type="hidden" name="mes[]" value="{{ $m->codigo }}" >
                                                             </td>
-                                                            <td><input type="text" name="monto[]"></td>
+                                                            <td><input type="text" name="monto[]" class="form-control mnt{{ $m->codigo }}" ></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -126,6 +137,22 @@
     </div>
 
     <script>
-        // $('body').addClass('wysihtml5-supported');
+        // $(document).on('click','.chok',function(e){
+        //     e.preventDefault();
+        //     let esto = $(this).data('ch');
+        //     console.log(esto);
+        //     $('')
+        // });
+
+
+        // $( '.chok' ).on( 'click', function() {
+        //     let esto = $(this).data('ch');
+        //     if( $(this).is(':checked') ){
+        //         $('.mnt'+esto).removeAttr('disabled');
+        //     } else {
+        //         $('.mnt'+esto).attr('disabled','disabled');
+        //     }
+        // });
+
     </script>
 @stop

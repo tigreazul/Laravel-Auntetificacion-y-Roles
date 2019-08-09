@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\{
-    Modulo, Pagina, Cuota, Detallecuota
+    Modulo, Pagina, Reunion, Detallereunion
 };
 
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
-class CuotaController extends Controller
+class ReunionController extends Controller
 {
 
     /**
@@ -34,24 +34,24 @@ class CuotaController extends Controller
         $request->user()->authorizeRoles(['user', 'admin']);
         
         $mes = \Views::diccionario('idMes');
-        $tcuota = \Views::diccionario('idTipoCuota');
+        $treunion = \Views::diccionario('idTipoReunion');
 
         // $cuota =  DB::table('cuota')
         // ->get();
 
-        $dcuota =  DB::table('detalle_cuota')->get();
+        // $dcuota =  DB::table('detalle_cuota')->get();
         
-        $cuota  = DB::select("SELECT c.idCuota, c.anio,c.idTipoCuota,c.motivo,(SELECT valor FROM diccionario WHERE ubicacion = 'idTipoCuota' AND codigo = c.idTipoCuota ) AS 'tipo' from cuota c");
+        $reunion  = DB::select("SELECT c.idReunion,c.nomReunion, c.lugar,c.fecha,c.horaInicio,c.horaFin,(SELECT valor FROM diccionario WHERE ubicacion = 'idTipoReunion' AND codigo = c.idTipoReunion ) AS 'tipo' from reunion c");
 
         // dd($cuota);
         $a_data_page = array(
             'title' => 'Lista de Cuario',
             'mes'   => $mes,
-            'tcuota'=> $tcuota,
-            'cuota' => $cuota
+            'treunion'=> $treunion,
+            'reunion' => $reunion
         );
 
-        return \Views::admin('cuota.index',$a_data_page);
+        return \Views::admin('reunion.index',$a_data_page);
     }
 
     /**
@@ -62,17 +62,17 @@ class CuotaController extends Controller
     public function create()
     {
 
-        $mes = \Views::diccionario('idMes');
-        $tcuota = \Views::diccionario('idTipoCuota');
+        // $mes = \Views::diccionario('idMes');
+        $treunion = \Views::diccionario('idTipoReunion');
 
 
         $a_data_page = array(
             'title' => 'Registro de paginas',
-            'mes'   => $mes,
-            'tcuota'=> $tcuota
+            // 'mes'   => $mes,
+            'treunion'=> $treunion
         );
 
-        return \Views::admin('cuota.create',$a_data_page);
+        return \Views::admin('reunion.create',$a_data_page);
     }
 
     /**
@@ -86,31 +86,29 @@ class CuotaController extends Controller
         
         // dd($request->all()); die();
         $validator = Validator::make($request->all(), [
-           'tipo_cuota' => "nullable",
-           'anio'       => "nullable",
-           'motivo'     => 'required'
+           'tipo_reunion'   => 'required',
+           'nombre'         => 'required',
+           'monto'          => 'required',
+           'fecha'          => 'required',
+           'lugar'          => 'required',
+           'hinicio'        => 'required',
+           'hfin'           => 'required'
         ]);
 
         if ($validator->fails()) {    
             return response()->json($validator->messages(), 200);
         }
         
+        // dd($validator->data); die();
 
-        $mes     = $request->input('mes');
-        $monto   = $request->input('monto');
+        $tipo_reunion   = $request->input('tipo_reunion');
+        $nombre         = $request->input('nombre');
+        $monto          = $request->input('monto');
+        $lugar          = $request->input('lugar');
+        $fecha          = $request->input('fecha');
+        $hinicio        = $request->input('hinicio');
+        $hfin           = $request->input('hfin');
         
-        $arrCuota = array();
-        foreach ($mes as $km => $vk) {
-            foreach ($monto as $kmont => $vmont) {
-                if($kmont === $km){
-                    $arrCuota[] = array(
-                        'mes'   => $vk,
-                        'mont'  => $vmont
-                    );
-                }
-            }
-        }
-
 
         $usuarios = DB::table('usuario')
         ->join('persona', 'usuario.idPersona', '=', 'persona.idPersona')
@@ -118,35 +116,28 @@ class CuotaController extends Controller
         ->get();
 
         // dd($usuarios); die();
-        $cuota = new Cuota;
-        $cuota->idTipoCuota = $request->input('tipo_cuota');
-        $cuota->anio        = $request->input('anio');
-        $cuota->motivo      = $request->input('motivo');
-        $cuota->fechaRegistro = date('Y-m-d');
-        $cuota->save();
-        $cuotaId = $cuota->idCuota;
+        $reunion = new Reunion;
+        $reunion->idTipoReunion = $tipo_reunion;
+        $reunion->nomReunion    = $nombre;
+        $reunion->lugar         = $lugar;
+        $reunion->fecha         = $fecha;
+        $reunion->horaInicio    = $hinicio;
+        $reunion->horaFin       = $hfin;
+        $reunion->save();
+        $reunionId = $reunion->idReunion;
 
         foreach($usuarios as $user){
-                foreach ($arrCuota as $cuo) {
-                if( $cuo['mont'] != '' || !is_null($cuo['mont']) ){
-                    $usu = new Detallecuota;
-                    $usu->idCuota     = $cuotaId;
-                    $usu->idMes       = $cuo['mes'];
-                    $usu->monto       = $cuo['mont'];
-                    $usu->idUsuario   = $user->idUsuario;
-                    $usu->estado      = 1;
-                    $usu->save();
-                }
-            }
-
+            $usu = new Detallereunion;
+            $usu->idReunion     = $reunionId;
+            $usu->multa       = $monto;
+            $usu->idUsuario   = $user->idUsuario;
+            $usu->estado      = 1;
+            $usu->save();
         }
 
 
         
-
-
-        
-        return redirect()->route('admin.cuota_list');
+        return redirect()->route('admin.reunion_list');
 
         // return redirect()->route('admin.front_list');
     }

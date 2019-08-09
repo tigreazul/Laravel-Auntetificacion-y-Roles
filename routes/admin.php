@@ -61,7 +61,7 @@ Route::group(['prefix' => 'expediente'], function() {
 Route::group(['prefix' => 'pagos'], function() {
     // Pagina
     Route::get('lista', 'Admin\PagosController@index')->name('admin.pagos_list');                 // Listado
-    Route::get('pago/create', 'Admin\PagosController@create')->name('admin.pagos_create');       // Form View Create
+    Route::get('pago/buscar', 'Admin\PagosController@create')->name('admin.pagos_create');       // Form View Create
     Route::post('pago/create-add', 'Admin\PagosController@store')->name('admin.pagos_add');      // Crear dato
     Route::get('pago/{id}', 'Admin\PagosController@show')->name('admin.pagos_list_id');          // Mostrar por id
     Route::get('pago/{user}/editar', 'Admin\PagosController@edit')->name('admin.pagos_edit');    // Form editar
@@ -78,6 +78,15 @@ Route::group(['prefix' => 'reporte'], function() {
     Route::patch('page/{id}', 'Admin\PageController@update')->name('admin.front_edit_data');    // Update datos
 }); 
 
+
+Route::group(['prefix' => 'reuniones'], function() {
+    Route::get('lista', 'Admin\ReunionController@index')->name('admin.reunion_list');                 // Listado
+    Route::get('reunion/create', 'Admin\ReunionController@create')->name('admin.reunion_create');       // Form View Create
+    Route::post('reunion/create-add', 'Admin\ReunionController@store')->name('admin.reunion_add');      // Crear dato
+    Route::get('reunion/{id}', 'Admin\ReunionController@show')->name('admin.reunion_list_id');          // Mostrar por id
+    Route::get('reunion/{user}/editar', 'Admin\ReunionController@edit')->name('admin.reunion_edit');    // Form editar
+    Route::patch('reunion/{id}', 'Admin\ReunionController@update')->name('admin.reunion_edit_data');    // Update datos
+}); 
 
 Route::get('volver',function(){
     return redirect()->back();
