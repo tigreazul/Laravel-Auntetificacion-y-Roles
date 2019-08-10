@@ -39,14 +39,41 @@ class ReporteController extends Controller
         ->orderBy('ID')
         ->get();
 
+        $grupo = \Views::diccionario('idGrupo');
 
         $a_data_page = array(
-            'title' => 'Lista de Reporte',
-            'pagina'=> $frontend
+            'title' => 'Lista de Socios',
+            'pagina'=> $frontend,
+            'grupo' => $grupo
         );
 
         return \Views::admin('reporte.index',$a_data_page);
     }
+
+
+    public function expediente(Request $request)
+    {
+        $request->user()->authorizeRoles(['user', 'admin']);
+        
+        $frontend =  DB::table('frontend')
+        ->where([
+            'Estado'   => 1
+        ])
+        ->orderBy('ID')
+        ->get();
+
+        $tcuota = \Views::diccionario('idTipoCuota');
+
+        
+        $a_data_page = array(
+            'title' => 'Lista de Socios',
+            'pagina'=> $frontend
+        );
+
+        return \Views::admin('reporte.expediente',$a_data_page);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

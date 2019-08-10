@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-08-09 14:12:01
+Date: 2019-08-09 22:22:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -2182,7 +2182,7 @@ CREATE TABLE `expediente` (
 INSERT INTO `expediente` VALUES ('1', 'qqq', '2000.00', '1', 'ss', 'ddd', '1', 'xxx', '3', '2', '1', '1', '1', null, '1', '1', '1', '1', 'hjhhj', null, '5d45b8e428436.pdf', 'aaa', '2019-08-03 16:40:04', '2019-08-03 16:40:04', null, null, null, null, null);
 INSERT INTO `expediente` VALUES ('2', 'qqq', '2000.00', '1', 'ss', 'ddd', '1', 'xxx', '3', '2', '1', '1', '1', null, '1', '1', '1', '1', 'hjhhj', null, '5d45b95532752.pdf', 'aaa', '2019-08-03 16:41:57', '2019-08-03 16:41:57', null, null, null, null, null);
 INSERT INTO `expediente` VALUES ('3', 'rrrr', '2000.00', '1', 'qwer', 'vvv', '3', 'xzzz', '7', '4', '2', '0', '1', null, '1', '0', '1', '1', 'iopppp', null, '5d45b9e90339d.pdf', 'tttt', '2019-08-03 18:32:48', '2019-08-03 13:32:48', 'rrrrr', 'qqq', 'erty', 'fgfg', 'iuuuu');
-INSERT INTO `expediente` VALUES ('4', '00123', '2333.34', '1', '15', '234', '2', 'ab callert', '2', '3', '2', '0', '1', null, '1', '1', '0', '1', 'fff', null, '5d45d477f2a2c.pdf', '444944', '2019-08-03 18:37:44', '2019-08-03 18:37:44', '324', '535', 'qqq', 'ooo', 'iii');
+INSERT INTO `expediente` VALUES ('4', '00123', '2333.34', '1', '15', '234', '2', 'ab callert', '2', '3', '2', '0', '1', null, '1', '1', '0', '1', 'fff', '7', '5d45d477f2a2c.pdf', '444944', '2019-08-09 14:27:23', '2019-08-09 14:27:23', '324', '535', 'qqq', 'ooo', 'iii');
 
 -- ----------------------------
 -- Table structure for `frontend`
@@ -2361,7 +2361,7 @@ CREATE TABLE `pagina` (
   PRIMARY KEY (`ID`),
   KEY `FK_Modulo` (`ModuloID`),
   CONSTRAINT `FK_Modulo` FOREIGN KEY (`ModuloID`) REFERENCES `modulo` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pagina
@@ -2375,8 +2375,42 @@ INSERT INTO `pagina` VALUES ('6', null, '3', 'listado', 'usuario/lista', null, '
 INSERT INTO `pagina` VALUES ('7', null, '8', 'Listado', 'expediente/lista', null, '1', null, '6', null, '2019-07-17 01:09:26', '2019-07-03 23:26:17');
 INSERT INTO `pagina` VALUES ('8', null, '7', 'Listado', 'cuota/lista', null, '1', null, '7', null, '2019-07-17 01:09:19', '2019-07-17 00:59:03');
 INSERT INTO `pagina` VALUES ('9', null, '9', 'Buscar', 'pagos/pago/buscar', null, '1', null, '8', null, '2019-08-08 23:39:31', '2019-07-17 01:05:11');
-INSERT INTO `pagina` VALUES ('10', null, '10', 'Listado', 'reporte/lista', null, '1', null, '9', null, '2019-07-17 01:09:52', '2019-07-17 01:09:52');
+INSERT INTO `pagina` VALUES ('10', null, '10', 'Lista de socios', 'reporte/lista', null, '1', null, '9', null, '2019-08-10 00:49:36', '2019-07-17 01:09:52');
 INSERT INTO `pagina` VALUES ('11', null, '11', 'Listado', 'reuniones/lista', null, '1', null, '10', null, '2019-08-08 18:32:35', '2019-08-08 18:32:35');
+INSERT INTO `pagina` VALUES ('12', null, '10', 'Historial de expediente', 'reporte/expediente', null, '1', null, '11', null, '2019-08-10 02:42:14', '2019-08-10 00:51:48');
+
+-- ----------------------------
+-- Table structure for `pago`
+-- ----------------------------
+DROP TABLE IF EXISTS `pago`;
+CREATE TABLE `pago` (
+  `idPago` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) DEFAULT NULL,
+  `Tipo` varchar(100) DEFAULT NULL,
+  `Presencia` int(11) DEFAULT NULL,
+  `monto` decimal(10,2) DEFAULT NULL,
+  `FechaTipo` datetime DEFAULT NULL,
+  `FechaPago` datetime DEFAULT NULL,
+  `motivo` varchar(500) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `idCodigo` int(11) DEFAULT NULL,
+  `identificador` varchar(5) DEFAULT NULL,
+  `origen` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`idPago`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of pago
+-- ----------------------------
+INSERT INTO `pago` VALUES ('1', '7', '3', '1', null, '2019-08-06 00:00:00', '2019-08-09 00:00:00', 'gfhfgh', '1', '3', null, null);
+INSERT INTO `pago` VALUES ('2', '7', '3', '2', null, '2019-08-06 00:00:00', '2019-08-09 00:00:00', 'zzzz', '1', '3', 'JUST', 'R');
+INSERT INTO `pago` VALUES ('3', '7', '3', null, '345.00', '2019-08-06 00:00:00', '2019-08-09 00:00:00', null, '1', '3', 'PAGO', 'R');
+INSERT INTO `pago` VALUES ('4', '7', '1', '3', null, '2019-08-08 00:00:00', '2019-08-09 00:00:00', 'aaaaa', '1', '102', 'JUST', 'C');
+INSERT INTO `pago` VALUES ('5', '7', '3', '3', null, '2019-08-07 00:00:00', '2019-08-10 00:00:00', 'diciembre', '1', '111', 'JUST', 'C');
+INSERT INTO `pago` VALUES ('6', '7', '2', '2', null, '2019-08-08 00:00:00', '2019-08-10 00:00:00', 'enero', '1', '88', 'JUST', 'C');
+INSERT INTO `pago` VALUES ('7', '7', '2', null, '22.00', '2019-08-08 00:00:00', '2019-08-10 00:00:00', null, '1', '89', 'PAGO', 'C');
+INSERT INTO `pago` VALUES ('8', '7', '3', null, '650.00', '2019-08-07 00:00:00', '2019-08-10 00:00:00', null, '1', '110', 'PAGO', 'C');
+INSERT INTO `pago` VALUES ('9', '7', '1', null, '500.00', '2019-08-13 00:00:00', '2019-08-10 00:00:00', null, '1', '9', 'PAGO', 'R');
 
 -- ----------------------------
 -- Table structure for `pago_reunion`
