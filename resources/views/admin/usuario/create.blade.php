@@ -25,7 +25,7 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                            <form id="main" method="POST" action="{{ route('admin.user_add') }}" novalidate="">
+                            <form id="main" method="POST" action="{{ route('admin.user_add') }}" >
                                 @csrf
 
                                 <div class="col-lg-12 col-xl-12">

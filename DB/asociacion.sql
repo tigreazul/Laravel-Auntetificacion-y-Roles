@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50617
+Source Server         : Mysql
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : asociacion
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2019-08-06 18:26:53
+Date: 2019-08-09 22:22:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -47,16 +47,17 @@ CREATE TABLE `cuota` (
   `idCuota` int(11) NOT NULL AUTO_INCREMENT,
   `idTipoCuota` int(11) DEFAULT NULL,
   `anio` int(11) DEFAULT NULL,
-  `idUsuario` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idCuota`),
-  KEY `usuario_cuota` (`idUsuario`),
-  CONSTRAINT `usuario_cuota` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `motivo` varchar(100) DEFAULT NULL,
+  `fechaRegistro` datetime DEFAULT NULL,
+  PRIMARY KEY (`idCuota`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of cuota
 -- ----------------------------
-INSERT INTO `cuota` VALUES ('1', '1', '2019', null);
+INSERT INTO `cuota` VALUES ('9', '2', '2018', 'nuevo req', '2019-08-08 22:48:01');
+INSERT INTO `cuota` VALUES ('10', '1', '2018', 'Reunion legar', '2019-08-08 22:48:07');
+INSERT INTO `cuota` VALUES ('11', '3', '2018', 'nuevo', '2019-08-07 22:48:10');
 
 -- ----------------------------
 -- Table structure for `departamento`
@@ -109,27 +110,94 @@ CREATE TABLE `detalle_cuota` (
   `idMes` int(11) DEFAULT NULL,
   `monto` decimal(10,2) DEFAULT NULL,
   `estado` int(11) DEFAULT NULL,
-  `check` int(11) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCuotaDetalle`),
   KEY `detalle_cuota` (`idCuota`),
-  CONSTRAINT `detalle_cuota` FOREIGN KEY (`idCuota`) REFERENCES `cuota` (`idCuota`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  KEY `usuario_decouota` (`idUsuario`),
+  CONSTRAINT `detalle_cuota` FOREIGN KEY (`idCuota`) REFERENCES `cuota` (`idCuota`),
+  CONSTRAINT `usuario_decouota` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of detalle_cuota
 -- ----------------------------
-INSERT INTO `detalle_cuota` VALUES ('1', '1', '1', '3434.00', '1', null);
-INSERT INTO `detalle_cuota` VALUES ('2', '1', '2', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('3', '1', '3', '45454.00', '1', null);
-INSERT INTO `detalle_cuota` VALUES ('4', '1', '4', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('5', '1', '5', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('6', '1', '6', '1111111.00', '1', null);
-INSERT INTO `detalle_cuota` VALUES ('7', '1', '7', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('8', '1', '8', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('9', '1', '9', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('10', '1', '10', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('11', '1', '11', null, '1', null);
-INSERT INTO `detalle_cuota` VALUES ('12', '1', '12', null, '1', null);
+INSERT INTO `detalle_cuota` VALUES ('64', '9', '1', '222.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('65', '9', '2', '22.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('66', '9', '3', '33.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('67', '9', '4', '44.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('68', '9', '5', '556.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('69', '9', '6', '966.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('70', '9', '7', '77.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('71', '9', '8', '88.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('72', '9', '9', '99.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('73', '9', '10', '210.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('74', '9', '11', '211.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('75', '9', '12', '122.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('76', '9', '1', '222.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('77', '9', '2', '22.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('78', '9', '3', '33.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('79', '9', '4', '44.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('80', '9', '5', '556.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('81', '9', '6', '966.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('82', '9', '7', '77.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('83', '9', '8', '88.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('84', '9', '9', '99.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('85', '9', '10', '210.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('86', '9', '11', '211.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('87', '9', '12', '122.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('88', '9', '1', '222.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('89', '9', '2', '22.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('90', '9', '3', '33.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('91', '9', '4', '44.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('92', '9', '5', '556.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('93', '9', '6', '966.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('94', '9', '7', '77.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('95', '9', '8', '88.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('96', '9', '9', '99.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('97', '9', '10', '210.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('98', '9', '11', '211.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('99', '9', '12', '122.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('100', '10', '9', '500.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('101', '10', '9', '500.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('102', '10', '9', '500.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('103', '11', '9', '485.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('104', '11', '10', '620.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('105', '11', '12', '978.00', '1', '5');
+INSERT INTO `detalle_cuota` VALUES ('106', '11', '9', '485.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('107', '11', '10', '620.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('108', '11', '12', '978.00', '1', '6');
+INSERT INTO `detalle_cuota` VALUES ('109', '11', '9', '485.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('110', '11', '10', '620.00', '1', '7');
+INSERT INTO `detalle_cuota` VALUES ('111', '11', '12', '978.00', '1', '7');
+
+-- ----------------------------
+-- Table structure for `detalle_reunion`
+-- ----------------------------
+DROP TABLE IF EXISTS `detalle_reunion`;
+CREATE TABLE `detalle_reunion` (
+  `idDetalleReunion` int(11) NOT NULL AUTO_INCREMENT,
+  `idReunion` int(11) DEFAULT NULL,
+  `multa` decimal(10,2) DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idDetalleReunion`),
+  KEY `fk` (`idReunion`),
+  KEY `det` (`idDetalleReunion`),
+  KEY `usuario_detallereu` (`idUsuario`),
+  CONSTRAINT `fkdetreuni` FOREIGN KEY (`idReunion`) REFERENCES `reunion` (`idReunion`),
+  CONSTRAINT `usuario_detallereu` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of detalle_reunion
+-- ----------------------------
+INSERT INTO `detalle_reunion` VALUES ('1', '1', '152.00', '5', '1');
+INSERT INTO `detalle_reunion` VALUES ('2', '1', '152.00', '6', '1');
+INSERT INTO `detalle_reunion` VALUES ('3', '1', '152.00', '7', '1');
+INSERT INTO `detalle_reunion` VALUES ('6', '1', '152.00', '4', '1');
+INSERT INTO `detalle_reunion` VALUES ('7', '2', '500.00', '5', '1');
+INSERT INTO `detalle_reunion` VALUES ('8', '2', '500.00', '6', '1');
+INSERT INTO `detalle_reunion` VALUES ('9', '2', '500.00', '7', '1');
 
 -- ----------------------------
 -- Table structure for `diccionario`
@@ -2114,7 +2182,7 @@ CREATE TABLE `expediente` (
 INSERT INTO `expediente` VALUES ('1', 'qqq', '2000.00', '1', 'ss', 'ddd', '1', 'xxx', '3', '2', '1', '1', '1', null, '1', '1', '1', '1', 'hjhhj', null, '5d45b8e428436.pdf', 'aaa', '2019-08-03 16:40:04', '2019-08-03 16:40:04', null, null, null, null, null);
 INSERT INTO `expediente` VALUES ('2', 'qqq', '2000.00', '1', 'ss', 'ddd', '1', 'xxx', '3', '2', '1', '1', '1', null, '1', '1', '1', '1', 'hjhhj', null, '5d45b95532752.pdf', 'aaa', '2019-08-03 16:41:57', '2019-08-03 16:41:57', null, null, null, null, null);
 INSERT INTO `expediente` VALUES ('3', 'rrrr', '2000.00', '1', 'qwer', 'vvv', '3', 'xzzz', '7', '4', '2', '0', '1', null, '1', '0', '1', '1', 'iopppp', null, '5d45b9e90339d.pdf', 'tttt', '2019-08-03 18:32:48', '2019-08-03 13:32:48', 'rrrrr', 'qqq', 'erty', 'fgfg', 'iuuuu');
-INSERT INTO `expediente` VALUES ('4', '00123', '2333.34', '1', '15', '234', '2', 'ab callert', '2', '3', '2', '0', '1', null, '1', '1', '0', '1', 'fff', null, '5d45d477f2a2c.pdf', '444944', '2019-08-03 18:37:44', '2019-08-03 18:37:44', '324', '535', 'qqq', 'ooo', 'iii');
+INSERT INTO `expediente` VALUES ('4', '00123', '2333.34', '1', '15', '234', '2', 'ab callert', '2', '3', '2', '0', '1', null, '1', '1', '0', '1', 'fff', '7', '5d45d477f2a2c.pdf', '444944', '2019-08-09 14:27:23', '2019-08-09 14:27:23', '324', '535', 'qqq', 'ooo', 'iii');
 
 -- ----------------------------
 -- Table structure for `frontend`
@@ -2258,7 +2326,7 @@ CREATE TABLE `modulo` (
   `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of modulo
@@ -2271,6 +2339,7 @@ INSERT INTO `modulo` VALUES ('7', 'Cuotas', 'Cuotas', '1', '5', '<i class=\"feat
 INSERT INTO `modulo` VALUES ('8', 'Expediente', 'Expediente', '1', '6', '<i class=\"feather icon-sidebar\"></i>', '#', '0', 'admin/expediente', '2019-07-16 23:58:44', '2019-07-03 23:25:48');
 INSERT INTO `modulo` VALUES ('9', 'Pagos', 'Pagos', '1', '7', '<i class=\"feather icon-sidebar\"></i>', null, '0', 'admin/pagos', '2019-07-03 23:25:48', '2019-07-03 23:25:48');
 INSERT INTO `modulo` VALUES ('10', 'Reporte', 'Reporte', '1', '8', '<i class=\"feather icon-sidebar\"></i>', null, '0', 'admin/reporte', '2019-07-03 23:25:48', '2019-07-03 23:25:48');
+INSERT INTO `modulo` VALUES ('11', 'Reuniones', 'Reuniones', '1', '9', '<i class=\"feather icon-home\"></i>', null, '0', 'admin/reuniones', '2019-08-08 18:31:31', '2019-08-08 18:31:31');
 
 -- ----------------------------
 -- Table structure for `pagina`
@@ -2292,7 +2361,7 @@ CREATE TABLE `pagina` (
   PRIMARY KEY (`ID`),
   KEY `FK_Modulo` (`ModuloID`),
   CONSTRAINT `FK_Modulo` FOREIGN KEY (`ModuloID`) REFERENCES `modulo` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pagina
@@ -2305,14 +2374,49 @@ INSERT INTO `pagina` VALUES ('5', null, '1', 'aaaaa', 'Asco. Prop. El lucumo Mz 
 INSERT INTO `pagina` VALUES ('6', null, '3', 'listado', 'usuario/lista', null, '1', null, '5', null, '2019-07-17 01:09:02', '2019-07-01 19:05:30');
 INSERT INTO `pagina` VALUES ('7', null, '8', 'Listado', 'expediente/lista', null, '1', null, '6', null, '2019-07-17 01:09:26', '2019-07-03 23:26:17');
 INSERT INTO `pagina` VALUES ('8', null, '7', 'Listado', 'cuota/lista', null, '1', null, '7', null, '2019-07-17 01:09:19', '2019-07-17 00:59:03');
-INSERT INTO `pagina` VALUES ('9', null, '9', 'listado', 'pagos/lista', null, '1', null, '8', null, '2019-07-17 01:09:32', '2019-07-17 01:05:11');
-INSERT INTO `pagina` VALUES ('10', null, '10', 'Listado', 'reporte/lista', null, '1', null, '9', null, '2019-07-17 01:09:52', '2019-07-17 01:09:52');
+INSERT INTO `pagina` VALUES ('9', null, '9', 'Buscar', 'pagos/pago/buscar', null, '1', null, '8', null, '2019-08-08 23:39:31', '2019-07-17 01:05:11');
+INSERT INTO `pagina` VALUES ('10', null, '10', 'Lista de socios', 'reporte/lista', null, '1', null, '9', null, '2019-08-10 00:49:36', '2019-07-17 01:09:52');
+INSERT INTO `pagina` VALUES ('11', null, '11', 'Listado', 'reuniones/lista', null, '1', null, '10', null, '2019-08-08 18:32:35', '2019-08-08 18:32:35');
+INSERT INTO `pagina` VALUES ('12', null, '10', 'Historial de expediente', 'reporte/expediente', null, '1', null, '11', null, '2019-08-10 02:42:14', '2019-08-10 00:51:48');
 
 -- ----------------------------
--- Table structure for `pago_cuota`
+-- Table structure for `pago`
 -- ----------------------------
-DROP TABLE IF EXISTS `pago_cuota`;
-CREATE TABLE `pago_cuota` (
+DROP TABLE IF EXISTS `pago`;
+CREATE TABLE `pago` (
+  `idPago` int(11) NOT NULL AUTO_INCREMENT,
+  `idUsuario` int(11) DEFAULT NULL,
+  `Tipo` varchar(100) DEFAULT NULL,
+  `Presencia` int(11) DEFAULT NULL,
+  `monto` decimal(10,2) DEFAULT NULL,
+  `FechaTipo` datetime DEFAULT NULL,
+  `FechaPago` datetime DEFAULT NULL,
+  `motivo` varchar(500) DEFAULT NULL,
+  `estado` int(11) DEFAULT NULL,
+  `idCodigo` int(11) DEFAULT NULL,
+  `identificador` varchar(5) DEFAULT NULL,
+  `origen` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`idPago`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of pago
+-- ----------------------------
+INSERT INTO `pago` VALUES ('1', '7', '3', '1', null, '2019-08-06 00:00:00', '2019-08-09 00:00:00', 'gfhfgh', '1', '3', null, null);
+INSERT INTO `pago` VALUES ('2', '7', '3', '2', null, '2019-08-06 00:00:00', '2019-08-09 00:00:00', 'zzzz', '1', '3', 'JUST', 'R');
+INSERT INTO `pago` VALUES ('3', '7', '3', null, '345.00', '2019-08-06 00:00:00', '2019-08-09 00:00:00', null, '1', '3', 'PAGO', 'R');
+INSERT INTO `pago` VALUES ('4', '7', '1', '3', null, '2019-08-08 00:00:00', '2019-08-09 00:00:00', 'aaaaa', '1', '102', 'JUST', 'C');
+INSERT INTO `pago` VALUES ('5', '7', '3', '3', null, '2019-08-07 00:00:00', '2019-08-10 00:00:00', 'diciembre', '1', '111', 'JUST', 'C');
+INSERT INTO `pago` VALUES ('6', '7', '2', '2', null, '2019-08-08 00:00:00', '2019-08-10 00:00:00', 'enero', '1', '88', 'JUST', 'C');
+INSERT INTO `pago` VALUES ('7', '7', '2', null, '22.00', '2019-08-08 00:00:00', '2019-08-10 00:00:00', null, '1', '89', 'PAGO', 'C');
+INSERT INTO `pago` VALUES ('8', '7', '3', null, '650.00', '2019-08-07 00:00:00', '2019-08-10 00:00:00', null, '1', '110', 'PAGO', 'C');
+INSERT INTO `pago` VALUES ('9', '7', '1', null, '500.00', '2019-08-13 00:00:00', '2019-08-10 00:00:00', null, '1', '9', 'PAGO', 'R');
+
+-- ----------------------------
+-- Table structure for `pago_reunion`
+-- ----------------------------
+DROP TABLE IF EXISTS `pago_reunion`;
+CREATE TABLE `pago_reunion` (
   `idPago` int(11) NOT NULL AUTO_INCREMENT,
   `idTitular` int(11) DEFAULT NULL,
   `idCuota` int(11) DEFAULT NULL,
@@ -2329,7 +2433,7 @@ CREATE TABLE `pago_cuota` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of pago_cuota
+-- Records of pago_reunion
 -- ----------------------------
 
 -- ----------------------------
@@ -2367,16 +2471,16 @@ CREATE TABLE `persona` (
 -- Records of persona
 -- ----------------------------
 INSERT INTO `persona` VALUES ('1', 'Juan', 'Perez', 'Perez', '1999-07-29 22:04:15', '11111111', 'M', '9');
-INSERT INTO `persona` VALUES ('2', 'aaaaaa', 'bbbbbb', 'cccccc', '2019-07-25 00:00:00', '4444444', 'F', '3');
+INSERT INTO `persona` VALUES ('2', 'aaaaaa', 'bbbbbb', 'cccccc', '2019-07-25 00:00:00', '58759854', 'F', '3');
 INSERT INTO `persona` VALUES ('3', 'aaaaaa', 'bbbbbb', 'cccccc', '2019-07-25 00:00:00', '4444444', 'F', '3');
 INSERT INTO `persona` VALUES ('4', 'aaaa', 'ssss', 'xxxxx', '2019-07-19 00:00:00', '2222222', 'M', '2');
 INSERT INTO `persona` VALUES ('5', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
-INSERT INTO `persona` VALUES ('6', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
-INSERT INTO `persona` VALUES ('7', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
-INSERT INTO `persona` VALUES ('8', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
-INSERT INTO `persona` VALUES ('9', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
-INSERT INTO `persona` VALUES ('10', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
-INSERT INTO `persona` VALUES ('11', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '1234587', null, null);
+INSERT INTO `persona` VALUES ('6', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '32568745', null, null);
+INSERT INTO `persona` VALUES ('7', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '12548514', null, null);
+INSERT INTO `persona` VALUES ('8', 'aa', 'bb', 'cc', '2019-08-08 00:00:00', '25879658', null, null);
+INSERT INTO `persona` VALUES ('9', 'rrrr', 'tgruyi', 'lp09p', '2019-08-08 00:00:00', '25478591', null, null);
+INSERT INTO `persona` VALUES ('10', 'uuu', 'rth', 'tu67i78', '2019-08-08 00:00:00', '9999999', null, null);
+INSERT INTO `persona` VALUES ('11', 'aa', 'lioloil', 'cc', '2019-08-08 00:00:00', '5555555', null, null);
 
 -- ----------------------------
 -- Table structure for `provincia`
@@ -2601,18 +2705,18 @@ CREATE TABLE `reunion` (
   `nomReunion` varchar(255) DEFAULT NULL,
   `lugar` varchar(255) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
-  `horaInicio` datetime DEFAULT NULL,
-  `horaFin` datetime DEFAULT NULL,
-  `multa` decimal(10,0) DEFAULT NULL,
+  `horaInicio` time DEFAULT NULL,
+  `horaFin` time DEFAULT NULL,
   `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`idReunion`),
-  KEY `usuario_reunion` (`idUsuario`),
-  CONSTRAINT `usuario_reunion` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `usuario_reunion` (`idUsuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of reunion
 -- ----------------------------
+INSERT INTO `reunion` VALUES ('1', '3', 'Faena del pueblo', 'Local comunal', '2019-08-06', '10:52:00', '15:22:00', null);
+INSERT INTO `reunion` VALUES ('2', '1', 'Realizar Arreglos de jardin', 'Lima', '2019-08-13', '15:25:00', '05:25:00', null);
 
 -- ----------------------------
 -- Table structure for `roles`
@@ -2752,6 +2856,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `idUsuario` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -2759,10 +2864,10 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'Junior', 'zkated@gmail.com', null, '$2y$10$tGXNkEofrIBARimWOo/s5.UBYnyPv8n5wjlMZRdHKgLcN3jbk4k8a', null, '2019-07-05 01:16:00', '2019-07-05 01:16:00');
-INSERT INTO `users` VALUES ('2', 'bb cc aa', 'aabb_@profile.com', null, '$2y$10$qEkKSszA1VkKBGAP6z5/L.l9aaleUrXWhuuU8HkdL1r8YAUxmyC0C', null, '2019-08-02 05:44:16', '2019-08-02 05:44:16');
-INSERT INTO `users` VALUES ('5', 'bb cc aa', 'aabba@profile.com', null, '$2y$10$Aig0VrVzz93GBT1KJ8GNiO32Vm91YWQTkb4BMdJhwvnHgjO7oQV9W', null, '2019-08-02 05:56:20', '2019-08-02 05:56:20');
-INSERT INTO `users` VALUES ('7', 'bb cc aa', 'aabb@profile.com', null, '$2y$10$GlV1Apd0/odRLUtdVaYxCOnq4w9MPAu4vW74SXpRSFfhyYfp6tga6', null, '2019-08-02 05:57:29', '2019-08-02 05:57:29');
+INSERT INTO `users` VALUES ('1', 'Junior', 'zkated@gmail.com', null, '$2y$10$tGXNkEofrIBARimWOo/s5.UBYnyPv8n5wjlMZRdHKgLcN3jbk4k8a', null, '2019-07-05 01:16:00', '2019-07-05 01:16:00', null);
+INSERT INTO `users` VALUES ('2', 'bb cc aa', 'aabb_@profile.com', null, '$2y$10$qEkKSszA1VkKBGAP6z5/L.l9aaleUrXWhuuU8HkdL1r8YAUxmyC0C', null, '2019-08-02 05:44:16', '2019-08-02 05:44:16', '5');
+INSERT INTO `users` VALUES ('5', 'bb cc aa', 'aabba@profile.com', null, '$2y$10$Aig0VrVzz93GBT1KJ8GNiO32Vm91YWQTkb4BMdJhwvnHgjO7oQV9W', null, '2019-08-02 05:56:20', '2019-08-02 05:56:20', '6');
+INSERT INTO `users` VALUES ('7', 'bb cc aa', 'aabb@profile.com', null, '$2y$10$GlV1Apd0/odRLUtdVaYxCOnq4w9MPAu4vW74SXpRSFfhyYfp6tga6', null, '2019-08-02 05:57:29', '2019-08-02 05:57:29', '7');
 
 -- ----------------------------
 -- Table structure for `usuario`
@@ -2785,8 +2890,8 @@ CREATE TABLE `usuario` (
 -- ----------------------------
 INSERT INTO `usuario` VALUES ('1', '1', 'admin', '123456', '1', '2019');
 INSERT INTO `usuario` VALUES ('2', '6', 'aabb', '$2y$10$wmuENtYIjoflx2lTS99YK..Cx7V8fO.3H264geLtiQbYmbzapoBxG', '2', '2019');
-INSERT INTO `usuario` VALUES ('3', '7', 'aabb', '$2y$10$vb.GJf.D.IbEEzhPiOgUSO.rfcCxx6AfOsydU25gACDWXqKWtazsC', '2', '2019');
-INSERT INTO `usuario` VALUES ('4', '8', 'aabb', '$2y$10$g.Deua51UnYFcBmj3kLWouiXc5TcHkz/g05UBitwKud7cq5imH0Hi', '2', '2019');
-INSERT INTO `usuario` VALUES ('5', '9', 'aabb', '$2y$10$d94nhEemwjqzmp8pNsQMEOyPbnAAvn8rORQDejuVObSw0Ne1j5PMG', '2', '2019');
-INSERT INTO `usuario` VALUES ('6', '10', 'aabb', '$2y$10$UUz8D262Shd4Tv3XRbqZreQj4Uugwnv3NVy1nIZo0jEXyrNC/NeD2', '2', '2019');
-INSERT INTO `usuario` VALUES ('7', '11', 'aabb', '$2y$10$EGVr4j/o4TChjXyTcup1/OkwsrE7GIZjlTXz4werNPZVAJV.UzQVq', '2', '2019');
+INSERT INTO `usuario` VALUES ('3', '7', 'rrrr', '$2y$10$vb.GJf.D.IbEEzhPiOgUSO.rfcCxx6AfOsydU25gACDWXqKWtazsC', '2', '2019');
+INSERT INTO `usuario` VALUES ('4', '8', 'ergthyt', '$2y$10$g.Deua51UnYFcBmj3kLWouiXc5TcHkz/g05UBitwKud7cq5imH0Hi', '2', '2019');
+INSERT INTO `usuario` VALUES ('5', '9', 'tyjuytj', '$2y$10$d94nhEemwjqzmp8pNsQMEOyPbnAAvn8rORQDejuVObSw0Ne1j5PMG', '2', '2019');
+INSERT INTO `usuario` VALUES ('6', '10', 'ert', '$2y$10$UUz8D262Shd4Tv3XRbqZreQj4Uugwnv3NVy1nIZo0jEXyrNC/NeD2', '2', '2019');
+INSERT INTO `usuario` VALUES ('7', '11', 'ewr', '$2y$10$EGVr4j/o4TChjXyTcup1/OkwsrE7GIZjlTXz4werNPZVAJV.UzQVq', '2', '2019');

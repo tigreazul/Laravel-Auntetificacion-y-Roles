@@ -29,3 +29,11 @@ tr.table-verify.active, tr.table-verify.active:hover {
     font-weight: bold;
     background: #99c8ff;
 }
+
+select{
+    border: 1px solid #cccccc !important;
+}
+
+table{
+    border: 1px solid #dee2e6 !important;
+}

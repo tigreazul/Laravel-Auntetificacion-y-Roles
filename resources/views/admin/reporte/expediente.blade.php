@@ -7,7 +7,7 @@
                     <i class="feather icon-server bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Reporte</h5>
-                        <span>Administración de Reporte</span>
+                        <span>Expediente</span>
                     </div>
                 </div>
             </div>
@@ -35,10 +35,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5>Lista de Reporte</h5>
-                                    </div>
-                                    <div class="col-42">
-                                        <a href="{{ route('admin.front_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
-                                    </div>                                
+                                    </div>                         
                                 </div>
                             </div>
                             <div class="card-block">
@@ -48,27 +45,7 @@
                                     <div class="col-sm-8" style="margin-left: 16%;">
                                         <div class="form-group row">
                                             <div class="input-group input-group-button ">
-                                                <!-- <input type="text" class="form-control" name="buscador" placeholder="Grupo"> -->
-                                                <select name="grupo" id="sgrupo" class="form-control" style="height: 44px;">
-                                                    <option value="">[GRUPO]</option>
-                                                    @foreach($grupo as $grup)
-                                                        <option value="{{ $grup->codigo }}">{{ $grup->valor }}</option>
-                                                    @endforeach
-                                                </select>
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="submit">Buscar</button>
-                                                </div>
-                                            </div>
-                                            <span class="messages" style="color: red;font-size: 12px;">
-                                                @if (Session::has('message'))
-                                                    {!! session('message') !!}
-                                                @endif
-                                            </span>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="input-group input-group-button ">
-                                                <input type="text" class="form-control" name="buscador" placeholder="Manzana">
+                                                <input type="text" class="form-control" name="buscador" placeholder="Ingresar Numero de expediente">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">Buscar</button>
                                                 </div>
@@ -86,7 +63,11 @@
 
                                 <div class="dt-responsive table-responsive">
                                     <!-- lista de tablas -->
-                                    <table class="table table-hover m-b-0" style="width: 70%;margin: 0 auto;">
+                                    <div class="col-3 offset-md-1 mb-1">
+                                        <button class="btn btn-primary btn-sm" type="submit">Imprimir</button>
+                                    </div>
+
+                                    <table class="table table-hover m-b-0" style="width: 82%;margin: 0 auto;">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -100,7 +81,7 @@
                                         <tbody>
                                             @php $i = 1; @endphp
 
-                                            @forelse($pagina as $page)
+                                            @forelse($pagina as $multa)
                                                 <tr class="table-verify selector-{{ $page->ID }}">
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $page->Titulo }}</td>
@@ -132,8 +113,6 @@
                                                     <td colspan="6" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
                                                 </tr>
                                             @endforelse
-
-
                                         </tbody>
                                     </table>
                                     <!-- lista de tablas -->

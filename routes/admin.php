@@ -61,23 +61,39 @@ Route::group(['prefix' => 'expediente'], function() {
 Route::group(['prefix' => 'pagos'], function() {
     // Pagina
     Route::get('lista', 'Admin\PagosController@index')->name('admin.pagos_list');                 // Listado
-    Route::get('pago/create', 'Admin\PagosController@create')->name('admin.pagos_create');       // Form View Create
-    Route::post('pago/create-add', 'Admin\PagosController@store')->name('admin.pagos_add');      // Crear dato
-    Route::get('pago/{id}', 'Admin\PagosController@show')->name('admin.pagos_list_id');          // Mostrar por id
-    Route::get('pago/{user}/editar', 'Admin\PagosController@edit')->name('admin.pagos_edit');    // Form editar
-    Route::patch('pago/{id}', 'Admin\PagosController@update')->name('admin.pagos_edit_data');    // Update datos
+    Route::get('pago/buscar', 'Admin\PagosController@create')->name('admin.pagos_create');       // Form View Create
+    Route::post('pago/buscar', 'Admin\PagosController@validaBusqueda')->name('admin.pagos_create_post');       // Form View Create
+    Route::get('pago/buscar/{codigo}', 'Admin\PagosController@busqueda')->name('admin.pagos_create_search');       // Form View Create
+    Route::post('pago/justificar', 'Admin\PagosController@justificar')->name('admin.pagos_justificar');
+    Route::post('pago/pagar', 'Admin\PagosController@pagar')->name('admin.pagos_pagar');
+
+    // Route::post('pago/create-add', 'Admin\PagosController@store')->name('admin.pagos_add');      // Crear dato
+    // Route::get('pago/{id}', 'Admin\PagosController@show')->name('admin.pagos_list_id');          // Mostrar por id
+    // Route::get('pago/{user}/editar', 'Admin\PagosController@edit')->name('admin.pagos_edit');    // Form editar
+    // Route::patch('pago/{id}', 'Admin\PagosController@update')->name('admin.pagos_edit_data');    // Update datos
 }); 
 
 Route::group(['prefix' => 'reporte'], function() {
     // Pagina
-    Route::get('lista', 'Admin\PageController@index')->name('admin.front_list');                 // Listado
-    Route::get('page/create', 'Admin\PageController@create')->name('admin.front_create');       // Form View Create
-    Route::post('page/create-add', 'Admin\PageController@store')->name('admin.front_add');      // Crear dato
-    Route::get('page/{id}', 'Admin\PageController@show')->name('admin.front_list_id');          // Mostrar por id
-    Route::get('page/{user}/editar', 'Admin\PageController@edit')->name('admin.front_edit');    // Form editar
-    Route::patch('page/{id}', 'Admin\PageController@update')->name('admin.front_edit_data');    // Update datos
+    Route::get('lista', 'Admin\ReporteController@index')->name('admin.report_list');                 // Listado
+    Route::get('expediente', 'Admin\ReporteController@expediente')->name('admin.report_exp');                 // Listado
+
+    Route::get('page/create', 'Admin\ReporteController@create')->name('admin.front_create');       // Form View Create
+    Route::post('page/create-add', 'Admin\ReporteController@store')->name('admin.front_add');      // Crear dato
+    Route::get('page/{id}', 'Admin\ReporteController@show')->name('admin.front_list_id');          // Mostrar por id
+    Route::get('page/{user}/editar', 'Admin\ReporteController@edit')->name('admin.front_edit');    // Form editar
+    Route::patch('page/{id}', 'Admin\ReporteController@update')->name('admin.front_edit_data');    // Update datos
 }); 
 
+
+Route::group(['prefix' => 'reuniones'], function() {
+    Route::get('lista', 'Admin\ReunionController@index')->name('admin.reunion_list');                 // Listado
+    Route::get('reunion/create', 'Admin\ReunionController@create')->name('admin.reunion_create');       // Form View Create
+    Route::post('reunion/create-add', 'Admin\ReunionController@store')->name('admin.reunion_add');      // Crear dato
+    Route::get('reunion/{id}', 'Admin\ReunionController@show')->name('admin.reunion_list_id');          // Mostrar por id
+    Route::get('reunion/{user}/editar', 'Admin\ReunionController@edit')->name('admin.reunion_edit');    // Form editar
+    Route::patch('reunion/{id}', 'Admin\ReunionController@update')->name('admin.reunion_edit_data');    // Update datos
+}); 
 
 Route::get('volver',function(){
     return redirect()->back();
