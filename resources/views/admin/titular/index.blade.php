@@ -48,11 +48,11 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Titulo</th>
-                                                <th class="column_description">Slug</th>
-                                                <th>Categoria</th>
-                                                <th>Estado</th>
-                                                <th>Fecha Publicación</th>
+                                                <th>Expediente</th>
+                                                <th>Nro Tarjeta</th>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>DNI</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
@@ -62,7 +62,7 @@
                                                 <tr class="table-verify selector-{{ $page->ID }}">
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $page->Titulo }}</td>
-                                                    <td class="column_description">{{ $page->Slug }}</td>
+                                                    <td>{{ $page->Slug }}</td>
                                                     <td><code>{{ $page->Categoria }}</code></td>
                                                     <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
                                                     <td>{{ $page->FechaIngreso }}</td>
@@ -76,9 +76,13 @@
                                                                     <i class="fa fa-edit"></i>
                                                                     Editar
                                                                 </a>
+                                                                <a class="dropdown-item" href="#" data-id="{{ $page->ID }}" >
+                                                                    <i class="fa fa-trash-alt"></i>
+                                                                    Ver Expediente
+                                                                </a>
                                                                 <a class="dropdown-item alert-delete" href="#" data-id="{{ $page->ID }}" >
                                                                     <i class="fa fa-trash-alt"></i>
-                                                                    Eliminar
+                                                                    Dar de Baja
                                                                 </a>
                                                             </div>
                                                         </div>

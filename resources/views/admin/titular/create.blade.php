@@ -32,7 +32,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" data-toggle="tab" href="#titular" role="tab"><strong>DATOS DEL TITULAR</strong></a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#documentos" role="tab"><strong>DOCUMENTOS DEL TITULAR</strong></a>
                                         </li>
                                         <li class="nav-item">
@@ -40,7 +40,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" data-toggle="tab" href="#habitan" role="tab"><strong>DATOS DE PERSONAS QUE HABITEN HOGAR</strong></a>
-                                        </li>
+                                        </li> -->
                                     </ul>
 
                                     <div class="tab-content tabs card-block">
@@ -48,13 +48,13 @@
                                             @include('admin.titular.titular')
                                         </div>
                                         <div class="tab-pane" id="documentos" role="tabpanel">
-                                            @include('admin.titular.documentos')
+                                            <!-- @include('admin.titular.documentos') -->
                                         </div>
                                         <div class="tab-pane" id="subtitular" role="tabpanel">
-                                            @include('admin.titular.subtitular')
+                                            <!-- @include('admin.titular.subtitular') -->
                                         </div>
                                         <div class="tab-pane" id="habitan" role="tabpanel">
-                                            @include('admin.titular.habitan')
+                                            <!-- @include('admin.titular.habitan') -->
                                         </div>
                                     </div>
                                 </div>

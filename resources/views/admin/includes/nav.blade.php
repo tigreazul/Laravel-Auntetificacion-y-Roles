@@ -1,7 +1,8 @@
 <div class="navbar-wrapper">
     <div class="navbar-logo">
-        <a href="index.html">
-            <img class="img-fluid" src="{{ asset('theme_admin/images/logo.png') }}" alt="Theme-Logo" />
+        <a href="#">
+            <!-- <img class="img-fluid" src="{{ asset('theme_admin/images/logo.png') }}" alt="Theme-Logo" /> -->
+            SYS.COBRANZA
         </a>
         <a class="mobile-menu" id="mobile-collapse" href="#!">
             <i class="feather icon-menu icon-toggle-right"></i>
@@ -13,7 +14,7 @@
 
     <div class="navbar-container container-fluid">
         <ul class="nav-left">
-            <li class="header-search">
+            <!-- <li class="header-search">
                 <div class="main-search morphsearch-search">
                     <div class="input-group">
                         <span class="input-group-prepend search-close">
@@ -25,7 +26,7 @@
                         </span>
                     </div>
                 </div>
-            </li>
+            </li> -->
             <li>
                 <a href="#!" onclick="if (!window.__cfRLUnblockHandlers) return false; javascript:toggleFullScreen()" class="waves-effect waves-light" data-cf-modified-8f68cca9f211ae1c772449e8-="">
                     <i class="full-screen feather icon-maximize"></i>
@@ -33,7 +34,8 @@
             </li>
         </ul>
         <ul class="nav-right">
-            <li>Env: {!! env('APP_ENV') !!}</li>
+            <!-- <li>Env: {!! env('APP_ENV') !!}</li> -->
+            <!--
             <li class="header-notification">
                 <div class="dropdown-primary dropdown">
                     <div class="dropdown-toggle" data-toggle="dropdown">
@@ -86,14 +88,16 @@
                     </div>
                 </div>
             </li>
+            -->
             <li class="user-profile header-notification">
                 <div class="dropdown-primary dropdown">
                     <div class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{ asset('theme_admin/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image">
+                        <!-- <img src="{{ asset('theme_admin/images/avatar-4.jpg') }}" class="img-radius" alt="User-Profile-Image"> -->
                         <span>{{ Auth::user()->name }}</span>
                         <i class="feather icon-chevron-down"></i>
                     </div>
                     <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                        <!--
                         <li>
                             <a href="#!">
                                 <i class="feather icon-settings"></i> Settings
@@ -113,7 +117,7 @@
                             <a href="auth-lock-screen.html">
                                 <i class="feather icon-lock"></i> Lock Screen
                             </a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="feather icon-log-out"></i> {{ __('Logout') }}
