@@ -72,15 +72,15 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-           'nombre'         => "nullable",
-           'apaterno'       => "nullable",
-           'amaterno'       => "nullable",
-            "fnacimiento"   => "nullable",
-            "dni"           => "nullable",
-            "usuario"       => "nullable",
-            "password"      => "nullable",
-            "cargo"         => "nullable",
-            "agestion"      => "nullable",
+           'nombre'         => "required",
+           'apaterno'       => "required",
+           'amaterno'       => "required",
+            "fnacimiento"   => "required",
+            "dni"           => "required|unique:personal",
+            "usuario"       => "required",
+            "password"      => "required",
+            "cargo"         => "required",
+            "agestion"      => "required",
         ]);
 
         if ($validator->fails()) {    

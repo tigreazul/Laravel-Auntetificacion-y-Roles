@@ -1,115 +1,65 @@
-<a class="btn btn-success waves-effect waves-light btn-sm" data-toggle="modal" data-target="#default-Modal">Nuevo</a>
+<button type="button" class="btn btn-success waves-effect waves-light btn-sm" data-toggle="modal" data-target="#default-Modal">Nuevo</button>
 <br>
-<table class="table table-hover m-b-0">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nro</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>DNI</th>
-            <th>Ocupacion</th>
-            <th>Distrito</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody  id="page-body-table">
-        <tr>
-            <td colspan="8" style="text-align: center;">NO EXISTE REGISTRO</td>
-        </tr>
-    </tbody>
-</table>
 
-
-
-<div class="modal fade" id="default-Modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Datos del Subtitular</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Departamento</label>
-                    <div class="col-sm-9">
-                        <select name="departamento" class="form-control" id="dep">
-                            <option value="">[SELECCIONE]</option>
-                            @foreach($departamento as $dep)
-                                <option value="{{ $dep->id }}" data-id="{{ $dep->id }}">{{ $dep->descripcion }}</option>
-                            @endforeach
-                        </select>
-                        <span class="messages"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Provincia</label>
-                    <div class="col-sm-9">
-                        <select name="provincia" class="form-control" id="prov">
-                            <option value="">[SELECCIONE]</option>
-                        </select>
-                        <span class="messages"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Distrito</label>
-                    <div class="col-sm-9">
-                        <select name="distrito" class="form-control" id="dist">
-                            <option value="">[SELECCIONE]</option>
-                        </select>
-                        <span class="messages"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Ocupación</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="descripcion" id="e_page_descripcion">
-                        <input type="hidden" name="id_page" id="e_id_page" value="">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Civil</label>
-                    <div class="col-sm-9">
-                        <select name="civil" class="form-control" id="civils">
-                            <option value="">[SELECCIONE]</option>
-                            @foreach($civil as $civi)
-                                <option value="{{ $civi->codigo }}">{{ $civi->valor }}</option>
-                            @endforeach
-                        </select>
-                        <span class="messages"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Relación</label>
-                    <div class="col-sm-9">
-                        <select name="estado" class="form-control" id="e_page_estado">
-                            <option value="">[SELECCIONE]</option>
-                            @foreach($relacion as $rela)
-                                <option value="{{ $rela->codigo }}">{{ $rela->valor }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Telefono</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="descripcion" id="e_page_descripcion">
-                        <input type="hidden" name="id_page" id="e_id_page" value="">
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary waves-effect">Guardar</button>
-                <button type="button" class="btn btn-default waves-effect md-close" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
+<div class="card-block loader-cards">
+    <table class="table table-hover m-b-0">
+        <thead>
+            <tr>
+                <th>#</th>
+                <!-- <th>Nro</th> -->
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Ocupación</th>
+                <th>Distrito</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody  id="subtitular-body-table">
+            @php $i = 1; @endphp
+            @forelse($subtitular as $sub)
+                <tr class="table-verify selector-{{ $sub->idSubtitular }}">
+                    <td>{{ $i }}</td>
+                    <td>{{ $sub->nombre }}</td>
+                    <td>{{ $sub->apellidoPaterno.' '.$sub->apellidoMaterno }}</td>
+                    <td>{{ $sub->dni }}</td>
+                    <td>{{ $sub->ocupacion }}</td>
+                    <td>{{ $sub->departamento.' / '.$sub->provincia.' / '.$sub->distrito }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Acciones
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$sub->idSubtitular]) }}">
+                                    <i class="fa fa-edit"></i>
+                                    Editar
+                                </a>
+                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $sub->idSubtitular }}" >
+                                    <i class="fa fa-trash-alt"></i>
+                                    Eliminar
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                @php $i++; @endphp
+            @empty
+                <tr>
+                    <td colspan="7" style="text-align: center;">NO EXISTE REGISTRO</td>
+                </tr>
+            @endforelse
+            
+        </tbody>
+    </table>
 </div>
 
 
+
+
+
 <script type="text/javascript">
+
     $(document).on('change','#dep',function(e){
         e.preventDefault();
         let code = $(this).find(':selected').data('id');
@@ -170,4 +120,5 @@
             }
         });
     });
+
 </script>

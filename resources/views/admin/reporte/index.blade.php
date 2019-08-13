@@ -35,15 +35,12 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5>Lista de Reporte</h5>
-                                    </div>
-                                    <div class="col-42">
-                                        <a href="{{ route('admin.front_create') }}" class="btn btn-primary btn-sm waves-effect waves-light"><i class="fa fa-plus-circle"></i> NUEVO PAGINA</a>
-                                    </div>                                
+                                    </div>                          
                                 </div>
                             </div>
                             <div class="card-block">
 
-                                <form id="mains" method="POST" action="{{ route('admin.pagos_create_post') }}" >
+                                <form id="mains" method="POST" action="{{ route('admin.socio_search') }}" >
                                     @csrf
                                     <div class="col-sm-8" style="margin-left: 16%;">
                                         <div class="form-group row">
@@ -68,7 +65,7 @@
 
                                         <div class="form-group row">
                                             <div class="input-group input-group-button ">
-                                                <input type="text" class="form-control" name="buscador" placeholder="Manzana">
+                                                <input type="text" class="form-control" name="manzanas" placeholder="Manzana">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">Buscar</button>
                                                 </div>
@@ -94,42 +91,28 @@
                                                 <th>Nombre</th>
                                                 <th>Apellido</th>
                                                 <th>Dirección</th>
-                                                <th>Acción</th>
+                                                <th>Grupo</th>
+                                                <th>Manzana</th>
+                                                <!-- <th>Acción</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $i = 1; @endphp
 
-                                            @forelse($pagina as $page)
-                                                <tr class="table-verify selector-{{ $page->ID }}">
+                                            @forelse($buscardor as $search)
+                                                <tr class="table-verify selector-{{ $search->idExpediente }}">
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $page->Titulo }}</td>
-                                                    <td>{{ $page->Slug }}</td>
-                                                    <td><code>{{ $page->Categoria }}</code></td>
-                                                    <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
-                                                    <td>{{ $page->FechaIngreso }}</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$page->ID]) }}">
-                                                                    <i class="fa fa-edit"></i>
-                                                                    Editar
-                                                                </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $page->ID }}" >
-                                                                    <i class="fa fa-trash-alt"></i>
-                                                                    Eliminar
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
+                                                    <td>{{ $search->nroExpediente }}</td>
+                                                    <td>{{ $search->apellidoPaterno.' '.$search->apellidoMaterno.' '.$search->nombre }}</td>
+                                                    <td>{{ $search->nomDireccion }}</td>
+                                                    <td><code>{{ $search->nomDireccion }}</code></td>
+                                                    <td>{{ $search->nomGrupo }}</td>
+                                                    <td>{{ $search->nomManzana }}</td>
                                                 </tr>
                                                 @php $i++; @endphp
                                             @empty
                                                 <tr>
-                                                    <td colspan="6" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
+                                                    <td colspan="7" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
                                                 </tr>
                                             @endforelse
 

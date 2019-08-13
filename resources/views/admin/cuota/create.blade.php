@@ -103,7 +103,7 @@
                                                                 {{ $m->valor }}
                                                                 <input type="hidden" name="mes[]" value="{{ $m->codigo }}" >
                                                             </td>
-                                                            <td><input type="text" name="monto[]" class="form-control mnt{{ $m->codigo }}" ></td>
+                                                            <td><input type="text" name="monto[]" class="form-control mnt{{ $m->codigo }}" onkeypress="return filterFloat(event,this);"></td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
@@ -124,7 +124,7 @@
                                         <button type="submit" class="btn btn-sm btn-primary m-b-0">
                                                 <i class="fa fa-save"></i> Registrar
                                         </button>
-                                        <a href="{{ route('admin.menu') }}" class="btn btn-sm btn-default m-b-0"><i class="fa fa-reply"></i> Volver</a>
+                                        <a href="{{ route('admin.cuota_list') }}" class="btn btn-sm btn-default m-b-0"><i class="fa fa-reply"></i> Volver</a>
                                     </div>
                                 </div>
                             </form>

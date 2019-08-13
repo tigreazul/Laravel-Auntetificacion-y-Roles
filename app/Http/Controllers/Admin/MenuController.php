@@ -187,7 +187,7 @@ class MenuController extends Controller
         // ->get();
 
 
-        $modulo = Modulo::find($id);
+        $modulo = Modulo::find($id)->orderBy('Orden');
         $pagina =  DB::table('pagina')
         ->where([
             'Estado'   => 1,
@@ -257,7 +257,7 @@ class MenuController extends Controller
         $id = $pagina->save();
 
 
-        $modulo = Modulo::find($request->id);
+        $modulo = Modulo::find($request->id)->orderBy('Orden');
         $pagina =  DB::table('pagina')
         ->where([
             'Estado'   => 1,
@@ -299,7 +299,7 @@ class MenuController extends Controller
         // dd($pagina); die();
         $pagina->save();
 
-        $modulo = Modulo::find($pagina->ModuloID);
+        $modulo = Modulo::find($pagina->ModuloID)->orderBy('Orden');
         $pagina =  DB::table('pagina')
         ->where([
             'Estado'   => 1,

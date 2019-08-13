@@ -25,7 +25,7 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
-                            <form id="main" method="POST" action="{{ route('admin.expe_add') }}" novalidate="" enctype="multipart/form-data">
+                            <form id="main" method="POST" action="{{ route('admin.expe_add') }}"  enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="col-lg-12 col-xl-12">
@@ -75,7 +75,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">Grupo</label>
                                                         <div class="col-sm-10">
-                                                            <select name="grupo" class="form-control" id="grupo">
+                                                            <select name="grupo" class="form-control" id="grupo" required> 
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($grupo as $gru)
                                                                     <option value="{{ $gru->codigo }}" data-id="{{ $gru->codigo }}" >{{ $gru->valor }}</option>
@@ -119,7 +119,7 @@
                                                         </div>
                                                         <label class="col-sm-1 col-form-label">Tipo</label>
                                                         <div class="col-sm-5">
-                                                            <select name="tipo" class="form-control" id="tipo">
+                                                            <select name="tipo" class="form-control" id="tipo" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($calle as $call)
                                                                     <option value="{{ $call->codigo }}" data-id="{{ $call->codigo }}" >{{ $call->valor }}</option>
@@ -173,7 +173,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">Nivel de Vivencia</label>
                                                         <div class="col-sm-5">
-                                                            <select name="nvivencia" class="form-control" id="nvivencia">
+                                                            <select name="nvivencia" class="form-control" id="nvivencia" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($vivienda as $vive)
                                                                     <option value="{{ $vive->codigo }}" data-id="{{ $vive->codigo }}" >{{ $vive->valor }}</option>
@@ -197,7 +197,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">Estado de la casa</label>
                                                         <div class="col-sm-5">
-                                                            <select name="ecasa" class="form-control" id="ecasa">
+                                                            <select name="ecasa" class="form-control" id="ecasa" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($casa as $cas)
                                                                     <option value="{{ $cas->codigo }}" data-id="{{ $cas->codigo }}" >{{ $cas->valor }}</option>
@@ -207,7 +207,7 @@
                                                         </div>
                                                         <label class="col-sm-1 col-form-label">SSHH</label>
                                                         <div class="col-sm-5">
-                                                            <select name="sshh" class="form-control" id="sshh">
+                                                            <select name="sshh" class="form-control" id="sshh" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($sshh as $sh)
                                                                     <option value="{{ $sh->codigo }}" data-id="{{ $sh->codigo }}" >{{ $sh->valor }}</option>
@@ -220,7 +220,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">Plantas</label>
                                                         <div class="col-sm-5">
-                                                            <select name="plantas" class="form-control" id="plantas">
+                                                            <select name="plantas" class="form-control" id="plantas" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 <option value="1">SI</option>
                                                                 <option value="0">NO</option>
@@ -307,7 +307,7 @@
                                         <button type="submit" class="btn btn-sm btn-primary m-b-0">
                                                 <i class="fa fa-save"></i> Registrar
                                         </button>
-                                        <a href="{{ route('admin.menu') }}" class="btn btn-sm btn-default m-b-0"><i class="fa fa-reply"></i> Volver</a>
+                                        <a href="{{ route('admin.expe_list') }}" class="btn btn-sm btn-default m-b-0"><i class="fa fa-reply"></i> Volver</a>
                                     </div>
                                 </div>
                             </form>

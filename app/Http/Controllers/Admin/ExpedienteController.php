@@ -129,13 +129,13 @@ class ExpedienteController extends Controller
         $exp->idRefrigerador    = $request->input('refrigeradora');
         $exp->idTelevisor       = $request->input('televisor');
         $exp->idSonido          = $request->input('esonido');
-        $exp->anexo          = $request->input('anexo');
-        $exp->sector          = $request->input('sector');
-        $exp->vimprimida          = $request->input('vimprimida');
-        $exp->vrecibida          = $request->input('vrecibida');
+        $exp->anexo             = $request->input('anexo');
+        $exp->sector            = $request->input('sector');
+        $exp->vimprimida        = $request->input('vimprimida');
+        $exp->vrecibida         = $request->input('vrecibida');
         $exp->otros             = $request->input('otros');
         $exp->aPlano            = $fileName;
-        $exp->ccanjeada             = $request->input('ccanjeada');
+        $exp->ccanjeada         = $request->input('ccanjeada');
 
 
         $exp->save();

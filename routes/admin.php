@@ -1,6 +1,5 @@
 <?php
 
-
 Route::get('dashboard', 'AdminController@index')->name('admin.home');
 
 Route::group(['prefix' => 'configuracion'], function() {
@@ -23,6 +22,10 @@ Route::group(['prefix' => 'titular'], function() {
     Route::get('lista', 'Admin\TitularController@index')->name('admin.titular_list');                 // Listado
     Route::get('formato/create', 'Admin\TitularController@create')->name('admin.titular_create');       // Form View Create
     Route::post('formato/create-add', 'Admin\TitularController@store')->name('admin.titular_add');      // Crear dato
+    
+    Route::post('formato/sub-create-add', 'Admin\TitularController@subdireccion')->name('admin.subtitular_add');      // Crear dato
+    Route::post('formato/habitan-create-add', 'Admin\TitularController@habitan')->name('admin.habitan_add');      // Crear dato
+
     Route::get('formato/{id}', 'Admin\TitularController@show')->name('admin.titular_list_id');          // Mostrar por id
     Route::get('formato/{user}/editar', 'Admin\TitularController@edit')->name('admin.titular_edit');    // Form editar
     Route::patch('formato/{id}', 'Admin\TitularController@update')->name('admin.titular_edit_data');    // Update datos
@@ -74,8 +77,12 @@ Route::group(['prefix' => 'pagos'], function() {
 }); 
 
 Route::group(['prefix' => 'reporte'], function() {
-    // Pagina
+    // Reporte
     Route::get('lista', 'Admin\ReporteController@index')->name('admin.report_list');                 // Listado
+    Route::post('socio/buscar', 'Admin\ReporteController@validaBusquedaSocio')->name('admin.socio_search');
+    Route::get('socio/buscar/{codigo}', 'Admin\ReporteController@busquedaSocio')->name('admin.socio_create_search');
+    
+
     Route::get('expediente', 'Admin\ReporteController@expediente')->name('admin.report_exp');                 // Listado
 
     Route::get('page/create', 'Admin\ReporteController@create')->name('admin.front_create');       // Form View Create
@@ -84,7 +91,6 @@ Route::group(['prefix' => 'reporte'], function() {
     Route::get('page/{user}/editar', 'Admin\ReporteController@edit')->name('admin.front_edit');    // Form editar
     Route::patch('page/{id}', 'Admin\ReporteController@update')->name('admin.front_edit_data');    // Update datos
 }); 
-
 
 Route::group(['prefix' => 'reuniones'], function() {
     Route::get('lista', 'Admin\ReunionController@index')->name('admin.reunion_list');                 // Listado

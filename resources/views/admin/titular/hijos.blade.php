@@ -10,13 +10,13 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>DNI</th>
-                <th>Parentesco</th>
+                <th>Ocupación</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody  id="habitan-body-table">
             @php $i = 1; @endphp
-            @forelse($hogar as $hogar)
+            @forelse($hijos as $hogar)
                 <tr class="table-verify selector-{{ $hogar->idMiembro }}">
                     <td>{{ $i }}</td>
                     <td>{{ $hogar->nombre }}</td>
@@ -55,7 +55,7 @@
 
 <script type="text/javascript">
 
-    $(document).on('change','#depH',function(e){
+    $(document).on('change','#depHi',function(e){
         e.preventDefault();
         let code = $(this).find(':selected').data('id');
         console.log(code); 
@@ -71,14 +71,14 @@
             dataType: 'JSON',
             data    : {},
             success : function(data){
-                $("#provH").removeAttr('disabled');
-                $('#provH').html("");
+                $("#provHi").removeAttr('disabled');
+                $('#provHi').html("");
                 let vhtml = "";
                 $( data.data ).each(function( index, element ){
                     vhtml += '<option value="'+element.provID+'" data-id="'+element.provID+'">'+element.descripcion+'</option>'
                 });
-                $('#provH').html(vhtml);
-                $('#distH').html('<option value="">[SELECCIONE]</option>');
+                $('#provHi').html(vhtml);
+                $('#distHi').html('<option value="">[SELECCIONE]</option>');
             },
             error   : function(jqxhr, textStatus, error){
                 console.log(jqxhr.responseText);
@@ -86,7 +86,7 @@
         });
     });
 
-    $(document).on('change','#provH',function(e){
+    $(document).on('change','#provHi',function(e){
         e.preventDefault();
         let code = $(this).find(':selected').data('id');
         console.log(code); 
@@ -102,13 +102,13 @@
             dataType: 'JSON',
             data    : {},
             success : function(data){
-                $("#distH").removeAttr('disabled');
-                $('#distH').html("");
+                $("#distHi").removeAttr('disabled');
+                $('#distHi').html("");
                 let vhtml = "";
                 $( data.data ).each(function( index, element ){
                     vhtml += '<option value="'+element.distID+'" data-id="'+element.distID+'">'+element.descripcion+'</option>'
                 });
-                $('#distH').html(vhtml);
+                $('#distHi').html(vhtml);
             },
             error   : function(jqxhr, textStatus, error){
                 console.log(jqxhr.responseText);

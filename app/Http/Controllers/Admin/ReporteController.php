@@ -8,6 +8,7 @@ use App\Models\{
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class ReporteController extends Controller
@@ -43,7 +44,7 @@ class ReporteController extends Controller
 
         $a_data_page = array(
             'title' => 'Lista de Socios',
-            'pagina'=> $frontend,
+            'buscardor'=> $frontend,
             'grupo' => $grupo
         );
 
@@ -72,6 +73,94 @@ class ReporteController extends Controller
 
         return \Views::admin('reporte.expediente',$a_data_page);
     }
+
+
+    public function validaBusquedaSocio(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'manzanas' => "nullable",
+            "grupo"    => "nullable"
+        ]);
+ 
+        if ($validator->fails()) {    
+            return response()->json($validator->messages(), 200);
+        }
+
+        $manzanas   =  $request->input('manzanas');
+        $grupo      =  $request->input('grupo');
+
+        if(!is_null($manzanas))
+        {
+            $vSearch  = DB::select("SELECT expediente.nroExpediente,persona.nombre,persona.apellidoPaterno,persona.apellidoMaterno,expediente.nomDireccion,
+            grupo.idGrupo,grupo.nomGrupo,manzanas.nomManzana
+            FROM expediente
+            INNER JOIN usuario ON usuario.idUsuario = expediente.idUsuario
+            INNER JOIN persona ON persona.idPersona = usuario.idPersona
+            INNER JOIN manzanas ON manzanas.idExpediente = expediente.idExpediente
+            INNER JOIN grupo ON manzanas.idGrupo = grupo.idGrupo
+            WHERE manzanas.nomManzana = '$manzanas'");
+            if(!empty($vSearch)){
+                return redirect()->route('admin.socio_create_search', $manzanas);
+            }else{
+                \Session::flash('message', 'El numero ingresado no existe ');
+                return redirect()->route('admin.report_list');
+            }
+        }
+
+        if(!is_null($grupo))
+        {
+            $vSearch  = DB::select("SELECT expediente.nroExpediente,persona.nombre,persona.apellidoPaterno,persona.apellidoMaterno,expediente.nomDireccion,
+            grupo.idGrupo,grupo.nomGrupo,manzanas.nomManzana
+            FROM expediente
+            INNER JOIN usuario ON usuario.idUsuario = expediente.idUsuario
+            INNER JOIN persona ON persona.idPersona = usuario.idPersona
+            INNER JOIN manzanas ON manzanas.idExpediente = expediente.idExpediente
+            INNER JOIN grupo ON manzanas.idGrupo = grupo.idGrupo
+            WHERE grupo.idGrupo = '$grupo'");
+            if(!empty($vSearch)){
+                return redirect()->route('admin.socio_create_search', $grupo);
+            }else{
+                \Session::flash('message', 'El numero ingresado no existe ');
+                return redirect()->route('admin.report_list');
+            }
+        }
+
+        if(empty($grupo) || empty($manzanas)){
+            \Session::flash('message', 'El numero ingresado no existe ');
+            return redirect()->route('admin.report_list');
+        }
+
+    }
+
+
+
+    public function busquedaSocio(Request $request,$id)
+    {
+
+        $vSearch  = DB::select("SELECT expediente.idExpediente,expediente.nroExpediente,persona.nombre,persona.apellidoPaterno,
+            persona.apellidoMaterno,expediente.nomDireccion,
+            grupo.idGrupo,grupo.nomGrupo,manzanas.nomManzana
+            FROM expediente
+            INNER JOIN usuario ON usuario.idUsuario = expediente.idUsuario
+            INNER JOIN persona ON persona.idPersona = usuario.idPersona
+            INNER JOIN manzanas ON manzanas.idExpediente = expediente.idExpediente
+            INNER JOIN grupo ON manzanas.idGrupo = grupo.idGrupo
+            WHERE grupo.idGrupo = '$id' OR  manzanas.nomManzana = '$id'");
+
+        $grupo = \Views::diccionario('idGrupo');
+
+
+        $a_data_page = array(
+            'title'         => 'Registro de paginas',
+            'dato'          => $id,
+            'grupo'     => $grupo,
+            'buscardor' => $vSearch
+        );
+
+        return \Views::admin('reporte.index',$a_data_page);
+    }
+
 
 
 

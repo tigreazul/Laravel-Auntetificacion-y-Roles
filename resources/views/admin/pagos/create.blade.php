@@ -343,12 +343,13 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">RECIBIDO</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="monto" id="pag_monto">
+                                <input type="text" class="form-control" name="monto2" id="pag_monto_disable"  disabled>
+                                <input type="hidden" class="form-control" name="monto" id="pag_monto" >
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary waves-effect">Guardar</button>
+                        <button type="submit" class="btn btn-primary waves-effect">Enviar</button>
                         <button type="button" class="btn btn-default waves-effect md-close" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -397,7 +398,11 @@
             $('#idtipo_p').val(tipoid);
 
             $('#pago_tipo').text(tipo_m);
-            $('#pag_monto').attr('max',monto_m);
+            // $('#pag_monto').attr('max',monto_m);
+            
+            $('#pag_monto').val(monto_m);
+            $('#pag_monto_disable').val(monto_m);
+            
             $('#originP').val(uri);
             $('#pfecha_tipo').val(fecha_m);
             $('#fecha_tipop').val(fecha_m);

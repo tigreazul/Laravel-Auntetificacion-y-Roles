@@ -79,40 +79,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php $i = 1; @endphp
-
-                                            @forelse($pagina as $multa)
-                                                <tr class="table-verify selector-{{ $page->ID }}">
-                                                    <td>{{ $i }}</td>
-                                                    <td>{{ $page->Titulo }}</td>
-                                                    <td>{{ $page->Slug }}</td>
-                                                    <td><code>{{ $page->Categoria }}</code></td>
-                                                    <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
-                                                    <td>{{ $page->FechaIngreso }}</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                Acciones
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$page->ID]) }}">
-                                                                    <i class="fa fa-edit"></i>
-                                                                    Editar
-                                                                </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $page->ID }}" >
-                                                                    <i class="fa fa-trash-alt"></i>
-                                                                    Eliminar
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                @php $i++; @endphp
-                                            @empty
-                                                <tr>
-                                                    <td colspan="6" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
-                                                </tr>
-                                            @endforelse
+                                            <tr>
+                                                <td colspan="6" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <!-- lista de tablas -->

@@ -1,10 +1,10 @@
 <div class="row">
-
     <div class="col-sm-6">
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Nombre</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="images" name="nombre" onkeypress="return soloLetras(event)" required value="{{ isset($titular->nombre)?$titular->nombre:''}}">
+                <input type="hidden" class="form-control" id="idTitu" name="idTitu" value="{{ isset($titular->idTitular)?$titular->idTitular:''}}">
                 <span class="messages"></span>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Departamento</label>
             <div class="col-sm-9">
-                <select name="departamento" class="form-control" id="departamentos">
+                <select name="departamento" class="form-control" id="departamentos" required>
                     <option value="">[SELECCIONE]</option>
                     @foreach($departamento as $dep)
                         <option value="{{ $dep->id }}" data-id="{{ $dep->id }}" >{{ $dep->descripcion }}</option>
@@ -45,7 +45,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Provincia</label>
             <div class="col-sm-9">
-                <select name="provincia" class="form-control" id="provincias">
+                <select name="provincia" class="form-control" id="provincias" required>
                     <option value="">[SELECCIONE]</option>
                 </select>
                 <span class="messages"></span>
@@ -54,7 +54,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Distrito</label>
             <div class="col-sm-9">
-                <select name="distrito" class="form-control" id="distritos">
+                <select name="distrito" class="form-control" id="distritos" required>
                     <option value="">[SELECCIONE]</option>
                 </select>
                 <span class="messages"></span>
@@ -63,7 +63,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Grado de institucion</label>
             <div class="col-sm-9">
-                <select name="grado" class="form-control" id="grado">
+                <select name="grado" class="form-control" id="grado" required>
                     <option value="">[SELECCIONE]</option>
                     @foreach($institucion as $inst)
                         <option value="{{ $inst->codigo }}" {{ isset($titular->idInstruccion)?( $titular->idInstruccion == $inst->codigo ?'selected':'' ):'' }} >{{ $inst->valor }}</option>
@@ -75,7 +75,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Forma de Ingreso</label>
             <div class="col-sm-9">
-                <select name="ingreso" class="form-control" id="ingreso" >
+                <select name="ingreso" class="form-control" id="ingreso" required>
                     <option value="">[SELECCIONE]</option>
                     @foreach($ingreso as $ing)
                         <option value="{{ $ing->codigo }}" {{ isset($titular->idIngreso)?( $titular->idIngreso == $ing->codigo ?'selected':'' ):'' }} >{{ $ing->valor }}</option>
@@ -125,7 +125,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Sexo</label>
             <div class="col-sm-9">
-                <select name="sexo" class="form-control" id="sexo">
+                <select name="sexo" class="form-control" id="sexo" required>
                     <option value="">[SELECCIONE]</option>
                     <option value="F" {{ isset($titular->sexo)?( $titular->sexo == 'F'?'selected':'' ):'' }} >FEMENINO</option>
                     <option value="M" {{ isset($titular->sexo)?( $titular->sexo == 'M'?'selected':'' ):'' }} >MASCULINO</option>
@@ -136,7 +136,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Estado Civil</label>
             <div class="col-sm-9">
-                <select name="ecivil" class="form-control" id="ecivil">
+                <select name="ecivil" class="form-control" id="ecivil" required>
                     <option value="">[SELECCIONE]</option>
                     @foreach($civil as $civi)
                         <option value="{{ $civi->codigo }}" {{ isset($titular->idCivil)?( $titular->idCivil == $civi->codigo ?'selected':'' ):'' }} >{{ $civi->valor }}</option>
@@ -148,7 +148,7 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Estado Socio</label>
             <div class="col-sm-9">
-                <select name="esocio" class="form-control" id="esocio">
+                <select name="esocio" class="form-control" id="esocio" required>
                     <option value="">[SELECCIONE]</option>
                     <option value="ACTIVO" {{ isset($titular->estadoSocio)?( $titular->estadoSocio == 'ACTIVO'?'selected':'' ):'' }} >ACTIVO</option>
                     <option value="DESACTIVADO" {{ isset($titular->estadoSocio)?( $titular->estadoSocio == 'DESACTIVADO'?'selected':'' ):'' }} >DESACTIVADO</option>
