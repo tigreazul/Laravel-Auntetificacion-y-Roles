@@ -40,7 +40,7 @@
                             </div>
                             <div class="card-block">
 
-                                <form id="mains" method="POST" action="{{ route('admin.pagos_create_post') }}" >
+                                <form id="mains" method="POST" action="{{ route('admin.expediente_search') }}" >
                                     @csrf
                                     <div class="col-sm-8" style="margin-left: 16%;">
                                         <div class="form-group row">
@@ -75,13 +75,30 @@
                                                 <th>Nombre</th>
                                                 <th>Apellido</th>
                                                 <th>Dirección</th>
-                                                <th>Acción</th>
+                                                <th>Grupo</th>
+                                                <th>Manzana</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td colspan="6" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
-                                            </tr>
+                                            @php $i = 1; @endphp
+
+                                            @forelse($buscardor as $search)
+                                                <tr class="table-verify selector-{{ $search->idExpediente }}">
+                                                    <td>{{ $i }}</td>
+                                                    <td>{{ $search->nroExpediente }}</td>
+                                                    <td>{{ $search->apellidoPaterno.' '.$search->apellidoMaterno.' '.$search->nombre }}</td>
+                                                    <td>{{ $search->nomDireccion }}</td>
+                                                    <td><code>{{ $search->nomDireccion }}</code></td>
+                                                    <td>{{ $search->nomGrupo }}</td>
+                                                    <td>{{ $search->nomManzana }}</td>
+                                                </tr>
+                                                @php $i++; @endphp
+                                            @empty
+                                                <tr>
+                                                    <td colspan="6" style="text-align:center; background:#f4f6f7"> <strong>NO EXISTE RESULTADOS</strong></td>
+                                                </tr>
+                                            @endforelse
+                                            
                                         </tbody>
                                     </table>
                                     <!-- lista de tablas -->

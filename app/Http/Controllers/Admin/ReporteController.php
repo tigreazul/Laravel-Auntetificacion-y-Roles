@@ -64,11 +64,11 @@ class ReporteController extends Controller
         ->get();
 
         $tcuota = \Views::diccionario('idTipoCuota');
-
+        $buscardor = array();
         
         $a_data_page = array(
             'title' => 'Lista de Socios',
-            'pagina'=> $frontend
+            'buscardor'=> $buscardor
         );
 
         return \Views::admin('reporte.expediente',$a_data_page);
@@ -133,8 +133,6 @@ class ReporteController extends Controller
 
     }
 
-
-
     public function busquedaSocio(Request $request,$id)
     {
 
@@ -159,6 +157,75 @@ class ReporteController extends Controller
         );
 
         return \Views::admin('reporte.index',$a_data_page);
+    }
+
+
+
+
+
+
+    public function validaBusquedaExpediente(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'buscador' => "nullable",
+        ]);
+ 
+        if ($validator->fails()) {    
+            return response()->json($validator->messages(), 200);
+        }
+
+        $buscador   =  $request->input('buscador');
+
+        if(!is_null($buscador))
+        {
+            $vSearch  = DB::select("SELECT expediente.nroExpediente,persona.nombre,persona.apellidoPaterno,persona.apellidoMaterno,expediente.nomDireccion,
+            grupo.idGrupo,grupo.nomGrupo,manzanas.nomManzana
+            FROM expediente
+            INNER JOIN usuario ON usuario.idUsuario = expediente.idUsuario
+            INNER JOIN persona ON persona.idPersona = usuario.idPersona
+            INNER JOIN manzanas ON manzanas.idExpediente = expediente.idExpediente
+            INNER JOIN grupo ON manzanas.idGrupo = grupo.idGrupo
+            WHERE expediente.nroExpediente = '$buscador'");
+            if(!empty($vSearch)){
+                return redirect()->route('admin.exp_create_search', $buscador);
+            }else{
+                \Session::flash('message', 'El numero ingresado no existe ');
+                return redirect()->route('admin.report_exp');
+            }
+        }
+
+        if(empty($grupo) || empty($manzanas)){
+            \Session::flash('message', 'El numero ingresado no existe ');
+            return redirect()->route('admin.report_exp');
+        }
+
+    }
+
+    public function busquedaExpediente(Request $request,$id)
+    {
+
+        $vSearch  = DB::select("SELECT expediente.idExpediente,expediente.nroExpediente,persona.nombre,persona.apellidoPaterno,
+            persona.apellidoMaterno,expediente.nomDireccion,
+            grupo.idGrupo,grupo.nomGrupo,manzanas.nomManzana
+            FROM expediente
+            INNER JOIN usuario ON usuario.idUsuario = expediente.idUsuario
+            INNER JOIN persona ON persona.idPersona = usuario.idPersona
+            INNER JOIN manzanas ON manzanas.idExpediente = expediente.idExpediente
+            INNER JOIN grupo ON manzanas.idGrupo = grupo.idGrupo
+            WHERE expediente.nroExpediente = '$id'");
+
+        // $grupo = \Views::diccionario('idGrupo');
+
+
+        $a_data_page = array(
+            'title'     => 'Registro de paginas',
+            'dato'      => $id,
+            // 'grupo'     => $grupo,
+            'buscardor' => $vSearch
+        );
+
+        return \Views::admin('reporte.expediente',$a_data_page);
     }
 
 
