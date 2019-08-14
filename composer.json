@@ -42,7 +42,8 @@
         ],
         "files":[
             "app/Helpers/Views.php",
-            "app/Helpers/Json.php"
+            "app/Helpers/Json.php",
+            "app/Helpers/Pdf.php"
         ]
     },
     "autoload-dev": {

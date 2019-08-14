@@ -72,15 +72,15 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-           'nombre'         => "nullable",
-           'apaterno'       => "nullable",
-           'amaterno'       => "nullable",
-            "fnacimiento"   => "nullable",
-            "dni"           => "nullable",
-            "usuario"       => "nullable",
-            "password"      => "nullable",
-            "cargo"         => "nullable",
-            "agestion"      => "nullable",
+           'nombre'         => "required",
+           'apaterno'       => "required",
+           'amaterno'       => "required",
+            "fnacimiento"   => "required",
+            "dni"           => "required|unique:personal",
+            "usuario"       => "required",
+            "password"      => "required",
+            "cargo"         => "required",
+            "agestion"      => "required",
         ]);
 
         if ($validator->fails()) {    
@@ -118,6 +118,7 @@ class UsuarioController extends Controller
         $roluser->user_id   = $usuar;
         $roluser->save();
         
+        \Session::flash('message', 'Registrado! Se registraron los datos correctamente');
         return redirect()->route('admin.titular_list');
     }
 
@@ -206,6 +207,7 @@ class UsuarioController extends Controller
         $perso->save();
         $persoId = $perso->idPersona;
 
+        \Session::flash('message', 'Actualizado! Se actualizaron los datos');
 
         return redirect()->route('admin.user_list');
     }

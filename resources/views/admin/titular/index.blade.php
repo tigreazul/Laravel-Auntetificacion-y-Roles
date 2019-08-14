@@ -42,43 +42,55 @@
                                 </div>
                             </div>
                             <div class="card-block">
+                                @if (Session::has('message'))
+                                    <div class="alert alert-success background-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <i class="icofont icofont-close-line-circled"></i>
+                                        </button>
+                                        {!! session('message') !!}
+                                    </div>
+                                @endif
                                 <div class="dt-responsive table-responsive">
                                     <!-- lista de tablas -->
                                     <table class="table table-hover m-b-0">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Titulo</th>
-                                                <th class="column_description">Slug</th>
-                                                <th>Categoria</th>
-                                                <th>Estado</th>
-                                                <th>Fecha Publicación</th>
+                                                <th>Expediente</th>
+                                                <th>Nro Tarjeta</th>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>DNI</th>
                                                 <th>Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @php $i = 1; @endphp
-                                            @foreach($pagina as $page)
-                                                <tr class="table-verify selector-{{ $page->ID }}">
+                                            @foreach($titular as $titu)
+                                                <tr class="table-verify selector-{{ $titu->idTitular }}">
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $page->Titulo }}</td>
-                                                    <td class="column_description">{{ $page->Slug }}</td>
-                                                    <td><code>{{ $page->Categoria }}</code></td>
-                                                    <td><label class="label label-{{ ($page->Estado == 1)? 'success': 'danger' }}">Activo</label></td>
-                                                    <td>{{ $page->FechaIngreso }}</td>
+                                                    <td>{{ $titu->nroExpediente }}</td>
+                                                    <td>{{ $titu->codigoTarjeta }}</td>
+                                                    <td>{{ $titu->nombre }}</td>
+                                                    <td>{{ $titu->apellidoPaterno.' '.$titu->apellidoMaterno }}</td>
+                                                    <td>{{ $titu->dni }}</td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 Acciones
                                                             </button>
                                                             <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="{{ route('admin.modulo_edit', ['id'=>$page->ID]) }}">
+                                                                <a class="dropdown-item" href="{{ route('admin.titular_edit', ['id'=>$titu->idTitular]) }}">
                                                                     <i class="fa fa-edit"></i>
                                                                     Editar
                                                                 </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $page->ID }}" >
+                                                                <a class="dropdown-item" href="#" data-id="{{ $titu->idTitular }}" >
+                                                                    <i class="fa fa-edit"></i>
+                                                                    Ver Expediente
+                                                                </a>
+                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $titu->idTitular }}" >
                                                                     <i class="fa fa-trash-alt"></i>
-                                                                    Eliminar
+                                                                    Dar de Baja
                                                                 </a>
                                                             </div>
                                                         </div>

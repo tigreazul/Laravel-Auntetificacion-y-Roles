@@ -54,7 +54,8 @@ Class Views{
         $_data_module = DB::table('modulo')
             ->where([
                 'Estado' => 1
-            ])->get();
+            ])->orderBy('Orden')
+            ->get();
         return $_data_module;
     }
 

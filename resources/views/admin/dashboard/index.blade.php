@@ -29,7 +29,7 @@
             <div class="page-wrapper">
                 <div class="page-body">
                     <div class="row">
-
+                        <!--
                         <div class="col-md-6 col-xl-6">
                             <div class="card sale-card">
                                 <div class="card-header">
@@ -67,7 +67,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="col-md-12 col-xl-8">
                             <div class="card sale-card">
@@ -455,6 +454,15 @@
 
                             </div>
                         </div>
+                        -->
+
+                        <div class="col-md-12 col-xl-12">
+                            <div class="card sale-card" style="min-height: 700px;">
+                                <h1 style="text-align: center;margin-top: 15%;">BIENVENIDO AL SISTEMA</h1>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>

@@ -4,14 +4,14 @@
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Copia DNI</label>
             <div class="col-sm-9">
-                <input type="file" class="btn btn-primary btn-sm" name="copiaDni" id="copiaDni" >
+                <input type="file" class="btn btn-primary btn-sm" name="copiaDni" id="copiaDni" required>
                 <span class="messages"></span>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label">Ficha Padrón</label>
             <div class="col-sm-9">
-                <input type="file" name="fichaPadron" id="fichaPadron" class="btn btn-primary btn-sm">
+                <input type="file" name="fichaPadron" id="fichaPadron" class="btn btn-primary btn-sm" required>
                 <span class="messages"></span>
             </div>
         </div>
