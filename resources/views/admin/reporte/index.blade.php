@@ -83,6 +83,12 @@
 
                                 <div class="dt-responsive table-responsive">
                                     <!-- lista de tablas -->
+                                    @if( count($buscardor) != 0 )
+                                        <div class="col-3 offset-md-1 mb-1">
+                                            <a class="btn btn-primary btn-sm" target="_blank" href="{{ route('admin.socio_report', ['id'=>$dato]) }}">Imprimir</a>
+
+                                        </div>
+                                    @endif
                                     <table class="table table-hover m-b-0" style="width: 70%;margin: 0 auto;">
                                         <thead>
                                             <tr>

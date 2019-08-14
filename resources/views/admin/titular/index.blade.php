@@ -42,6 +42,14 @@
                                 </div>
                             </div>
                             <div class="card-block">
+                                @if (Session::has('message'))
+                                    <div class="alert alert-success background-success">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <i class="icofont icofont-close-line-circled"></i>
+                                        </button>
+                                        {!! session('message') !!}
+                                    </div>
+                                @endif
                                 <div class="dt-responsive table-responsive">
                                     <!-- lista de tablas -->
                                     <table class="table table-hover m-b-0">

@@ -121,7 +121,7 @@ class TitularController extends Controller
             "grado"     => "required",
             "fingreso"  => "required",
             "nroRecibo" => "required",
-            "dni"       => "required|unique:personal",
+            "dni"       => "required|unique:persona",
             "ocupacion" => "required",
             "sexo"      => "required",
             "ecivil"    => "required",
@@ -176,6 +176,7 @@ class TitularController extends Controller
         $titular->save();
         $titularid = $titular->ID;
         
+        \Session::flash('message', 'Registrado! Se registraron los datos correctamente');
         return redirect()->route('admin.titular_edit', $titularid);
     }
 
@@ -293,7 +294,7 @@ class TitularController extends Controller
                 // 'imagen'    => 'required',
                 // 'copiaDni'  => 'required',
                 // 'fichaPadron'  => 'required'
-            ]);
+        ]);
     
             if ($validator->fails()) {    
                 // return response()->json($validator->messages(), 200);
@@ -336,7 +337,7 @@ class TitularController extends Controller
             $perso->save();
             // $persoId = $perso->idPersona;
     
-            
+            \Session::flash('message', 'Actualizado! Se actualizaron los datos');
             return redirect()->route('titular.editar.editar', $id);
     }
 

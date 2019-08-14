@@ -118,6 +118,7 @@ class UsuarioController extends Controller
         $roluser->user_id   = $usuar;
         $roluser->save();
         
+        \Session::flash('message', 'Registrado! Se registraron los datos correctamente');
         return redirect()->route('admin.titular_list');
     }
 
@@ -206,6 +207,7 @@ class UsuarioController extends Controller
         $perso->save();
         $persoId = $perso->idPersona;
 
+        \Session::flash('message', 'Actualizado! Se actualizaron los datos');
 
         return redirect()->route('admin.user_list');
     }

@@ -25,6 +25,14 @@
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
                         <div class="card-block">
+                            @if (Session::has('message'))
+                                <div class="alert alert-success background-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="icofont icofont-close-line-circled"></i>
+                                    </button>
+                                    {!! session('message') !!}
+                                </div>
+                            @endif
                             <form id="main" method="POST" action="{{ route('admin.titular_add') }}" novalidate="" enctype="multipart/form-data">
                                 @csrf
                                 <div class="col-lg-12 col-xl-12">

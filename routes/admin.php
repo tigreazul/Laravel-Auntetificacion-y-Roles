@@ -89,7 +89,9 @@ Route::group(['prefix' => 'reporte'], function() {
     Route::get('expediente', 'Admin\ReporteController@expediente')->name('admin.report_exp');                 // Listado
 
 
-    
+    Route::get('socio/{user}/report', 'Admin\ReporteController@reporteSocio')->name('admin.socio_report');
+    Route::get('exp/{user}/report', 'Admin\ReporteController@reporteSocio')->name('admin.exp_report');
+
     Route::get('page/create', 'Admin\ReporteController@create')->name('admin.front_create');       // Form View Create
     Route::post('page/create-add', 'Admin\ReporteController@store')->name('admin.front_add');      // Crear dato
     Route::get('page/{id}', 'Admin\ReporteController@show')->name('admin.front_list_id');          // Mostrar por id

@@ -24,7 +24,9 @@
                             <h5>Editar de Usuario</h5>
                             <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
                         </div>
+                        
                         <div class="card-block">
+                            
                             <form id="main" method="POST" action="{{ route('admin.user_edit_data',['id' => $usuarios->idUsuario] ) }}" >
                                 @csrf
                                 @method('PATCH')
@@ -77,7 +79,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">DNI</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="dni" name="dni" required onKeyPress="return soloNumeros(event)" value="{{ isset($usuarios->dni)?$usuarios->dni:'' }}">
+                                                            <input type="text" class="form-control" id="dni" name="dni" maxlength="8" minlength="8" required onKeyPress="return soloNumeros(event)" value="{{ isset($usuarios->dni)?$usuarios->dni:'' }}">
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
@@ -100,7 +102,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Contraseña</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="password" name="password" required>
+                                                        <input type="text" class="form-control" id="password" name="password">
                                                         <!-- <span class="messages">Sin espacios</span> -->
                                                     </div>
                                                 </div>
