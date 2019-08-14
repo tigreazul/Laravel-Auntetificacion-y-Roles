@@ -67,6 +67,7 @@ Route::group(['prefix' => 'pagos'], function() {
     Route::post('pago/justificar', 'Admin\PagosController@justificar')->name('admin.pagos_justificar');
     Route::post('pago/pagar', 'Admin\PagosController@pagar')->name('admin.pagos_pagar');
 
+
     // Route::post('pago/create-add', 'Admin\PagosController@store')->name('admin.pagos_add');      // Crear dato
     // Route::get('pago/{id}', 'Admin\PagosController@show')->name('admin.pagos_list_id');          // Mostrar por id
     // Route::get('pago/{user}/editar', 'Admin\PagosController@edit')->name('admin.pagos_edit');    // Form editar
@@ -77,6 +78,9 @@ Route::group(['prefix' => 'reporte'], function() {
     // Pagina
     Route::get('lista', 'Admin\ReporteController@index')->name('admin.report_list');                 // Listado
     Route::get('expediente', 'Admin\ReporteController@expediente')->name('admin.report_exp');                 // Listado
+
+    Route::post('report/buscar', 'Admin\ReporteController@validaBusqueda')->name('admin.report_create_post');
+
 
     Route::get('page/create', 'Admin\ReporteController@create')->name('admin.front_create');       // Form View Create
     Route::post('page/create-add', 'Admin\ReporteController@store')->name('admin.front_add');      // Crear dato

@@ -89,6 +89,67 @@ class ReporteController extends Controller
         return \Views::admin('page.create',$a_data_page);
     }
 
+
+    public function validaBusqueda(Request $request){
+        // dd($request); die();
+        $validator = Validator::make($request->all(), [
+            'grupo' => "nullable",
+            'manzana' => "nullable"
+        ]);
+ 
+        if ($validator->fails()) {    
+            return response()->json($validator->messages(), 200);
+        }
+
+
+        $grupo      =  $request->input('grupo');
+        $manzana    =  $request->input('manzana');
+
+
+        if(!is_null($grupo)){
+
+            $vSearch  = DB::select("SELECT u.idUsuario, p.dni, p.nombre, p.apellidoPaterno, p.apellidoMaterno,
+            e.nomDireccion,g.nomGrupo,g.idGrupo,e.nroExpediente
+            FROM usuario u
+            INNER JOIN persona p ON u.idPersona = p.idPersona
+            INNER JOIN expediente e ON u.idUsuario = e.idUsuario
+            INNER JOIN manzanas m ON m.idExpediente = e.idExpediente
+            INNER JOIN grupo g ON g.idGrupo = m.idGrupo
+            WHERE 
+            g.idGrupo = $grupo");
+        }
+
+        if(!is_null($manzana)){
+
+            $vSearch  = DB::select("SELECT u.idUsuario, p.dni, p.nombre, p.apellidoPaterno, p.apellidoMaterno,
+            e.nomDireccion,g.nomGrupo,g.idGrupo,e.nroExpediente
+            FROM usuario u
+            INNER JOIN persona p ON u.idPersona = p.idPersona
+            INNER JOIN expediente e ON u.idUsuario = e.idUsuario
+            INNER JOIN manzanas m ON m.idExpediente = e.idExpediente
+            INNER JOIN grupo g ON g.idGrupo = m.idGrupo
+            WHERE 
+            m.nomManzana LIKE '$manzana'");
+        }
+
+
+        $vSearch  = DB::select("SELECT u.idUsuario, p.nombre, p.apellidoPaterno, p.apellidoMaterno,e.nomDireccion,g.nomGrupo
+        FROM usuario u
+        LEFT JOIN persona p ON u.idPersona = p.idPersona
+        LEFT JOIN expediente e ON e.idUsuario = e.idUsuario
+        LEFT JOIN manzanas m ON m.idExpediente = e.idExpediente
+        LEFT JOIN grupo g ON g.idGrupo = m.idGrupo
+        where p.dni = '$search'");
+
+        if(!empty($vSearch)){
+            return redirect()->route('admin.pagos_create_search', $search);
+        }else{
+            \Session::flash('message', 'El numero ingresado no existe ');
+            return redirect()->route('admin.pagos_create');
+        }
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
