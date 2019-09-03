@@ -102,7 +102,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Contraseña</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="password" name="password">
+                                                        <input type="password" class="form-control" id="password" name="password">
                                                         <!-- <span class="messages">Sin espacios</span> -->
                                                     </div>
                                                 </div>

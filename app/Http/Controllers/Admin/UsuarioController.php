@@ -76,7 +76,7 @@ class UsuarioController extends Controller
            'apaterno'       => "required",
            'amaterno'       => "required",
             "fnacimiento"   => "required",
-            "dni"           => "required|unique:personal",
+            "dni"           => "required|unique:persona",
             "usuario"       => "required",
             "password"      => "required",
             "cargo"         => "required",
@@ -119,7 +119,7 @@ class UsuarioController extends Controller
         $roluser->save();
         
         \Session::flash('message', 'Registrado! Se registraron los datos correctamente');
-        return redirect()->route('admin.titular_list');
+        return redirect()->route('admin.user_list');
     }
 
     /**

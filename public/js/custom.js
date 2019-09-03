@@ -57,3 +57,16 @@ function filter(__val__){
     }
     
 }
+
+var minLength = 3;
+var maxLength = 10;
+
+$(".input_dni").on("keydown keyup change", function(){
+    var value = $(this).val();
+    if (value.length < minLength)
+        $("span").text("Text is short");
+    else if (value.length > maxLength)
+        $("span").text("Text is long");
+    else
+        $("span").text("Text is valid");
+});

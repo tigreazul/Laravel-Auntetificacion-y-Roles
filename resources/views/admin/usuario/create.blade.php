@@ -77,7 +77,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-2 col-form-label">DNI</label>
                                                         <div class="col-sm-10">
-                                                            <input type="text" class="form-control" id="dni" name="dni" required onKeyPress="return soloNumeros(event)">
+                                                            <input type="text" class="form-control" id="dni" maxlength="8" name="dni" required onKeyPress="return soloNumeros(event)">
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>
@@ -100,7 +100,7 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Contraseña</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="password" name="password" required>
+                                                        <input type="password" class="form-control" id="password" name="password" required>
                                                         <!-- <span class="messages">Sin espacios</span> -->
                                                     </div>
                                                 </div>
