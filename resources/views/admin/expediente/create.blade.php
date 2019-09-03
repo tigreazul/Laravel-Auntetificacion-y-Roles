@@ -114,7 +114,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">SubLote</label>
                                                         <div class="col-sm-5">
-                                                            <input type="text" class="form-control" id="sublote" name="sublote" required>
+                                                            <input type="text" class="form-control" id="sublote" name="sublote" >
                                                             <span class="messages"></span>
                                                         </div>
                                                         <label class="col-sm-1 col-form-label">Tipo</label>
@@ -158,21 +158,21 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-1 col-form-label">Vivienda Imprimida</label>
-                                                        <div class="col-sm-5">
+                                                        <label class="col-sm-3 col-form-label">Vivienda Imprimida</label>
+                                                        <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="vimprimida" name="vimprimida" required>
                                                             <span class="messages"></span>
                                                         </div>
-                                                        <label class="col-sm-1 col-form-label">Vivienda Recibida</label>
+                                                        <!-- <label class="col-sm-1 col-form-label">Vivienda Recibida</label>
                                                         <div class="col-sm-5">
                                                             <input type="text" class="form-control" id="vrecibida" name="vrecibida" required>
                                                             <span class="messages"></span>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     
                                                     <div class="form-group row">
-                                                        <label class="col-sm-1 col-form-label">Nivel de Vivencia</label>
-                                                        <div class="col-sm-5">
+                                                        <label class="col-sm-3 col-form-label">Nivel de Vivencia</label>
+                                                        <div class="col-sm-9">
                                                             <select name="nvivencia" class="form-control" id="nvivencia" required>
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($vivienda as $vive)
@@ -181,11 +181,11 @@
                                                             </select>
                                                             <span class="messages"></span>
                                                         </div>
-                                                        <label class="col-sm-1 col-form-label">Constancia Canjeada</label>
+                                                        <!-- <label class="col-sm-1 col-form-label">Constancia Canjeada</label>
                                                         <div class="col-sm-5">
                                                             <input type="text" class="form-control" id="ccanjeada" name="ccanjeada" required>
                                                             <span class="messages"></span>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -288,7 +288,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">Otros</label>
                                                         <div class="col-sm-11">
-                                                            <input type="text" class="form-control" id="otros" name="otros" required>
+                                                            <input type="text" class="form-control" id="otros" name="otros">
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>

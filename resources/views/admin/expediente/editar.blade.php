@@ -89,7 +89,7 @@
                                                         <label class="col-sm-2 col-form-label">Croquis</label>
                                                         <div class="col-sm-10">
                                                             <input type="file" class="form-control" id="croquis" name="croquis" required value="{{ isset($expediente->aPlano)?$expediente->aPlano:''}}">
-                                                            <span class="messages"></span>
+                                                            <span class="messages"><a href="{{ isset($expediente->aPlano)?asset("upload/expediente/".$expediente->aPlano):''}}" target="_blank">Ver croquis</a></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -115,7 +115,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">SubLote</label>
                                                         <div class="col-sm-5">
-                                                            <input type="text" class="form-control" id="sublote" name="sublote" required value="{{ isset($expediente->nroSubLote)?$expediente->nroSubLote:''}}">
+                                                            <input type="text" class="form-control" id="sublote" name="sublote" value="{{ isset($expediente->nroSubLote)?$expediente->nroSubLote:''}}">
                                                             <span class="messages"></span>
                                                         </div>
                                                         <label class="col-sm-1 col-form-label">Tipo</label>
@@ -159,21 +159,21 @@
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group row">
-                                                        <label class="col-sm-1 col-form-label">Vivienda Imprimida</label>
-                                                        <div class="col-sm-5">
+                                                        <label class="col-sm-3 col-form-label">Vivienda Imprimida</label>
+                                                        <div class="col-sm-9">
                                                             <input type="text" class="form-control" id="vimprimida" name="vimprimida" required value="{{ isset($expediente->vimprimida)?$expediente->vimprimida:''}}">
                                                             <span class="messages"></span>
                                                         </div>
-                                                        <label class="col-sm-1 col-form-label">Vivienda Recibida</label>
+                                                        <!-- <label class="col-sm-1 col-form-label">Vivienda Recibida</label>
                                                         <div class="col-sm-5">
                                                             <input type="text" class="form-control" id="vrecibida" name="vrecibida" required value="{{ isset($expediente->vrecibida)?$expediente->vrecibida:''}}">
                                                             <span class="messages"></span>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     
                                                     <div class="form-group row">
-                                                        <label class="col-sm-1 col-form-label">Nivel de Vivencia</label>
-                                                        <div class="col-sm-5">
+                                                        <label class="col-sm-3 col-form-label">Nivel de Vivencia</label>
+                                                        <div class="col-sm-9">
                                                             <select name="nvivencia" class="form-control" id="nvivencia">
                                                                 <option value="">[SELECCIONE]</option>
                                                                 @foreach($vivienda as $vive)
@@ -182,11 +182,11 @@
                                                             </select>
                                                             <span class="messages"></span>
                                                         </div>
-                                                        <label class="col-sm-1 col-form-label">Constancia Canjeada</label>
+                                                        <!-- <label class="col-sm-1 col-form-label">Constancia Canjeada</label>
                                                         <div class="col-sm-5">
                                                             <input type="text" class="form-control" id="ccanjeada" name="ccanjeada" required value="{{ isset($expediente->ccanjeada)?$expediente->ccanjeada:''}}">
                                                             <span class="messages"></span>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -289,7 +289,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-sm-1 col-form-label">Otros</label>
                                                         <div class="col-sm-11">
-                                                            <input type="text" class="form-control" id="otros" name="otros" required value="{{ isset($expediente->otros)?$expediente->otros:''}}">
+                                                            <input type="text" class="form-control" id="otros" name="otros" value="{{ isset($expediente->otros)?$expediente->otros:''}}">
                                                             <span class="messages"></span>
                                                         </div>
                                                     </div>

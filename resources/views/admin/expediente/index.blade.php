@@ -76,10 +76,10 @@
                                                                     <i class="fa fa-edit"></i>
                                                                     Editar
                                                                 </a>
-                                                                <a class="dropdown-item alert-delete" href="#" data-id="{{ $exp->idExpediente }}" >
+                                                                <!-- <a class="dropdown-item alert-delete" href="#" data-id="{{ $exp->idExpediente }}" >
                                                                     <i class="fa fa-trash-alt"></i>
                                                                     Eliminar
-                                                                </a>
+                                                                </a> -->
                                                             </div>
                                                         </div>
                                                     </td>
